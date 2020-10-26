@@ -3,6 +3,7 @@ package br.com.siberius.projeto.domain.service;
 import br.com.siberius.projeto.domain.exception.EntidadeEmUsoException;
 import br.com.siberius.projeto.domain.exception.NegocioException;
 import br.com.siberius.projeto.domain.exception.model.UsuarioNaoEncontradoException;
+import br.com.siberius.projeto.domain.model.Grupo;
 import br.com.siberius.projeto.domain.model.Usuario;
 import br.com.siberius.projeto.domain.repository.UsuarioRepository;
 import java.util.Optional;
@@ -16,6 +17,9 @@ public class UsuarioService {
 
     @Autowired
     private UsuarioRepository usuarioRepository;
+
+    @Autowired
+    GrupoService grupoService;
 
     private static final String MSG_USUARIO_EM_USO
         = "Usuário de código %d não pode ser removida, pois está em uso";
@@ -54,6 +58,20 @@ public class UsuarioService {
             throw new NegocioException("Senha atual informada não coincide com a senha do usuário.");
         }
         usuario.setSenha(novaSenha);
+        usuarioRepository.save(usuario);
+    }
+
+    public void associarGrupo(Long usuarioId, Long grupoId) {
+        Usuario usuario = buscarOuFalhar(usuarioId);
+        Grupo grupo = grupoService.buscarOuFalhar(grupoId);
+        usuario.adicionarGrupo(grupo);
+        usuarioRepository.save(usuario);
+    }
+
+    public void desassociarGrupo(Long usuarioId, Long grupoId) {
+        Usuario usuario = buscarOuFalhar(usuarioId);
+        Grupo grupo = grupoService.buscarOuFalhar(grupoId);
+        usuario.removerGrupo(grupo);
         usuarioRepository.save(usuario);
     }
 }
