@@ -2,6 +2,7 @@ package br.com.siberius.projeto.api.controller;
 
 import br.com.siberius.projeto.api.assembler.GrupoModelAssembler;
 import br.com.siberius.projeto.api.model.GrupoModel;
+import br.com.siberius.projeto.api.openapi.controller.UsuarioGrupoControllerOpenApi;
 import br.com.siberius.projeto.domain.model.Usuario;
 import br.com.siberius.projeto.domain.service.UsuarioService;
 import java.util.List;
@@ -17,31 +18,33 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping(path = "/usuarios/{usuarioId/grupos}")
-public class UsuarioGrupoController {
+public class UsuarioGrupoController implements UsuarioGrupoControllerOpenApi {
 
-    @Autowired
+
     private UsuarioService usuarioService;
 
     @Autowired
     private GrupoModelAssembler assembler;
 
+    @Override
     @GetMapping
     public List<GrupoModel> listar(@PathVariable Long usuarioId) {
         Usuario usuario = usuarioService.buscarOuFalhar(usuarioId);
         return assembler.toCollectionModel(usuario.getGrupos());
     }
 
+    @Override
     @PutMapping("/{grupoId}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public void associar(@PathVariable Long usuarioId, @PathVariable Long grupoId) {
         usuarioService.associarGrupo(usuarioId, grupoId);
     }
 
+    @Override
     @DeleteMapping("/{grupoId}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public void desassociar(@PathVariable Long usuarioId, @PathVariable Long grupoId) {
         usuarioService.desassociarGrupo(usuarioId, grupoId);
     }
-
 
 }
