@@ -18,7 +18,7 @@ public class UsuarioService {
     private UsuarioRepository usuarioRepository;
 
     private static final String MSG_USUARIO_EM_USO
-        = "Cozinha de código %d não pode ser removida, pois está em uso";
+        = "Usuário de código %d não pode ser removida, pois está em uso";
 
     public Usuario buscarOuFalhar(Long usuarioId) {
         return usuarioRepository.findById(usuarioId)

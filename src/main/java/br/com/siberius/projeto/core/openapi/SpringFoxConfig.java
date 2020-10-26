@@ -18,10 +18,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.context.request.ServletWebRequest;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
-
 import springfox.bean.validators.configuration.BeanValidatorPluginsConfiguration;
 import springfox.documentation.builders.ApiInfoBuilder;
-import springfox.documentation.builders.ParameterBuilder;
 import springfox.documentation.builders.PathSelectors;
 import springfox.documentation.builders.RequestHandlerSelectors;
 import springfox.documentation.builders.ResponseMessageBuilder;
@@ -69,7 +67,8 @@ public class SpringFoxConfig implements WebMvcConfigurer {
                 URL.class, URI.class, URLStreamHandler.class, Resource.class,
                 File.class, InputStream.class)
             .apiInfo(apiInfo())
-            .tags(new Tag("Usuários", "Gerencia os usuários"));
+            .tags(new Tag("Usuários", "Gerencia os usuários"),
+                new Tag("Grupos", "Gerencia os grupos de usuários"));
     }
 
     private List<ResponseMessage> globalGetResponseMessages() {
