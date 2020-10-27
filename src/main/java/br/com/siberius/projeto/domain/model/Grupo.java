@@ -30,8 +30,8 @@ public class Grupo {
     private String nome;
 
     @ManyToMany
-    @JoinTable(name = "grupo_permissao", joinColumns = @JoinColumn(name = "grupo_id"),
-        inverseJoinColumns = @JoinColumn(name = "permissao_id"))
+    @JoinTable(name = "GRUPO_PERMISSAO", joinColumns = @JoinColumn(name = "COD_GRUPO"),
+        inverseJoinColumns = @JoinColumn(name = "COD_PERMISSAO"))
     private Set<Permissao> permissoes = new HashSet<>();
 
     public boolean removerPermissao(Permissao permissao) {

@@ -24,7 +24,7 @@ public class Permissao {
     @Column(name = "NM_PERMISSAO", nullable = false)
     private String nome;
 
-    @Column(name = "DES_PERMISSAO", nullable = false)
+    @Column(name = "DESC_PERMISSAO", nullable = false)
     private String descricao;
 
 }
