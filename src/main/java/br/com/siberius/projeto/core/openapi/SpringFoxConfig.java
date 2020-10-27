@@ -68,7 +68,9 @@ public class SpringFoxConfig implements WebMvcConfigurer {
                 File.class, InputStream.class)
             .apiInfo(apiInfo())
             .tags(new Tag("Usuários", "Gerencia os usuários"),
-                new Tag("Grupos", "Gerencia os grupos de usuários"));
+                new Tag("Grupos", "Gerencia os grupos de usuários"),
+                new Tag("Permissões", "Gerencia as permissões de usuários")
+                );
     }
 
     private List<ResponseMessage> globalGetResponseMessages() {

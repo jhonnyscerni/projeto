@@ -4,6 +4,7 @@ import br.com.siberius.projeto.domain.exception.EntidadeEmUsoException;
 import br.com.siberius.projeto.domain.exception.model.GrupoNaoEncontradoException;
 import br.com.siberius.projeto.domain.exception.model.UsuarioNaoEncontradoException;
 import br.com.siberius.projeto.domain.model.Grupo;
+import br.com.siberius.projeto.domain.model.Permissao;
 import br.com.siberius.projeto.domain.repository.GrupoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
@@ -18,6 +19,9 @@ public class GrupoService {
 
     @Autowired
     private GrupoRepository grupoRepository;
+
+    @Autowired
+    private PermissaoService permissaoService;
 
     public Grupo buscarOuFalhar(Long grupoId) {
         return grupoRepository.findById(grupoId).orElseThrow(() -> new GrupoNaoEncontradoException(grupoId));
@@ -37,5 +41,21 @@ public class GrupoService {
             throw new EntidadeEmUsoException(
                 String.format(MSG_USUARIO_EM_USO, grupoId));
         }
+    }
+
+    public void associarPermissao(Long grupoId, Long permissaoId) {
+        Grupo grupo = buscarOuFalhar(grupoId);
+        Permissao permissao = permissaoService.buscarOuFalhar(permissaoId);
+
+        grupo.adicionarPermissao(permissao);
+        grupoRepository.save(grupo);
+    }
+
+    public void desassociarPermissao(Long grupoId, Long permissaoId) {
+        Grupo grupo = buscarOuFalhar(grupoId);
+        Permissao permissao = permissaoService.buscarOuFalhar(permissaoId);
+
+        grupo.removerPermissao(permissao);
+        grupoRepository.save(grupo);
     }
 }
