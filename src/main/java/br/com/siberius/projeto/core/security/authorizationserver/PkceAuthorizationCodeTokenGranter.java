@@ -1,4 +1,4 @@
-package br.com.siberius.projeto.core.security;
+package br.com.siberius.projeto.core.security.authorizationserver;
 
 // Solução baseada em: https://github.com/spring-projects/spring-security-oauth/pull/675/files
 

@@ -5,6 +5,7 @@ import br.com.siberius.projeto.api.assembler.disassembler.PermissaoModelDisassem
 import br.com.siberius.projeto.api.model.PermissaoModel;
 import br.com.siberius.projeto.api.model.input.PermissaoInputModel;
 import br.com.siberius.projeto.api.openapi.controller.PermissaoControllerOpenApi;
+import br.com.siberius.projeto.core.security.resourceserver.CheckSecurity;
 import br.com.siberius.projeto.domain.model.Permissao;
 import br.com.siberius.projeto.domain.repository.PermissaoRepository;
 import br.com.siberius.projeto.domain.service.PermissaoService;
@@ -38,18 +39,21 @@ public class PermissaoController implements PermissaoControllerOpenApi {
     @Autowired
     private PermissaoService permissaoService;
 
+    @CheckSecurity.UsuariosGruposPermissoes.PodeConsultar
     @Override
     @GetMapping
     public List<PermissaoModel> listar() {
         return assembler.toCollectionModel(permissaoRepository.findAll());
     }
 
+    @CheckSecurity.UsuariosGruposPermissoes.PodeConsultar
     @Override
     @GetMapping("/{permissaoId}")
     public PermissaoModel buscar(@PathVariable Long permissaoId) {
         return assembler.toModel(permissaoService.buscarOuFalhar(permissaoId));
     }
 
+    @CheckSecurity.UsuariosGruposPermissoes.PodeEditar
     @Override
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
@@ -57,6 +61,7 @@ public class PermissaoController implements PermissaoControllerOpenApi {
         return assembler.toModel(permissaoService.salvar(disassembler.toDomainObject(permissaoInputModel)));
     }
 
+    @CheckSecurity.UsuariosGruposPermissoes.PodeEditar
     @Override
     @PutMapping("/{permissaoId}")
     public PermissaoModel atualizar(@PathVariable Long permissaoId, @RequestBody @Valid PermissaoInputModel permissaoInputModel) {

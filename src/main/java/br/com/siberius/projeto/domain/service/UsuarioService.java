@@ -10,6 +10,7 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.dao.EmptyResultDataAccessException;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -20,6 +21,9 @@ public class UsuarioService {
 
     @Autowired
     GrupoService grupoService;
+
+    @Autowired
+    private PasswordEncoder passwordEncoder;
 
     private static final String MSG_USUARIO_EM_USO
         = "Usuário de código %d não pode ser removida, pois está em uso";
@@ -35,6 +39,10 @@ public class UsuarioService {
         if (usuarioExistente.isPresent() && !usuarioExistente.get().equals(usuario)) {
             throw new NegocioException(
                 String.format("Já existe um usuário cadastrado com o e-mail %s", usuario.getEmail()));
+        }
+
+        if (usuario.isNovo()) {
+            usuario.setSenha(passwordEncoder.encode(usuario.getSenha()));
         }
 
         return usuarioRepository.save(usuario);
@@ -54,7 +62,10 @@ public class UsuarioService {
 
     public void alterarSenha(Long usuarioId, String senhaAtual, String novaSenha) {
         Usuario usuario = this.buscarOuFalhar(usuarioId);
-        if (usuario.senhaNaoCoincideCom(senhaAtual)) {
+//        if (usuario.senhaNaoCoincideCom(senhaAtual)) {
+//            throw new NegocioException("Senha atual informada não coincide com a senha do usuário.");
+//        }
+        if (!passwordEncoder.matches(senhaAtual, usuario.getSenha())) {
             throw new NegocioException("Senha atual informada não coincide com a senha do usuário.");
         }
         usuario.setSenha(novaSenha);

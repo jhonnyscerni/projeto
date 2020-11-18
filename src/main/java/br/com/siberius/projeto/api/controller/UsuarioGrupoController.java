@@ -3,6 +3,7 @@ package br.com.siberius.projeto.api.controller;
 import br.com.siberius.projeto.api.assembler.GrupoModelAssembler;
 import br.com.siberius.projeto.api.model.GrupoModel;
 import br.com.siberius.projeto.api.openapi.controller.UsuarioGrupoControllerOpenApi;
+import br.com.siberius.projeto.core.security.resourceserver.CheckSecurity;
 import br.com.siberius.projeto.domain.model.Usuario;
 import br.com.siberius.projeto.domain.service.UsuarioService;
 import java.util.List;
@@ -26,6 +27,7 @@ public class UsuarioGrupoController implements UsuarioGrupoControllerOpenApi {
     @Autowired
     private GrupoModelAssembler assembler;
 
+    @CheckSecurity.UsuariosGruposPermissoes.PodeConsultar
     @Override
     @GetMapping
     public List<GrupoModel> listar(@PathVariable Long usuarioId) {
@@ -33,6 +35,7 @@ public class UsuarioGrupoController implements UsuarioGrupoControllerOpenApi {
         return assembler.toCollectionModel(usuario.getGrupos());
     }
 
+    @CheckSecurity.UsuariosGruposPermissoes.PodeEditar
     @Override
     @PutMapping("/{grupoId}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
@@ -40,6 +43,7 @@ public class UsuarioGrupoController implements UsuarioGrupoControllerOpenApi {
         usuarioService.associarGrupo(usuarioId, grupoId);
     }
 
+    @CheckSecurity.UsuariosGruposPermissoes.PodeRemover
     @Override
     @DeleteMapping("/{grupoId}")
     @ResponseStatus(HttpStatus.NO_CONTENT)

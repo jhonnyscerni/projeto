@@ -7,6 +7,7 @@ import br.com.siberius.projeto.api.model.input.SenhaInputModel;
 import br.com.siberius.projeto.api.model.input.UsuarioInputComSenhaModel;
 import br.com.siberius.projeto.api.model.input.UsuarioInputModel;
 import br.com.siberius.projeto.api.openapi.controller.UsuarioControllerOpenApi;
+import br.com.siberius.projeto.core.security.resourceserver.CheckSecurity;
 import br.com.siberius.projeto.domain.model.Usuario;
 import br.com.siberius.projeto.domain.repository.UsuarioRepository;
 import br.com.siberius.projeto.domain.service.UsuarioService;
@@ -41,12 +42,14 @@ public class UsuarioController implements UsuarioControllerOpenApi {
     @Autowired
     private UsuarioInputModelDisassembler disassembler;
 
+    @CheckSecurity.UsuariosGruposPermissoes.PodeConsultar
     @Override
     @GetMapping
     public List<UsuarioModel> listar() {
         return assembler.toCollectionModel(usuarioRepository.findAll());
     }
 
+    @CheckSecurity.UsuariosGruposPermissoes.PodeConsultar
     @Override
     @GetMapping("/{usuarioId}")
     public UsuarioModel buscar(@PathVariable Long usuarioId) {
@@ -54,6 +57,7 @@ public class UsuarioController implements UsuarioControllerOpenApi {
         return assembler.toModel(usuario);
     }
 
+    @CheckSecurity.UsuariosGruposPermissoes.PodeEditar
     @Override
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
@@ -62,6 +66,7 @@ public class UsuarioController implements UsuarioControllerOpenApi {
         return assembler.toModel(usuario);
     }
 
+    @CheckSecurity.UsuariosGruposPermissoes.PodeAlterarUsuario
     @Override
     @PutMapping("/{usuarioId}")
     public UsuarioModel atualizar(@PathVariable Long usuarioId,
@@ -72,6 +77,7 @@ public class UsuarioController implements UsuarioControllerOpenApi {
         return assembler.toModel(usuario);
     }
 
+    @CheckSecurity.UsuariosGruposPermissoes.PodeRemover
     @Override
     @DeleteMapping("/{usuarioId}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
@@ -79,6 +85,7 @@ public class UsuarioController implements UsuarioControllerOpenApi {
         usuarioService.excluir(usuarioId);
     }
 
+    @CheckSecurity.UsuariosGruposPermissoes.PodeAlterarPropriaSenha
     @Override
     @PutMapping("/{usuarioId}/senha")
     public void alterarSenha(@PathVariable Long usuarioId, @RequestBody @Valid SenhaInputModel senha) {

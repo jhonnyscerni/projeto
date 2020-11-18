@@ -61,4 +61,8 @@ public class Usuario {
     public boolean senhaNaoCoincideCom(String senha) {
         return !senhaCoincideCom(senha);
     }
+
+    public boolean isNovo() {
+        return getId() == null;
+    }
 }

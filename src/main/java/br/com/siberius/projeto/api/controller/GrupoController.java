@@ -5,6 +5,7 @@ import br.com.siberius.projeto.api.assembler.disassembler.GrupoInputModelDisasse
 import br.com.siberius.projeto.api.model.GrupoModel;
 import br.com.siberius.projeto.api.model.input.GrupoInputModel;
 import br.com.siberius.projeto.api.openapi.controller.GrupoControllerOpenApi;
+import br.com.siberius.projeto.core.security.resourceserver.CheckSecurity;
 import br.com.siberius.projeto.domain.model.Grupo;
 import br.com.siberius.projeto.domain.repository.GrupoRepository;
 import br.com.siberius.projeto.domain.service.GrupoService;
@@ -39,18 +40,21 @@ public class GrupoController implements GrupoControllerOpenApi {
     @Autowired
     private GrupoInputModelDisassembler disassembler;
 
+    @CheckSecurity.UsuariosGruposPermissoes.PodeConsultar
     @Override
     @GetMapping
     public List<GrupoModel> listar() {
         return assembler.toCollectionModel(grupoRepository.findAll());
     }
 
+    @CheckSecurity.UsuariosGruposPermissoes.PodeConsultar
     @Override
     @GetMapping("/{grupoId}")
-    public GrupoModel buscar(Long grupoId) {
+    public GrupoModel buscar(@PathVariable Long grupoId) {
         return assembler.toModel(grupoService.buscarOuFalhar(grupoId));
     }
 
+    @CheckSecurity.UsuariosGruposPermissoes.PodeEditar
     @Override
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
@@ -59,6 +63,7 @@ public class GrupoController implements GrupoControllerOpenApi {
         return assembler.toModel(grupoService.salvar(grupo));
     }
 
+    @CheckSecurity.UsuariosGruposPermissoes.PodeEditar
     @Override
     @PutMapping("/{grupoId}")
     public GrupoModel atualizar(@PathVariable Long grupoId, @RequestBody @Valid GrupoInputModel grupoInput) {
@@ -68,6 +73,7 @@ public class GrupoController implements GrupoControllerOpenApi {
         return assembler.toModel(grupo);
     }
 
+    @CheckSecurity.UsuariosGruposPermissoes.PodeRemover
     @Override
     @DeleteMapping
     @ResponseStatus(HttpStatus.NO_CONTENT)

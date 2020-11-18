@@ -3,6 +3,7 @@ package br.com.siberius.projeto.api.controller;
 import br.com.siberius.projeto.api.assembler.PermissaoModelAssembler;
 import br.com.siberius.projeto.api.model.PermissaoModel;
 import br.com.siberius.projeto.api.openapi.controller.GrupoPermissoesControllerOpenApi;
+import br.com.siberius.projeto.core.security.resourceserver.CheckSecurity;
 import br.com.siberius.projeto.domain.model.Grupo;
 import br.com.siberius.projeto.domain.service.GrupoService;
 import java.util.List;
@@ -26,6 +27,7 @@ public class GrupoPermissaoController implements GrupoPermissoesControllerOpenAp
     @Autowired
     private PermissaoModelAssembler assembler;
 
+    @CheckSecurity.UsuariosGruposPermissoes.PodeConsultar
     @Override
     @GetMapping
     public List<PermissaoModel> listar(@PathVariable Long grupoId) {
@@ -33,6 +35,7 @@ public class GrupoPermissaoController implements GrupoPermissoesControllerOpenAp
         return assembler.toCollectionModel(grupo.getPermissoes());
     }
 
+    @CheckSecurity.UsuariosGruposPermissoes.PodeRemover
     @Override
     @DeleteMapping("/{permissaoId}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
@@ -40,6 +43,7 @@ public class GrupoPermissaoController implements GrupoPermissoesControllerOpenAp
         grupoService.desassociarPermissao(grupoId, permissaoId);
     }
 
+    @CheckSecurity.UsuariosGruposPermissoes.PodeEditar
     @Override
     @PutMapping("/{permissaoId}")
     @ResponseStatus(HttpStatus.NO_CONTENT)

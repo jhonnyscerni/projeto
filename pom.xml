@@ -23,7 +23,7 @@
         <aws-java-sdk-s3.version>1.11.671</aws-java-sdk-s3.version>
         <springfox.version>2.9.2</springfox.version>
         <spring-security-oauth2.version>2.3.7.RELEASE</spring-security-oauth2.version>
-        <oauth2-oidc-sdk.version>6.21.2</oauth2-oidc-sdk.version>
+        <spring-security-jwt.version>1.0.11.RELEASE</spring-security-jwt.version>
     </properties>
 
     <dependencies>
@@ -159,6 +159,12 @@
             <version>${spring-security-oauth2.version}</version>
         </dependency>
 
+        <dependency>
+            <groupId>org.springframework.security</groupId>
+            <artifactId>spring-security-jwt</artifactId>
+            <version>${spring-security-jwt.version}</version>
+        </dependency>
+
         <!-- Dependencias Resource Server -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
@@ -168,8 +174,13 @@
         </dependency>
         <dependency>
             <groupId>com.nimbusds</groupId>
-            <artifactId>oauth2-oidc-sdk</artifactId>
-            <version>${oauth2-oidc-sdk.version}</version>
+            <artifactId>nimbus-jose-jwt</artifactId>
+            <version>8.20</version>
+        </dependency>
+        <!-- -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-thymeleaf</artifactId>
         </dependency>
 
     </dependencies>
