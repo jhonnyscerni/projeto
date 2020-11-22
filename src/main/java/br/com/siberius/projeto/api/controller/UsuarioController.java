@@ -57,7 +57,6 @@ public class UsuarioController implements UsuarioControllerOpenApi {
         return assembler.toModel(usuario);
     }
 
-    @CheckSecurity.UsuariosGruposPermissoes.PodeEditar
     @Override
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
