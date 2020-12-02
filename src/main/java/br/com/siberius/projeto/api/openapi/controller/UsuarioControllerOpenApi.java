@@ -47,7 +47,7 @@ public interface UsuarioControllerOpenApi {
 
         @ApiParam(name = "corpo", value = "Representação de um usuário com os novos dados",
             required = true)
-            UsuarioInputModel usuarioInput);
+            UsuarioInputComSenhaModel usuarioInput);
 
     @ApiOperation("Atualiza a senha de um usuário")
     @ApiResponses({

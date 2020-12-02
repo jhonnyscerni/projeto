@@ -69,7 +69,7 @@ public class UsuarioController implements UsuarioControllerOpenApi {
     @Override
     @PutMapping("/{usuarioId}")
     public UsuarioModel atualizar(@PathVariable Long usuarioId,
-        @RequestBody @Valid UsuarioInputModel usuarioInput) {
+        @RequestBody @Valid UsuarioInputComSenhaModel usuarioInput) {
         Usuario usuario = usuarioService.buscarOuFalhar(usuarioId);
         disassembler.copyToDomainObject(usuarioInput, usuario);
         usuario = usuarioService.salvar(usuario);

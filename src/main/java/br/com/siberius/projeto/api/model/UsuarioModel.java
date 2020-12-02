@@ -18,6 +18,9 @@ public class UsuarioModel {
     @ApiModelProperty(example = "jhonnyscerni@gmail.com")
     private String email;
 
+    @ApiModelProperty(example = "jhonnyscerni@gmail.com")
+    private String senha;
+
     @ApiModelProperty(example = "2020-10-23T18:16:59.517Z")
     private OffsetDateTime dataCadastro;
 }
