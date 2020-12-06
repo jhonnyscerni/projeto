@@ -76,9 +76,9 @@ public class GrupoController implements GrupoControllerOpenApi {
 
     @CheckSecurity.UsuariosGruposPermissoes.PodeRemoverGrupo
     @Override
-    @DeleteMapping
+    @DeleteMapping("/{grupoId}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
-    public void remover(Long grupoId) {
+    public void remover(@PathVariable Long grupoId) {
         grupoService.excluir(grupoId);
     }
 }

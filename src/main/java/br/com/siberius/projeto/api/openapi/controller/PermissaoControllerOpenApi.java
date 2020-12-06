@@ -42,4 +42,13 @@ public interface PermissaoControllerOpenApi {
             required = true)
             PermissaoInputModel permissaoInputModel);
 
+    @ApiOperation("Exclui uma permissão por ID")
+    @ApiResponses({
+        @ApiResponse(code = 204, message = "Permissão excluída"),
+        @ApiResponse(code = 404, message = "Permissão não encontrada", response = Problem.class)
+    })
+    public void remover(
+        @ApiParam(value = "ID de uma Permissão", example = "1")
+            Long permissaoId);
+
 }
