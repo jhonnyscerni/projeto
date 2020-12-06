@@ -19,7 +19,7 @@ public @interface CheckSecurity {
 
         }
 
-        @PreAuthorize("hasAuthority('SCOPE_WRITE') and (hasAuthority('EDITAR_USUARIOS_GRUPOS_PERMISSOES') or "
+        @PreAuthorize("hasAuthority('SCOPE_WRITE') and (hasAuthority('EDITAR_USUARIOS') or "
             + "@projetoSecurity.usuarioAutenticadoIgual(#usuarioId))")
         @Retention(RUNTIME)
         @Target(METHOD)
@@ -27,25 +27,152 @@ public @interface CheckSecurity {
 
         }
 
-        @PreAuthorize("@projetoSecurity.podeEditarUsuariosGruposPermissoes()")
+        /**
+         * USUARIO
+         */
+
+        @PreAuthorize("@projetoSecurity.podeEditarUsuarios()")
         @Retention(RUNTIME)
         @Target(METHOD)
-        public @interface PodeEditar {
+        public @interface PodeEditarUsuario {
 
         }
 
-        @PreAuthorize("@projetoSecurity.podeRemoverUsuariosGruposPermissoes()")
+        @PreAuthorize("@projetoSecurity.podeRemoverUsuarios()")
         @Retention(RUNTIME)
         @Target(METHOD)
-        public @interface PodeRemover {
+        public @interface PodeRemoverUsuario {
 
         }
 
 
-        @PreAuthorize("@projetoSecurity.podeConsultarUsuariosGruposPermissoes()")
+        @PreAuthorize("@projetoSecurity.podeConsultarUsuarios()")
         @Retention(RUNTIME)
         @Target(METHOD)
-        public @interface PodeConsultar {
+        public @interface PodeConsultarUsuario {
+
+        }
+
+        @PreAuthorize("@projetoSecurity.podeCadastrarUsuarios()")
+        @Retention(RUNTIME)
+        @Target(METHOD)
+        public @interface PodeCadastrarUsuario {
+
+        }
+
+        /**
+         * GRUPO
+         */
+
+        @PreAuthorize("@projetoSecurity.podeEditarGrupos()")
+        @Retention(RUNTIME)
+        @Target(METHOD)
+        public @interface PodeEditarGrupo {
+
+        }
+
+        @PreAuthorize("@projetoSecurity.podeRemoverGrupos()")
+        @Retention(RUNTIME)
+        @Target(METHOD)
+        public @interface PodeRemoverGrupo {
+
+        }
+
+
+        @PreAuthorize("@projetoSecurity.podeConsultarGrupos()")
+        @Retention(RUNTIME)
+        @Target(METHOD)
+        public @interface PodeConsultarGrupo {
+
+        }
+
+        @PreAuthorize("@projetoSecurity.podeCadastrarGrupos()")
+        @Retention(RUNTIME)
+        @Target(METHOD)
+        public @interface PodeCadastrarGrupo {
+
+        }
+
+        /**
+         * PERMISSAO
+         */
+
+        @PreAuthorize("@projetoSecurity.podeEditarPermissoes()")
+        @Retention(RUNTIME)
+        @Target(METHOD)
+        public @interface PodeEditarPermissao {
+
+        }
+
+        @PreAuthorize("@projetoSecurity.podeRemoverPermissoes()")
+        @Retention(RUNTIME)
+        @Target(METHOD)
+        public @interface PodeRemoverPermissao {
+
+        }
+
+
+        @PreAuthorize("@projetoSecurity.podeConsultarPermissoes()")
+        @Retention(RUNTIME)
+        @Target(METHOD)
+        public @interface PodeConsultarPermissao {
+
+        }
+
+        @PreAuthorize("@projetoSecurity.podeCadastrarPermissoes()")
+        @Retention(RUNTIME)
+        @Target(METHOD)
+        public @interface PodeCadastrarPermissao {
+
+        }
+
+        /**
+         * USUARIO GRUPO
+         */
+
+        @PreAuthorize("@projetoSecurity.podeConsultarUsuariosGrupos()")
+        @Retention(RUNTIME)
+        @Target(METHOD)
+        public @interface PodeConsultarUsuarioGrupo {
+
+        }
+
+        @PreAuthorize("@projetoSecurity.podeAssociarUsuariosGrupos()")
+        @Retention(RUNTIME)
+        @Target(METHOD)
+        public @interface PodeAssociarUsuarioGrupo {
+
+        }
+
+        @PreAuthorize("@projetoSecurity.podeDesassociarUsuariosGrupos()")
+        @Retention(RUNTIME)
+        @Target(METHOD)
+        public @interface PodeDesassociarUsuarioGrupo {
+
+        }
+
+        /**
+         * GRUPO PERMISSAO
+         */
+
+        @PreAuthorize("@projetoSecurity.podeConsultarGruposPermissaos()")
+        @Retention(RUNTIME)
+        @Target(METHOD)
+        public @interface PodeConsultarGrupoPermissao {
+
+        }
+
+        @PreAuthorize("@projetoSecurity.podeAssociarGruposPermissaos()")
+        @Retention(RUNTIME)
+        @Target(METHOD)
+        public @interface PodeAssociarGrupoPermissao {
+
+        }
+
+        @PreAuthorize("@projetoSecurity.podeDesassociarGruposPermissaos()")
+        @Retention(RUNTIME)
+        @Target(METHOD)
+        public @interface PodeDesassociarGrupoPermissao {
 
         }
 

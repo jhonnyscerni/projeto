@@ -27,7 +27,7 @@ public class GrupoPermissaoController implements GrupoPermissoesControllerOpenAp
     @Autowired
     private PermissaoModelAssembler assembler;
 
-    @CheckSecurity.UsuariosGruposPermissoes.PodeConsultar
+    @CheckSecurity.UsuariosGruposPermissoes.PodeConsultarGrupoPermissao
     @Override
     @GetMapping
     public List<PermissaoModel> listar(@PathVariable Long grupoId) {
@@ -35,7 +35,7 @@ public class GrupoPermissaoController implements GrupoPermissoesControllerOpenAp
         return assembler.toCollectionModel(grupo.getPermissoes());
     }
 
-    @CheckSecurity.UsuariosGruposPermissoes.PodeRemover
+    @CheckSecurity.UsuariosGruposPermissoes.PodeDesassociarGrupoPermissao
     @Override
     @DeleteMapping("/{permissaoId}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
@@ -43,7 +43,7 @@ public class GrupoPermissaoController implements GrupoPermissoesControllerOpenAp
         grupoService.desassociarPermissao(grupoId, permissaoId);
     }
 
-    @CheckSecurity.UsuariosGruposPermissoes.PodeEditar
+    @CheckSecurity.UsuariosGruposPermissoes.PodeAssociarGrupoPermissao
     @Override
     @PutMapping("/{permissaoId}")
     @ResponseStatus(HttpStatus.NO_CONTENT)

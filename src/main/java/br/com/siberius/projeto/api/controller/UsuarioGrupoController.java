@@ -27,7 +27,7 @@ public class UsuarioGrupoController implements UsuarioGrupoControllerOpenApi {
     @Autowired
     private GrupoModelAssembler assembler;
 
-    @CheckSecurity.UsuariosGruposPermissoes.PodeConsultar
+    @CheckSecurity.UsuariosGruposPermissoes.PodeConsultarUsuarioGrupo
     @Override
     @GetMapping
     public List<GrupoModel> listar(@PathVariable Long usuarioId) {
@@ -35,7 +35,7 @@ public class UsuarioGrupoController implements UsuarioGrupoControllerOpenApi {
         return assembler.toCollectionModel(usuario.getGrupos());
     }
 
-    @CheckSecurity.UsuariosGruposPermissoes.PodeEditar
+    @CheckSecurity.UsuariosGruposPermissoes.PodeAssociarUsuarioGrupo
     @Override
     @PutMapping("/{grupoId}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
@@ -43,7 +43,7 @@ public class UsuarioGrupoController implements UsuarioGrupoControllerOpenApi {
         usuarioService.associarGrupo(usuarioId, grupoId);
     }
 
-    @CheckSecurity.UsuariosGruposPermissoes.PodeRemover
+    @CheckSecurity.UsuariosGruposPermissoes.PodeDesassociarUsuarioGrupo
     @Override
     @DeleteMapping("/{grupoId}")
     @ResponseStatus(HttpStatus.NO_CONTENT)

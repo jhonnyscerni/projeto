@@ -39,21 +39,21 @@ public class PermissaoController implements PermissaoControllerOpenApi {
     @Autowired
     private PermissaoService permissaoService;
 
-    @CheckSecurity.UsuariosGruposPermissoes.PodeConsultar
+    @CheckSecurity.UsuariosGruposPermissoes.PodeConsultarPermissao
     @Override
     @GetMapping
     public List<PermissaoModel> listar() {
         return assembler.toCollectionModel(permissaoRepository.findAll());
     }
 
-    @CheckSecurity.UsuariosGruposPermissoes.PodeConsultar
+    @CheckSecurity.UsuariosGruposPermissoes.PodeConsultarPermissao
     @Override
     @GetMapping("/{permissaoId}")
     public PermissaoModel buscar(@PathVariable Long permissaoId) {
         return assembler.toModel(permissaoService.buscarOuFalhar(permissaoId));
     }
 
-    @CheckSecurity.UsuariosGruposPermissoes.PodeEditar
+    @CheckSecurity.UsuariosGruposPermissoes.PodeCadastrarPermissao
     @Override
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
@@ -61,7 +61,7 @@ public class PermissaoController implements PermissaoControllerOpenApi {
         return assembler.toModel(permissaoService.salvar(disassembler.toDomainObject(permissaoInputModel)));
     }
 
-    @CheckSecurity.UsuariosGruposPermissoes.PodeEditar
+    @CheckSecurity.UsuariosGruposPermissoes.PodeEditarPermissao
     @Override
     @PutMapping("/{permissaoId}")
     public PermissaoModel atualizar(@PathVariable Long permissaoId, @RequestBody @Valid PermissaoInputModel permissaoInputModel) {

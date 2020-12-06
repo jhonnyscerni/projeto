@@ -40,21 +40,22 @@ public class GrupoController implements GrupoControllerOpenApi {
     @Autowired
     private GrupoInputModelDisassembler disassembler;
 
-    @CheckSecurity.UsuariosGruposPermissoes.PodeConsultar
+
+    @CheckSecurity.UsuariosGruposPermissoes.PodeConsultarGrupo
     @Override
     @GetMapping
     public List<GrupoModel> listar() {
         return assembler.toCollectionModel(grupoRepository.findAll());
     }
 
-    @CheckSecurity.UsuariosGruposPermissoes.PodeConsultar
+    @CheckSecurity.UsuariosGruposPermissoes.PodeConsultarGrupo
     @Override
     @GetMapping("/{grupoId}")
     public GrupoModel buscar(@PathVariable Long grupoId) {
         return assembler.toModel(grupoService.buscarOuFalhar(grupoId));
     }
 
-    @CheckSecurity.UsuariosGruposPermissoes.PodeEditar
+    @CheckSecurity.UsuariosGruposPermissoes.PodeCadastrarGrupo
     @Override
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
@@ -63,7 +64,7 @@ public class GrupoController implements GrupoControllerOpenApi {
         return assembler.toModel(grupoService.salvar(grupo));
     }
 
-    @CheckSecurity.UsuariosGruposPermissoes.PodeEditar
+    @CheckSecurity.UsuariosGruposPermissoes.PodeEditarGrupo
     @Override
     @PutMapping("/{grupoId}")
     public GrupoModel atualizar(@PathVariable Long grupoId, @RequestBody @Valid GrupoInputModel grupoInput) {
@@ -73,7 +74,7 @@ public class GrupoController implements GrupoControllerOpenApi {
         return assembler.toModel(grupo);
     }
 
-    @CheckSecurity.UsuariosGruposPermissoes.PodeRemover
+    @CheckSecurity.UsuariosGruposPermissoes.PodeRemoverGrupo
     @Override
     @DeleteMapping
     @ResponseStatus(HttpStatus.NO_CONTENT)

@@ -42,14 +42,14 @@ public class UsuarioController implements UsuarioControllerOpenApi {
     @Autowired
     private UsuarioInputModelDisassembler disassembler;
 
-    @CheckSecurity.UsuariosGruposPermissoes.PodeConsultar
+    @CheckSecurity.UsuariosGruposPermissoes.PodeConsultarUsuario
     @Override
     @GetMapping
     public List<UsuarioModel> listar() {
         return assembler.toCollectionModel(usuarioRepository.findAll());
     }
 
-    @CheckSecurity.UsuariosGruposPermissoes.PodeConsultar
+    @CheckSecurity.UsuariosGruposPermissoes.PodeConsultarUsuario
     @Override
     @GetMapping("/{usuarioId}")
     public UsuarioModel buscar(@PathVariable Long usuarioId) {
@@ -57,6 +57,7 @@ public class UsuarioController implements UsuarioControllerOpenApi {
         return assembler.toModel(usuario);
     }
 
+    @CheckSecurity.UsuariosGruposPermissoes.PodeCadastrarUsuario
     @Override
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
@@ -76,7 +77,7 @@ public class UsuarioController implements UsuarioControllerOpenApi {
         return assembler.toModel(usuario);
     }
 
-    @CheckSecurity.UsuariosGruposPermissoes.PodeRemover
+    @CheckSecurity.UsuariosGruposPermissoes.PodeRemoverUsuario
     @Override
     @DeleteMapping("/{usuarioId}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
