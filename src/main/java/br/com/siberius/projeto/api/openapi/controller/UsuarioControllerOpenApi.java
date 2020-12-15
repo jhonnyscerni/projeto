@@ -6,18 +6,27 @@ import br.com.siberius.projeto.api.model.UsuarioModel;
 import br.com.siberius.projeto.api.model.input.SenhaInputModel;
 import br.com.siberius.projeto.api.model.input.UsuarioInputComSenhaModel;
 import br.com.siberius.projeto.api.model.input.UsuarioInputModel;
+import br.com.siberius.projeto.domain.repository.filter.UsuarioFilter;
 import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiImplicitParam;
+import io.swagger.annotations.ApiImplicitParams;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
 import io.swagger.annotations.ApiResponse;
 import io.swagger.annotations.ApiResponses;
 import java.util.List;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 
 @Api(tags = "Usuários")
 public interface UsuarioControllerOpenApi {
 
-    @ApiOperation("Lista os usuários")
-    List<UsuarioModel> listar();
+    @ApiImplicitParams({
+        @ApiImplicitParam(value = "Nomes das propriedades para filtrar na resposta, separados por vírgula",
+            name = "campos", paramType = "query", type = "string")
+    })
+    @ApiOperation("Pesquisar os usuários")
+    Page<UsuarioModel> pesquisar(UsuarioFilter filter, Pageable pageable);
 
     @ApiOperation("Busca um usuário por ID")
     @ApiResponses({

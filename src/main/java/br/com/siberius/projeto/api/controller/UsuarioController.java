@@ -5,15 +5,20 @@ import br.com.siberius.projeto.api.assembler.disassembler.UsuarioInputModelDisas
 import br.com.siberius.projeto.api.model.UsuarioModel;
 import br.com.siberius.projeto.api.model.input.SenhaInputModel;
 import br.com.siberius.projeto.api.model.input.UsuarioInputComSenhaModel;
-import br.com.siberius.projeto.api.model.input.UsuarioInputModel;
 import br.com.siberius.projeto.api.openapi.controller.UsuarioControllerOpenApi;
 import br.com.siberius.projeto.core.security.resourceserver.CheckSecurity;
 import br.com.siberius.projeto.domain.model.Usuario;
 import br.com.siberius.projeto.domain.repository.UsuarioRepository;
+import br.com.siberius.projeto.domain.repository.filter.UsuarioFilter;
 import br.com.siberius.projeto.domain.service.UsuarioService;
+import br.com.siberius.projeto.infrastructure.repository.UsuarioSpecs;
 import java.util.List;
 import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageImpl;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -45,8 +50,19 @@ public class UsuarioController implements UsuarioControllerOpenApi {
     @CheckSecurity.UsuariosGruposPermissoes.PodeConsultarUsuario
     @Override
     @GetMapping
-    public List<UsuarioModel> listar() {
-        return assembler.toCollectionModel(usuarioRepository.findAll());
+//    public List<UsuarioModel> listar() {
+//        return assembler.toCollectionModel(usuarioRepository.findAll());
+//    }
+    public Page<UsuarioModel> pesquisar(UsuarioFilter filter, @PageableDefault(size = 10) Pageable pageable) {
+
+        Page<Usuario> usuariosPage = usuarioRepository.findAll(
+            UsuarioSpecs.usandoFiltro(filter), pageable);
+
+        List<UsuarioModel> usuarioModelList = assembler
+            .toCollectionModel(usuariosPage.getContent());
+
+        return new PageImpl<>(
+            usuarioModelList, pageable, usuariosPage.getTotalElements());
     }
 
     @CheckSecurity.UsuariosGruposPermissoes.PodeConsultarUsuario

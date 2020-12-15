@@ -1,6 +1,9 @@
 package br.com.siberius.projeto.core.openapi;
 
 import br.com.siberius.projeto.api.exceptionhandler.Problem;
+import br.com.siberius.projeto.api.model.UsuarioModel;
+import br.com.siberius.projeto.api.openapi.model.PageableModelOpenApi;
+import br.com.siberius.projeto.api.openapi.model.UsuariosModelOpenApi;
 import com.fasterxml.classmate.TypeResolver;
 import java.io.File;
 import java.io.InputStream;
@@ -13,6 +16,8 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Import;
 import org.springframework.core.io.Resource;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.context.request.ServletWebRequest;
@@ -24,6 +29,7 @@ import springfox.documentation.builders.OAuthBuilder;
 import springfox.documentation.builders.PathSelectors;
 import springfox.documentation.builders.RequestHandlerSelectors;
 import springfox.documentation.builders.ResponseMessageBuilder;
+import springfox.documentation.schema.AlternateTypeRules;
 import springfox.documentation.schema.ModelRef;
 import springfox.documentation.service.ApiInfo;
 import springfox.documentation.service.AuthorizationScope;
@@ -70,6 +76,10 @@ public class SpringFoxConfig implements WebMvcConfigurer {
             .globalResponseMessage(RequestMethod.PUT, globalPostPutResponseMessages())
             .globalResponseMessage(RequestMethod.DELETE, globalDeleteResponseMessages())
             .additionalModels(typeResolver.resolve(Problem.class))
+            .directModelSubstitute(Pageable.class, PageableModelOpenApi.class)
+            .alternateTypeRules(AlternateTypeRules.newRule(
+                typeResolver.resolve(Page.class, UsuarioModel.class),
+                UsuariosModelOpenApi.class))
             .ignoredParameterTypes(ServletWebRequest.class,
                 URL.class, URI.class, URLStreamHandler.class, Resource.class,
                 File.class, InputStream.class)
