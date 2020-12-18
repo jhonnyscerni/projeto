@@ -1,7 +1,7 @@
 package br.com.siberius.projeto.domain.model;
 
-import java.util.HashSet;
-import java.util.Set;
+import java.util.ArrayList;
+import java.util.List;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -32,7 +32,7 @@ public class Grupo {
     @ManyToMany
     @JoinTable(name = "GRUPO_PERMISSAO", joinColumns = @JoinColumn(name = "COD_GRUPO"),
         inverseJoinColumns = @JoinColumn(name = "COD_PERMISSAO"))
-    private Set<Permissao> permissoes = new HashSet<>();
+    private List<Permissao> permissoes = new ArrayList<>();
 
     public boolean removerPermissao(Permissao permissao) {
         return getPermissoes().remove(permissao);

@@ -1,10 +1,11 @@
 package br.com.siberius.projeto.domain.model;
 
 import java.time.OffsetDateTime;
-import java.util.HashSet;
-import java.util.Set;
+import java.util.ArrayList;
+import java.util.List;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -41,10 +42,10 @@ public class Usuario {
     @Column(name = "DT_CAD_USUARIO", nullable = false, columnDefinition = "datetime")
     private OffsetDateTime dataCadastro;
 
-    @ManyToMany
+    @ManyToMany()
     @JoinTable(name = "USUARIO_GRUPO", joinColumns = @JoinColumn(name = "COD_USUARIO"),
         inverseJoinColumns = @JoinColumn(name = "COD_GRUPO"))
-    private Set<Grupo> grupos = new HashSet<>();
+    private List<Grupo> grupos = new ArrayList<>();
 
     public boolean adicionarGrupo(Grupo grupo) {
         return getGrupos().add(grupo);

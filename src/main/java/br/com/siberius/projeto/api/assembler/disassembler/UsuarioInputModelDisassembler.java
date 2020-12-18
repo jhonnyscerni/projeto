@@ -1,5 +1,6 @@
 package br.com.siberius.projeto.api.assembler.disassembler;
 
+import br.com.siberius.projeto.api.model.input.UsuarioInputComSenhaModel;
 import br.com.siberius.projeto.api.model.input.UsuarioInputModel;
 import br.com.siberius.projeto.domain.model.Usuario;
 import org.modelmapper.ModelMapper;
@@ -14,6 +15,10 @@ public class UsuarioInputModelDisassembler {
 
     public Usuario toDomainObject(UsuarioInputModel usuarioInputModel) {
         return modelMapper.map(usuarioInputModel, Usuario.class);
+    }
+
+    public Usuario toDomainObjectComSenha(UsuarioInputComSenhaModel usuarioInputComSenhaModel) {
+        return modelMapper.map(usuarioInputComSenhaModel, Usuario.class);
     }
 
     public void copyToDomainObject(UsuarioInputModel usuarioInputModel, Usuario usuario) {

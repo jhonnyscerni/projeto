@@ -1,7 +1,8 @@
 package br.com.siberius.projeto.api.model;
 
 import io.swagger.annotations.ApiModelProperty;
-import java.time.OffsetDateTime;
+import java.util.ArrayList;
+import java.util.List;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -14,4 +15,7 @@ public class GrupoModel {
 
     @ApiModelProperty(example = "Administrador")
     private String nome;
+
+    @ApiModelProperty(example = "CONSULTA_USUARIOS")
+    private List<PermissaoModel> permissoes = new ArrayList<>();
 }

@@ -6,6 +6,8 @@ import br.com.siberius.projeto.domain.exception.model.UsuarioNaoEncontradoExcept
 import br.com.siberius.projeto.domain.model.Grupo;
 import br.com.siberius.projeto.domain.model.Usuario;
 import br.com.siberius.projeto.domain.repository.UsuarioRepository;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
@@ -43,6 +45,14 @@ public class UsuarioService {
 
         if (usuario.isNovo()) {
             usuario.setSenha(passwordEncoder.encode(usuario.getSenha()));
+        }
+
+        if (usuario.isNovo()) {
+            List<Grupo> grupos = new ArrayList<>();
+            for (Grupo grupo : usuario.getGrupos()) {
+                grupos.add(grupoService.buscarOuFalhar(grupo.getId()));
+            }
+            usuario.setGrupos(grupos);
         }
 
         return usuarioRepository.save(usuario);

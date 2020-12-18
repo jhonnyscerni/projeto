@@ -1,6 +1,9 @@
 package br.com.siberius.projeto.api.model.input;
 
+import br.com.siberius.projeto.api.model.GrupoModel;
 import io.swagger.annotations.ApiModelProperty;
+import java.util.ArrayList;
+import java.util.List;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import lombok.Getter;
@@ -21,4 +24,7 @@ public class UsuarioInputModel {
     @NotBlank
     @Email
     private String email;
+
+    @ApiModelProperty(example = "Administrador", required = true)
+    private List<GrupoModel> grupos = new ArrayList<>();
 }

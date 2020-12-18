@@ -1,17 +1,23 @@
 package br.com.siberius.projeto.api.controller;
 
+import br.com.siberius.projeto.api.assembler.GrupoModelAssembler;
 import br.com.siberius.projeto.api.assembler.UsuarioModelAssembler;
+import br.com.siberius.projeto.api.assembler.disassembler.GrupoInputModelDisassembler;
 import br.com.siberius.projeto.api.assembler.disassembler.UsuarioInputModelDisassembler;
+import br.com.siberius.projeto.api.model.GrupoModel;
 import br.com.siberius.projeto.api.model.UsuarioModel;
 import br.com.siberius.projeto.api.model.input.SenhaInputModel;
 import br.com.siberius.projeto.api.model.input.UsuarioInputComSenhaModel;
 import br.com.siberius.projeto.api.openapi.controller.UsuarioControllerOpenApi;
 import br.com.siberius.projeto.core.security.resourceserver.CheckSecurity;
+import br.com.siberius.projeto.domain.model.Grupo;
 import br.com.siberius.projeto.domain.model.Usuario;
 import br.com.siberius.projeto.domain.repository.UsuarioRepository;
 import br.com.siberius.projeto.domain.repository.filter.UsuarioFilter;
+import br.com.siberius.projeto.domain.service.GrupoService;
 import br.com.siberius.projeto.domain.service.UsuarioService;
 import br.com.siberius.projeto.infrastructure.repository.UsuarioSpecs;
+import java.util.ArrayList;
 import java.util.List;
 import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -42,7 +48,13 @@ public class UsuarioController implements UsuarioControllerOpenApi {
     private UsuarioService usuarioService;
 
     @Autowired
+    private GrupoService grupoService;
+
+    @Autowired
     private UsuarioModelAssembler assembler;
+
+    @Autowired
+    private GrupoModelAssembler assemblerGrupo;
 
     @Autowired
     private UsuarioInputModelDisassembler disassembler;
@@ -88,9 +100,10 @@ public class UsuarioController implements UsuarioControllerOpenApi {
     public UsuarioModel atualizar(@PathVariable Long usuarioId,
         @RequestBody @Valid UsuarioInputComSenhaModel usuarioInput) {
         Usuario usuario = usuarioService.buscarOuFalhar(usuarioId);
-        disassembler.copyToDomainObject(usuarioInput, usuario);
-        usuario = usuarioService.salvar(usuario);
-        return assembler.toModel(usuario);
+        Usuario usuarioAlterado = disassembler.toDomainObjectComSenha(usuarioInput);
+        usuarioAlterado.setDataCadastro(usuario.getDataCadastro());
+        usuarioAlterado = usuarioService.salvar(usuarioAlterado);
+        return assembler.toModel(usuarioAlterado);
     }
 
     @CheckSecurity.UsuariosGruposPermissoes.PodeRemoverUsuario
@@ -107,4 +120,18 @@ public class UsuarioController implements UsuarioControllerOpenApi {
     public void alterarSenha(@PathVariable Long usuarioId, @RequestBody @Valid SenhaInputModel senha) {
         usuarioService.alterarSenha(usuarioId, senha.getSenhaAtual(), senha.getNovaSenha());
     }
+
+    @PostMapping("/add-usuario-comum")
+    @ResponseStatus(HttpStatus.CREATED)
+    public UsuarioModel adicionarUsuarioComum(@RequestBody @Valid UsuarioInputComSenhaModel usuarioInput) {
+        List<GrupoModel> grupos = new ArrayList<>();
+        // ID do Usuario Comum
+        Grupo grupo = grupoService.buscarOuFalhar(2L);
+        grupos.add(assemblerGrupo.toModel(grupo));
+        usuarioInput.setGrupos(grupos);
+
+        Usuario usuario = usuarioService.salvar(disassembler.toDomainObject(usuarioInput));
+        return assembler.toModel(usuario);
+    }
+
 }

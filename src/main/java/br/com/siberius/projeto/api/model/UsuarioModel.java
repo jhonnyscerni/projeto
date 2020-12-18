@@ -2,6 +2,7 @@ package br.com.siberius.projeto.api.model;
 
 import io.swagger.annotations.ApiModelProperty;
 import java.time.OffsetDateTime;
+import java.util.List;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -23,4 +24,7 @@ public class UsuarioModel {
 
     @ApiModelProperty(example = "2020-10-23T18:16:59.517Z")
     private OffsetDateTime dataCadastro;
+
+    @ApiModelProperty(example = "Administrador", required = true)
+    private List<GrupoModel> grupos;
 }

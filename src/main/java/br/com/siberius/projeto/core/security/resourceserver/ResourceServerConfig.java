@@ -29,6 +29,7 @@ public class ResourceServerConfig extends WebSecurityConfigurerAdapter {
             .formLogin().loginPage("/login")
             .and()
             .authorizeRequests()
+            .antMatchers("/usuarios/add-usuario-comum").permitAll()
             .antMatchers("/oauth/**").authenticated()
             .and()
             .csrf().disable()
