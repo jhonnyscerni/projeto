@@ -12,7 +12,7 @@ public class PermissaoInputModel {
     @ApiModelProperty(example = "1")
     private Long Id;
 
-    @ApiModelProperty(example = "CONSULTAR_USUARIOS")
+    @ApiModelProperty(example = "SEG_CONSULTAR_USUARIOS")
     @Column(nullable = false)
     private String nome;
 

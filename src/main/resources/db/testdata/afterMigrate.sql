@@ -13,28 +13,28 @@ alter table usuario auto_increment = 1;
 
 insert into permissao (cod_permissao, nm_permissao, desc_permissao) values (1, 'CONSULTAR_DASHBOARD', 'Permite consultar dashboard');
 
-insert into permissao (cod_permissao, nm_permissao, desc_permissao) values (2, 'CONSULTAR_USUARIOS', 'Permite consultar usuarios');
-insert into permissao (cod_permissao, nm_permissao, desc_permissao) values (3, 'CADASTRAR_USUARIOS', 'Permite cadastrar usuarios');
-insert into permissao (cod_permissao, nm_permissao, desc_permissao) values (4, 'EDITAR_USUARIOS', 'Permite editar usuarios');
-insert into permissao (cod_permissao, nm_permissao, desc_permissao) values (5, 'REMOVER_USUARIOS', 'Permite remover usuarios');
+insert into permissao (cod_permissao, nm_permissao, desc_permissao) values (2, 'SEG_CONSULTAR_USUARIOS', 'Permite consultar usuarios');
+insert into permissao (cod_permissao, nm_permissao, desc_permissao) values (3, 'SEG_CADASTRAR_USUARIOS', 'Permite cadastrar usuarios');
+insert into permissao (cod_permissao, nm_permissao, desc_permissao) values (4, 'SEG_EDITAR_USUARIOS', 'Permite editar usuarios');
+insert into permissao (cod_permissao, nm_permissao, desc_permissao) values (5, 'SEG_REMOVER_USUARIOS', 'Permite remover usuarios');
 
-insert into permissao (cod_permissao, nm_permissao, desc_permissao) values (6, 'CONSULTAR_GRUPOS', 'Permite consultar grupos');
-insert into permissao (cod_permissao, nm_permissao, desc_permissao) values (7, 'CADASTRAR_GRUPOS', 'Permite cadastrar grupos');
-insert into permissao (cod_permissao, nm_permissao, desc_permissao) values (8, 'EDITAR_GRUPOS', 'Permite editar grupos');
-insert into permissao (cod_permissao, nm_permissao, desc_permissao) values (9, 'REMOVER_GRUPOS', 'Permite remover grupos');
+insert into permissao (cod_permissao, nm_permissao, desc_permissao) values (6, 'SEG_CONSULTAR_GRUPOS', 'Permite consultar grupos');
+insert into permissao (cod_permissao, nm_permissao, desc_permissao) values (7, 'SEG_CADASTRAR_GRUPOS', 'Permite cadastrar grupos');
+insert into permissao (cod_permissao, nm_permissao, desc_permissao) values (8, 'SEG_EDITAR_GRUPOS', 'Permite editar grupos');
+insert into permissao (cod_permissao, nm_permissao, desc_permissao) values (9, 'SEG_REMOVER_GRUPOS', 'Permite remover grupos');
 
-insert into permissao (cod_permissao, nm_permissao, desc_permissao) values (10, 'CONSULTAR_PERMISSOES', 'Permite consultar permissoes');
-insert into permissao (cod_permissao, nm_permissao, desc_permissao) values (11, 'CADASTRAR_PERMISSOES', 'Permite cadastrar permissoes');
-insert into permissao (cod_permissao, nm_permissao, desc_permissao) values (12, 'EDITAR_PERMISSOES', 'Permite editar permissoes');
-insert into permissao (cod_permissao, nm_permissao, desc_permissao) values (13, 'REMOVER_PERMISSOES', 'Permite remover permissoes');
+insert into permissao (cod_permissao, nm_permissao, desc_permissao) values (10, 'SEG_CONSULTAR_PERMISSOES', 'Permite consultar permissoes');
+insert into permissao (cod_permissao, nm_permissao, desc_permissao) values (11, 'SEG_CADASTRAR_PERMISSOES', 'Permite cadastrar permissoes');
+insert into permissao (cod_permissao, nm_permissao, desc_permissao) values (12, 'SEG_EDITAR_PERMISSOES', 'Permite editar permissoes');
+insert into permissao (cod_permissao, nm_permissao, desc_permissao) values (13, 'SEG_REMOVER_PERMISSOES', 'Permite remover permissoes');
 
-insert into permissao (cod_permissao, nm_permissao, desc_permissao) values (14, 'CONSULTAR_USUARIOS_GRUPOS', 'Permite consultar asossiações de usuario e grupo');
-insert into permissao (cod_permissao, nm_permissao, desc_permissao) values (15, 'ASSOCIAR_USUARIOS_GRUPOS', 'Permite cadastrar asossiações de usuario e grupo');
-insert into permissao (cod_permissao, nm_permissao, desc_permissao) values (16, 'DESASSOCIAR_USUARIOS_GRUPOS', 'Permite editar asossiações de usuario e grupo');
+insert into permissao (cod_permissao, nm_permissao, desc_permissao) values (14, 'SEG_CONSULTAR_USUARIOS_GRUPOS', 'Permite consultar asossiações de usuario e grupo');
+insert into permissao (cod_permissao, nm_permissao, desc_permissao) values (15, 'SEG_ASSOCIAR_USUARIOS_GRUPOS', 'Permite cadastrar asossiações de usuario e grupo');
+insert into permissao (cod_permissao, nm_permissao, desc_permissao) values (16, 'SEG_DESASSOCIAR_USUARIOS_GRUPOS', 'Permite editar asossiações de usuario e grupo');
 
-insert into permissao (cod_permissao, nm_permissao, desc_permissao) values (17, 'CONSULTAR_GRUPOS_PERMISSOES', 'Permite consultar asossiações de grupo e permissão');
-insert into permissao (cod_permissao, nm_permissao, desc_permissao) values (18, 'ASSOCIAR_GRUPOS_PERMISSOES', 'Permite cadastrar asossiações de grupo e permissão');
-insert into permissao (cod_permissao, nm_permissao, desc_permissao) values (19, 'DESASSOCIAR_GRUPOS_PERMISSOES', 'Permite editar asossiações de grupo e permissão');
+insert into permissao (cod_permissao, nm_permissao, desc_permissao) values (17, 'SEG_CONSULTAR_GRUPOS_PERMISSOES', 'Permite consultar asossiações de grupo e permissão');
+insert into permissao (cod_permissao, nm_permissao, desc_permissao) values (18, 'SEG_ASSOCIAR_GRUPOS_PERMISSOES', 'Permite cadastrar asossiações de grupo e permissão');
+insert into permissao (cod_permissao, nm_permissao, desc_permissao) values (19, 'SEG_DESASSOCIAR_GRUPOS_PERMISSOES', 'Permite editar asossiações de grupo e permissão');
 
 insert into grupo (cod_grupo, nm_grupo) values (1, 'Administrador'), (2, 'Comum');
 

@@ -19,7 +19,15 @@ public @interface CheckSecurity {
 
         }
 
-        @PreAuthorize("hasAuthority('SCOPE_WRITE') and (hasAuthority('EDITAR_USUARIOS') or "
+        @PreAuthorize("hasAuthority('SCOPE_WRITE') and "
+            + "@projetoSecurity.usuarioAutenticadoIgual(#usuarioId)")
+        @Retention(RUNTIME)
+        @Target(METHOD)
+        public @interface PodeConsultarUsuarioIgual{
+
+        }
+
+        @PreAuthorize("hasAuthority('SCOPE_WRITE') and (hasAuthority('SEG_EDITAR_USUARIOS') or "
             + "@projetoSecurity.usuarioAutenticadoIgual(#usuarioId))")
         @Retention(RUNTIME)
         @Target(METHOD)

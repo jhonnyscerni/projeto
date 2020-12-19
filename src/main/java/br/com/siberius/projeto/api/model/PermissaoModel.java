@@ -11,7 +11,7 @@ public class PermissaoModel {
     @ApiModelProperty(example = "1")
     private Long Id;
 
-    @ApiModelProperty(example = "CONSULTAR_USUARIOS")
+    @ApiModelProperty(example = "SEG_CONSULTAR_USUARIOS")
     private String nome;
 
     @ApiModelProperty(example = "Permite Consultar os Usuarios Cadastrados")

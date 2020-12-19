@@ -44,82 +44,82 @@ public class ProjetoSecurity {
     // Permissoes de Usuarios
 
     public boolean podeConsultarUsuarios() {
-        return temEscopoLeitura() && hasAuthority("CONSULTAR_USUARIOS");
+        return temEscopoLeitura() && hasAuthority("SEG_CONSULTAR_USUARIOS");
     }
 
     public boolean podeCadastrarUsuarios() {
-        return temEscopoLeitura() && hasAuthority("CADASTRAR_USUARIOS");
+        return temEscopoLeitura() && hasAuthority("SEG_CADASTRAR_USUARIOS");
     }
 
     public boolean podeEditarUsuarios() {
-        return temEscopoEscrita() && hasAuthority("EDITAR_USUARIOS");
+        return temEscopoEscrita() && hasAuthority("SEG_EDITAR_USUARIOS");
     }
 
     public boolean podeRemoverUsuarios() {
-        return temEscopoEscrita() && hasAuthority("REMOVER_USUARIOS");
+        return temEscopoEscrita() && hasAuthority("SEG_REMOVER_USUARIOS");
     }
 
     // Permissoes de Grupo
 
     public boolean podeConsultarGrupos() {
-        return temEscopoLeitura() && hasAuthority("CONSULTAR_GRUPOS");
+        return temEscopoLeitura() && hasAuthority("SEG_CONSULTAR_GRUPOS");
     }
 
     public boolean podeCadastrarGrupos() {
-        return temEscopoLeitura() && hasAuthority("CADASTRAR_GRUPOS");
+        return temEscopoLeitura() && hasAuthority("SEG_CADASTRAR_GRUPOS");
     }
 
     public boolean podeEditarGrupos() {
-        return temEscopoEscrita() && hasAuthority("EDITAR_GRUPOS");
+        return temEscopoEscrita() && hasAuthority("SEG_EDITAR_GRUPOS");
     }
 
     public boolean podeRemoverGrupos() {
-        return temEscopoEscrita() && hasAuthority("REMOVER_GRUPOS");
+        return temEscopoEscrita() && hasAuthority("SEG_REMOVER_GRUPOS");
     }
 
     // Permissoes de Permissao
 
     public boolean podeConsultarPermissoes() {
-        return temEscopoLeitura() && hasAuthority("CONSULTAR_PERMISSOES");
+        return temEscopoLeitura() && hasAuthority("SEG_CONSULTAR_PERMISSOES");
     }
 
     public boolean podeCadastrarPermissoes() {
-        return temEscopoLeitura() && hasAuthority("CADASTRAR_PERMISSOES");
+        return temEscopoLeitura() && hasAuthority("SEG_CADASTRAR_PERMISSOES");
     }
 
     public boolean podeEditarPermissoes() {
-        return temEscopoEscrita() && hasAuthority("EDITAR_PERMISSOES");
+        return temEscopoEscrita() && hasAuthority("SEG_EDITAR_PERMISSOES");
     }
 
     public boolean podeRemoverPermissoes() {
-        return temEscopoEscrita() && hasAuthority("REMOVER_PERMISSOES");
+        return temEscopoEscrita() && hasAuthority("SEG_REMOVER_PERMISSOES");
     }
 
     // Permissoes de Associacao de Usuario com Grupo
 
     public boolean podeConsultarUsuariosGrupos() {
-        return temEscopoLeitura() && hasAuthority("CONSULTAR_USUARIOS_GRUPOS");
+        return temEscopoLeitura() && hasAuthority("SEG_CONSULTAR_USUARIOS_GRUPOS");
     }
 
     public boolean podeAssociarUsuariosGrupos() {
-        return temEscopoLeitura() && hasAuthority("ASSOCIAR_USUARIOS_GRUPOS");
+        return temEscopoLeitura() && hasAuthority("SEG_ASSOCIAR_USUARIOS_GRUPOS");
     }
 
     public boolean podeDesassociarUsuariosGrupos() {
-        return temEscopoLeitura() && hasAuthority("DESASSOCIAR_USUARIOS_GRUPOS");
+        return temEscopoLeitura() && hasAuthority("SEG_DESASSOCIAR_USUARIOS_GRUPOS");
     }
 
     // Permissoes de Associacao de Grupo com Permissoes
 
     public boolean podeConsultarGruposPermissaos() {
-        return temEscopoLeitura() && hasAuthority("CONSULTAR_GRUPOS_PERMISSOES");
+        return temEscopoLeitura() && hasAuthority("SEG_CONSULTAR_GRUPOS_PERMISSOES");
     }
 
     public boolean podeAssociarGruposPermissaos() {
-        return temEscopoLeitura() && hasAuthority("ASSOCIAR_GRUPOS_PERMISSOES");
+        return temEscopoLeitura() && hasAuthority("SEG_ASSOCIAR_GRUPOS_PERMISSOES");
     }
 
     public boolean podeDesassociarGruposPermissaos() {
-        return temEscopoLeitura() && hasAuthority("DESASSOCIAR_GRUPOS_PERMISSOES");
+        return temEscopoLeitura() && hasAuthority("SEG_DESASSOCIAR_GRUPOS_PERMISSOES");
     }
 }

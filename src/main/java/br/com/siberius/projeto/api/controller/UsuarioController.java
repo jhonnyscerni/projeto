@@ -77,7 +77,7 @@ public class UsuarioController implements UsuarioControllerOpenApi {
             usuarioModelList, pageable, usuariosPage.getTotalElements());
     }
 
-    @CheckSecurity.UsuariosGruposPermissoes.PodeConsultarUsuario
+    @CheckSecurity.UsuariosGruposPermissoes.PodeConsultarUsuarioIgual
     @Override
     @GetMapping("/{usuarioId}")
     public UsuarioModel buscar(@PathVariable Long usuarioId) {
