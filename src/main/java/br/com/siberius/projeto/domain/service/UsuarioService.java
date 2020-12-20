@@ -5,7 +5,9 @@ import br.com.siberius.projeto.domain.exception.NegocioException;
 import br.com.siberius.projeto.domain.exception.model.UsuarioNaoEncontradoException;
 import br.com.siberius.projeto.domain.model.Grupo;
 import br.com.siberius.projeto.domain.model.Usuario;
+import br.com.siberius.projeto.domain.model.VerificarToken;
 import br.com.siberius.projeto.domain.repository.UsuarioRepository;
+import br.com.siberius.projeto.domain.repository.VerificarTokenRepository;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -16,7 +18,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 @Service
-public class UsuarioService {
+public class UsuarioService implements IUsuarioService {
 
     @Autowired
     private UsuarioRepository usuarioRepository;
@@ -26,6 +28,9 @@ public class UsuarioService {
 
     @Autowired
     private PasswordEncoder passwordEncoder;
+
+    @Autowired
+    private VerificarTokenRepository tokenRepository;
 
     private static final String MSG_USUARIO_EM_USO
         = "Usuário de código %d não pode ser removida, pois está em uso";
@@ -94,5 +99,22 @@ public class UsuarioService {
         Grupo grupo = grupoService.buscarOuFalhar(grupoId);
         usuario.removerGrupo(grupo);
         usuarioRepository.save(usuario);
+    }
+
+    @Override
+    public Usuario getUsuario(String verificarToken) {
+        Usuario usuario = tokenRepository.findByToken(verificarToken).getUsuario();
+        return usuario;
+    }
+
+    @Override
+    public void criarVerificaoToken(Usuario usuario, String token) {
+        VerificarToken myToken = new VerificarToken(token, usuario);
+        tokenRepository.save(myToken);
+    }
+
+    @Override
+    public VerificarToken getVerificarToken(String verificarToken) {
+        return tokenRepository.findByToken(verificarToken);
     }
 }

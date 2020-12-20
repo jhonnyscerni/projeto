@@ -46,9 +46,9 @@ select 1, cod_permissao from permissao;
 insert into grupo_permissao (cod_grupo, cod_permissao)
 select 2, cod_permissao from permissao where nm_permissao like 'CONSULTAR_%';
 
-insert into usuario (cod_usuario, nm_usuario, email, senha, dt_cad_usuario) values
-(1, 'Administrador', 'administrador@projeto.com.br', '$2y$12$NSsM4gEOR7MKogflKR7GMeYugkttjNhAJMvFdHrBLaLp2HzlggP5W', utc_timestamp),
-(2, 'Gerente', 'gerente@projeto.com.br', '$2y$12$NSsM4gEOR7MKogflKR7GMeYugkttjNhAJMvFdHrBLaLp2HzlggP5W', utc_timestamp);
+insert into usuario (cod_usuario, nm_usuario, email, senha, dt_cad_usuario, ativado) values
+(1, 'Administrador', 'administrador@projeto.com.br', '$2y$12$NSsM4gEOR7MKogflKR7GMeYugkttjNhAJMvFdHrBLaLp2HzlggP5W', utc_timestamp, false),
+(2, 'Gerente', 'gerente@projeto.com.br', '$2y$12$NSsM4gEOR7MKogflKR7GMeYugkttjNhAJMvFdHrBLaLp2HzlggP5W', utc_timestamp, false);
 
 insert into usuario_grupo (cod_usuario, cod_grupo) values (1, 1), (2, 2);
 

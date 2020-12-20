@@ -3,6 +3,7 @@ package br.com.siberius.projeto.core.security.authorizationserver.userdetails;
 import br.com.siberius.projeto.domain.model.Usuario;
 import br.com.siberius.projeto.domain.repository.UsuarioRepository;
 import java.util.Collection;
+import java.util.List;
 import java.util.stream.Collectors;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
@@ -26,6 +27,10 @@ public class JpaUserDetailsService implements UserDetailsService {
         Usuario usuario = usuarioRepository.findByEmail(username)
             .orElseThrow(() -> new UsernameNotFoundException("Usuário não encontrado com e-mail informado"));
 
+        if (!usuario.isAtivado()){
+            throw new UsernameNotFoundException("Usuário cadastrado mas ainda não está Ativado");
+        }
+
         return new AuthUser(usuario, getAuthorities(usuario));
     }
 
@@ -35,5 +40,7 @@ public class JpaUserDetailsService implements UserDetailsService {
             .map(permissao -> new SimpleGrantedAuthority(permissao.getNome().toUpperCase()))
             .collect(Collectors.toSet());
     }
+
+
 
 }

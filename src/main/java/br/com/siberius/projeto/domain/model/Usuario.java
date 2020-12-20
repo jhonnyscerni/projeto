@@ -5,7 +5,6 @@ import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -42,10 +41,18 @@ public class Usuario {
     @Column(name = "DT_CAD_USUARIO", nullable = false, columnDefinition = "datetime")
     private OffsetDateTime dataCadastro;
 
+    @Column(name = "ATIVADO")
+    private boolean ativado;
+
     @ManyToMany()
     @JoinTable(name = "USUARIO_GRUPO", joinColumns = @JoinColumn(name = "COD_USUARIO"),
         inverseJoinColumns = @JoinColumn(name = "COD_GRUPO"))
     private List<Grupo> grupos = new ArrayList<>();
+
+    public Usuario() {
+        super();
+        this.ativado = false;
+    }
 
     public boolean adicionarGrupo(Grupo grupo) {
         return getGrupos().add(grupo);
@@ -65,5 +72,13 @@ public class Usuario {
 
     public boolean isNovo() {
         return getId() == null;
+    }
+
+    public boolean isAtivado() {
+        return ativado;
+    }
+
+    public void setAtivado(final boolean ativado) {
+        this.ativado = ativado;
     }
 }
