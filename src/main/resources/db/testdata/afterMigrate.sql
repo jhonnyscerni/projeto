@@ -6,10 +6,12 @@ delete from permissao;
 delete from usuario;
 delete from usuario_grupo;
 delete from oauth_client_details;
+delete from verificar_token;
 
 alter table grupo auto_increment = 1;
 alter table permissao auto_increment = 1;
 alter table usuario auto_increment = 1;
+alter table verificar_token auto_increment = 1;
 
 insert into permissao (cod_permissao, nm_permissao, desc_permissao) values (1, 'CONSULTAR_DASHBOARD', 'Permite consultar dashboard');
 

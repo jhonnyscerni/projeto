@@ -18,6 +18,7 @@
 
     create table usuario (
         cod_usuario bigint not null auto_increment,
+        ativado bit,
         dt_cad_usuario datetime not null,
         email varchar(255),
         nm_usuario varchar(255), senha varchar(255),
@@ -29,7 +30,15 @@
         cod_grupo bigint not null, primary key (cod_usuario, cod_grupo)
         ) engine=InnoDB default charset=utf8;
 
+    create table verificar_token (
+        id bigint not null,
+        expiry_date datetime,
+        token varchar(255),
+        cod_usuario bigint not null, primary key (id)
+        ) engine=InnoDB default charset=utf8;
+
     alter table grupo_permissao add constraint FKa6x872qlli69ud5frwgwthx0 foreign key (cod_permissao) references permissao (cod_permissao);
     alter table grupo_permissao add constraint FKgn73ra8jt0jr4upola8cinhyr foreign key (cod_grupo) references grupo (cod_grupo);
     alter table usuario_grupo add constraint FK6tge3vbl2fu51964nmqwwiiqk foreign key (cod_grupo) references grupo (cod_grupo);
     alter table usuario_grupo add constraint FK8nrfpsmtqiv3je6ewqehqs2vy foreign key (cod_usuario) references usuario (cod_usuario);
+    alter table verificar_token add constraint FKqt9kid9njxsvbmx091bwjywgb foreign key (cod_usuario) references usuario (cod_usuario)
