@@ -14,6 +14,8 @@ import br.com.siberius.projeto.domain.model.Grupo;
 import br.com.siberius.projeto.domain.model.Usuario;
 import br.com.siberius.projeto.domain.repository.UsuarioRepository;
 import br.com.siberius.projeto.domain.repository.filter.UsuarioFilter;
+import br.com.siberius.projeto.domain.service.EnvioEmailService;
+import br.com.siberius.projeto.domain.service.EnvioEmailService.Mensagem;
 import br.com.siberius.projeto.domain.service.GrupoService;
 import br.com.siberius.projeto.domain.service.UsuarioService;
 import br.com.siberius.projeto.infrastructure.repository.UsuarioSpecs;
@@ -58,6 +60,9 @@ public class UsuarioController implements UsuarioControllerOpenApi {
 
     @Autowired
     private UsuarioInputModelDisassembler disassembler;
+
+    @Autowired
+    private EnvioEmailService envioEmailService;
 
     @CheckSecurity.UsuariosGruposPermissoes.PodeConsultarUsuario
     @Override
@@ -131,6 +136,15 @@ public class UsuarioController implements UsuarioControllerOpenApi {
         usuarioInput.setGrupos(grupos);
 
         Usuario usuario = usuarioService.salvar(disassembler.toDomainObject(usuarioInput));
+
+        Mensagem mensagem = Mensagem.builder()
+            .assunto(usuario.getNome() + " - Ativação de conta")
+            .corpo("modelo-confirmar-cadastro.html")
+            .variavel("usuario", usuario)
+            .destinatario(usuario.getEmail())
+            .build();
+        envioEmailService.enviar(mensagem);
+
         return assembler.toModel(usuario);
     }
 
