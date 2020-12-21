@@ -1,5 +1,6 @@
 package br.com.siberius.projeto.api.controller;
 
+import br.com.siberius.projeto.api.openapi.controller.UsuarioValidarTokenControllerOpenApi;
 import br.com.siberius.projeto.domain.model.Usuario;
 import br.com.siberius.projeto.domain.model.VerificarToken;
 import br.com.siberius.projeto.domain.service.UsuarioService;
@@ -13,11 +14,12 @@ import org.springframework.web.servlet.ModelAndView;
 
 @Controller
 @RequestMapping(path = "/registro-confirmado")
-public class UsuarioValidarTokenController {
+public class UsuarioValidarTokenController implements UsuarioValidarTokenControllerOpenApi {
 
     @Autowired
     private UsuarioService usuarioService;
 
+    @Override
     @GetMapping
     public ModelAndView confirmRegistration(@RequestParam("token") String token) {
 
@@ -36,6 +38,6 @@ public class UsuarioValidarTokenController {
         usuario.setAtivado(true);
 
         usuarioService.salvar(usuario);
-        return new ModelAndView("pages/login");
+        return new ModelAndView("modelo-confimarcao-sucesso");
     }
 }

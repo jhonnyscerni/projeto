@@ -5,6 +5,7 @@ import br.com.siberius.projeto.api.assembler.disassembler.UsuarioInputModelDisas
 import br.com.siberius.projeto.api.event.RecuperarSenhaEvent;
 import br.com.siberius.projeto.api.model.UsuarioModel;
 import br.com.siberius.projeto.api.model.input.UsuarioInputRecuperarSenhaModel;
+import br.com.siberius.projeto.api.openapi.controller.UsuarioRecuperarSenhaControllerOpenApi;
 import br.com.siberius.projeto.domain.model.Usuario;
 import br.com.siberius.projeto.domain.service.UsuarioService;
 import java.util.UUID;
@@ -21,7 +22,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping(path = "/recuperar-senha")
-public class UsuarioRecuperarSenhaController {
+public class UsuarioRecuperarSenhaController implements UsuarioRecuperarSenhaControllerOpenApi {
 
     @Autowired
     private UsuarioService usuarioService;
@@ -35,6 +36,7 @@ public class UsuarioRecuperarSenhaController {
     @Autowired
     ApplicationEventPublisher eventPublisher;
 
+    @Override
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
     public UsuarioModel adicionar(@RequestBody @Valid UsuarioInputRecuperarSenhaModel usuarioInput) {

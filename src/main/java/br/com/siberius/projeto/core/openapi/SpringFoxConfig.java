@@ -89,7 +89,9 @@ public class SpringFoxConfig implements WebMvcConfigurer {
             .apiInfo(apiInfo())
             .tags(new Tag("Usuários", "Gerencia os usuários"),
                 new Tag("Grupos", "Gerencia os grupos de usuários"),
-                new Tag("Permissões", "Gerencia as permissões de usuários")
+                new Tag("Permissões", "Gerencia as permissões de usuários"),
+                new Tag("Recuperar Senha E-mail", "Gera nova senha de acesso e envia para email do usuario"),
+                new Tag("Confirmar Registro E-mail", "Envia um link para o email cadastrado de confirmação do registro")
                 );
     }
 
