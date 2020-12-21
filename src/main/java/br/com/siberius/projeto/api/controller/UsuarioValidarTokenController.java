@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 @Controller
-@RequestMapping(path = "/registroConfirmado")
+@RequestMapping(path = "/registro-confirmado")
 public class UsuarioValidarTokenController {
 
     @Autowired

@@ -40,6 +40,11 @@ public class UsuarioService implements IUsuarioService {
             .orElseThrow(() -> new UsuarioNaoEncontradoException(usuarioId));
     }
 
+    public Usuario buscarOuFalharPorEmail(String email) {
+        return usuarioRepository.findByEmail(email)
+            .orElseThrow(() -> new UsuarioNaoEncontradoException(String.format("Não existe um cadastro de usuário com email %d", email)));
+    }
+
     public Usuario salvar(Usuario usuario) {
         Optional<Usuario> usuarioExistente = usuarioRepository.findByEmail(usuario.getEmail());
 

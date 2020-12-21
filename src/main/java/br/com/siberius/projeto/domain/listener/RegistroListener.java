@@ -31,7 +31,7 @@ public class RegistroListener implements
         usuarioService.criarVerificaoToken(usuario, token);
 
         String confirmationUrl
-            = "/registroConfirmado?token=" + token;
+            = "/registro-confirmado?token=" + token;
 
         Mensagem mensagem = Mensagem.builder()
             .assunto(usuario.getNome() + " - Ativação de conta")
