@@ -3,18 +3,17 @@ package br.com.siberius.projeto.api.controller;
 import br.com.siberius.projeto.api.assembler.GrupoModelAssembler;
 import br.com.siberius.projeto.api.assembler.UsuarioModelAssembler;
 import br.com.siberius.projeto.api.assembler.disassembler.UsuarioInputModelDisassembler;
+import br.com.siberius.projeto.api.event.RegistroCompletoEvent;
 import br.com.siberius.projeto.api.model.GrupoModel;
 import br.com.siberius.projeto.api.model.UsuarioModel;
 import br.com.siberius.projeto.api.model.input.SenhaInputModel;
 import br.com.siberius.projeto.api.model.input.UsuarioInputComSenhaModel;
 import br.com.siberius.projeto.api.openapi.controller.UsuarioControllerOpenApi;
 import br.com.siberius.projeto.core.security.resourceserver.CheckSecurity;
-import br.com.siberius.projeto.api.event.RegistroCompletoEvent;
 import br.com.siberius.projeto.domain.model.Grupo;
 import br.com.siberius.projeto.domain.model.Usuario;
 import br.com.siberius.projeto.domain.repository.UsuarioRepository;
 import br.com.siberius.projeto.domain.repository.filter.UsuarioFilter;
-import br.com.siberius.projeto.domain.service.EnvioEmailService;
 import br.com.siberius.projeto.domain.service.GrupoService;
 import br.com.siberius.projeto.domain.service.UsuarioService;
 import br.com.siberius.projeto.infrastructure.repository.UsuarioSpecs;
@@ -29,6 +28,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableDefault;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -38,7 +38,6 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.context.request.WebRequest;
 
 @RestController
 @RequestMapping(path = "/usuarios", produces = MediaType.APPLICATION_JSON_VALUE)
@@ -106,6 +105,13 @@ public class UsuarioController implements UsuarioControllerOpenApi {
     public UsuarioModel atualizar(@PathVariable Long usuarioId,
         @RequestBody @Valid UsuarioInputComSenhaModel usuarioInput) {
         Usuario usuario = usuarioService.buscarOuFalhar(usuarioId);
+
+        if (usuarioInput.getSenha() != null || usuarioInput.getSenha().isEmpty()){
+            String senhaCriptografada = new BCryptPasswordEncoder().encode(usuarioInput.getSenha());
+            usuarioInput.setSenha(senhaCriptografada);
+        }
+        usuarioInput.setAtivado(usuario.isAtivado());
+
         Usuario usuarioAlterado = disassembler.toDomainObjectComSenha(usuarioInput);
         usuarioAlterado.setDataCadastro(usuario.getDataCadastro());
         usuarioAlterado = usuarioService.salvar(usuarioAlterado);

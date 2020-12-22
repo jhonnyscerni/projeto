@@ -42,7 +42,8 @@ public class UsuarioService implements IUsuarioService {
 
     public Usuario buscarOuFalharPorEmail(String email) {
         return usuarioRepository.findByEmail(email)
-            .orElseThrow(() -> new UsuarioNaoEncontradoException(String.format("Não existe um cadastro de usuário com email %d", email)));
+            .orElseThrow(() -> new UsuarioNaoEncontradoException(
+                String.format("Não existe um cadastro de usuário com email %s", email)));
     }
 
     public Usuario salvar(Usuario usuario) {
