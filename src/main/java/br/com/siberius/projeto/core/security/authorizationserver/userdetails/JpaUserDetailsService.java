@@ -1,5 +1,6 @@
 package br.com.siberius.projeto.core.security.authorizationserver.userdetails;
 
+import br.com.siberius.projeto.api.assembler.GrupoModelAssembler;
 import br.com.siberius.projeto.domain.model.Usuario;
 import br.com.siberius.projeto.domain.repository.UsuarioRepository;
 import java.util.Collection;
@@ -21,6 +22,9 @@ public class JpaUserDetailsService implements UserDetailsService {
     @Autowired
     private UsuarioRepository usuarioRepository;
 
+    @Autowired
+    GrupoModelAssembler assembler;
+
     @Transactional(readOnly = true)
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
@@ -31,7 +35,7 @@ public class JpaUserDetailsService implements UserDetailsService {
             throw new UsernameNotFoundException("Usuário cadastrado mas ainda não está Ativado");
         }
 
-        return new AuthUser(usuario, getAuthorities(usuario));
+        return new AuthUser(usuario, getAuthorities(usuario), getGrupos(usuario));
     }
 
     private Collection<GrantedAuthority> getAuthorities(Usuario usuario) {
@@ -41,6 +45,7 @@ public class JpaUserDetailsService implements UserDetailsService {
             .collect(Collectors.toSet());
     }
 
-
-
+    private List<GrupoModelCustomClaims> getGrupos(Usuario usuario) {
+        return usuario.getGrupos().stream().map(grupo -> assembler.toModelCustomClaims(grupo)).collect(Collectors.toList());
+    }
 }
