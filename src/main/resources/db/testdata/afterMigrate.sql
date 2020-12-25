@@ -38,7 +38,7 @@ insert into permissao (cod_permissao, nm_permissao, desc_permissao) values (17, 
 insert into permissao (cod_permissao, nm_permissao, desc_permissao) values (18, 'SEG_ASSOCIAR_GRUPOS_PERMISSOES', 'Permite cadastrar asossiações de grupo e permissão');
 insert into permissao (cod_permissao, nm_permissao, desc_permissao) values (19, 'SEG_DESASSOCIAR_GRUPOS_PERMISSOES', 'Permite editar asossiações de grupo e permissão');
 
-insert into grupo (cod_grupo, nm_grupo) values (1, 'Administrador'), (2, 'Comum');
+insert into grupo (cod_grupo, nm_grupo) values (1, 'Admin'), (2, 'User');
 
 # Adiciona todas as permissoes no grupo do gerentegrupo_permissao
 insert into grupo_permissao (cod_grupo, cod_permissao)
