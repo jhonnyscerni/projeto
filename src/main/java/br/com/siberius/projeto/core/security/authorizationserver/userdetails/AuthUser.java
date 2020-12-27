@@ -15,14 +15,14 @@ public class AuthUser extends User {
 
     private String fullName;
     private Long userId;
-    private List<GrupoModelCustomClaims> grupos;
+    private String tipo;
 
-    public AuthUser(Usuario usuario, Collection<? extends GrantedAuthority> authorities, List<GrupoModelCustomClaims> grupos) {
+    public AuthUser(Usuario usuario, Collection<? extends GrantedAuthority> authorities) {
         super(usuario.getEmail(), usuario.getSenha(), authorities);
 
         this.userId = usuario.getId();
         this.fullName = usuario.getNome();
-        this.grupos = grupos;
+        this.tipo = usuario.getDiscriminatorValue();
     }
 
 }

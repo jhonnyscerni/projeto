@@ -6,6 +6,7 @@ import br.com.siberius.projeto.domain.repository.UsuarioRepository;
 import java.util.Collection;
 import java.util.List;
 import java.util.stream.Collectors;
+import javax.persistence.DiscriminatorValue;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -35,7 +36,7 @@ public class JpaUserDetailsService implements UserDetailsService {
             throw new UsernameNotFoundException("Usuário cadastrado mas ainda não está Ativado");
         }
 
-        return new AuthUser(usuario, getAuthorities(usuario), getGrupos(usuario));
+        return new AuthUser(usuario, getAuthorities(usuario));
     }
 
     private Collection<GrantedAuthority> getAuthorities(Usuario usuario) {

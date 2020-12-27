@@ -21,7 +21,9 @@
         ativado bit,
         dt_cad_usuario datetime not null,
         email varchar(255),
-        nm_usuario varchar(255), senha varchar(255),
+        nm_usuario varchar(255),
+        senha varchar(255),
+        tp varchar(255),
         primary key (cod_usuario)
         ) engine=InnoDB default charset=utf8;
 
