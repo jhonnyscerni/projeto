@@ -29,7 +29,7 @@ public class ResourceServerConfig extends WebSecurityConfigurerAdapter {
             .formLogin().loginPage("/login")
             .and()
             .authorizeRequests()
-            .antMatchers("/usuarios/add-usuario-comum/**").permitAll()
+            .antMatchers("/profissionais/add-usuario-comum/**").permitAll()
             .antMatchers("/recuperar-senha/**").permitAll()
             .antMatchers("/registro-confirmado/**").permitAll()
             .antMatchers("/oauth/**").authenticated()

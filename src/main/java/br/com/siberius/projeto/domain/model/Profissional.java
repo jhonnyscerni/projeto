@@ -17,11 +17,17 @@ public class Profissional extends Usuario {
     @Column(name = "CPF")
     private String cpf;
 
-    @Column(name = "PROFISSAO")
-    private String profissao;
+    @Column(name = "SEXO")
+    private String sexo;
 
     @Column(name = "FORMACAO_ACADEMICA")
     private String formacaoAcademica;
+
+    @Column(name = "CONSELHO")
+    private String conselho;
+
+    @Column(name = "REGISTRO_CONSELHO")
+    private String registroConselho;
 
     @Column(name = "TELEFONE")
     private String telefone;

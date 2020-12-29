@@ -1,20 +1,18 @@
 package br.com.siberius.projeto.api.model;
 
 import io.swagger.annotations.ApiModelProperty;
-import java.util.ArrayList;
-import java.util.List;
 import lombok.Getter;
 import lombok.Setter;
 
 @Getter
 @Setter
-public class GrupoModel {
+public class CidadeModel{
 
     @ApiModelProperty(example = "1")
     private Long id;
 
-    @ApiModelProperty(example = "Administrador")
+    @ApiModelProperty(example = "São Paulo")
     private String nome;
 
-    private List<PermissaoModel> permissoes = new ArrayList<>();
+    private EstadoModel estado;
 }

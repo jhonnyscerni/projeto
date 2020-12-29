@@ -5,9 +5,52 @@ import static java.lang.annotation.RetentionPolicy.RUNTIME;
 
 import java.lang.annotation.Retention;
 import java.lang.annotation.Target;
+import org.springframework.security.access.prepost.PostAuthorize;
 import org.springframework.security.access.prepost.PreAuthorize;
 
 public @interface CheckSecurity {
+
+    public @interface Pacientes {
+
+        @PreAuthorize("@projetoSecurity.podeEditarPacientes() or "
+            + "@projetoSecurity.usuarioAutenticadoIgual(#usuarioId)")
+        @Retention(RUNTIME)
+        @Target(METHOD)
+        public @interface PodeEditarPaciente {
+
+        }
+
+        @PreAuthorize("@projetoSecurity.podeRemoverPacientes() or "
+            + "@projetoSecurity.usuarioAutenticadoIgual(#usuarioId)")
+        @Retention(RUNTIME)
+        @Target(METHOD)
+        public @interface PodeRemoverPaciente {
+
+        }
+
+
+        @PreAuthorize("@projetoSecurity.podeConsultarPacientes(#filter.profissionalId)")
+        @Retention(RUNTIME)
+        @Target(METHOD)
+        public @interface PodeConsultarPaciente {
+
+        }
+
+        @PreAuthorize("@projetoSecurity.podeCadastrarPacientes()")
+        @Retention(RUNTIME)
+        @Target(METHOD)
+        public @interface PodeCadastrarPaciente {
+
+        }
+
+        @PreAuthorize("hasAuthority('SCOPE_READ') and isAuthenticated()")
+        @PostAuthorize("hasAuthority('SEG_CONSULTAR_PACIENTES') or "
+            + "@projetoSecurity.usuarioAutenticadoIgual(returnObject.usuarioId)")
+        @Retention(RUNTIME)
+        @Target(METHOD)
+        public @interface PodeBuscar { }
+
+    }
 
     public @interface UsuariosGruposPermissoes {
 

@@ -27,4 +27,7 @@ public class UsuarioModel {
 
     @ApiModelProperty(example = "Administrador", required = true)
     private List<GrupoModel> grupos;
+
+    @ApiModelProperty(example = "false")
+    private boolean ativado;
 }

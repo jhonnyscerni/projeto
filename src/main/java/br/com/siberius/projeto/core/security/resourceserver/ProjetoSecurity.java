@@ -122,4 +122,24 @@ public class ProjetoSecurity {
     public boolean podeDesassociarGruposPermissaos() {
         return temEscopoLeitura() && hasAuthority("SEG_DESASSOCIAR_GRUPOS_PERMISSOES");
     }
+
+    // Permissoes de Permissao
+
+    public boolean podeConsultarPacientes(Long usuarioId) {
+        return temEscopoLeitura() && (hasAuthority("SEG_CONSULTAR_PACIENTES")
+            || usuarioAutenticadoIgual(usuarioId));
+    }
+
+    public boolean podeCadastrarPacientes() {
+        return temEscopoLeitura() && isAutenticado() && hasAuthority("SEG_CADASTRAR_PACIENTES");
+    }
+
+    public boolean podeEditarPacientes() {
+        return temEscopoEscrita() && isAutenticado() && hasAuthority("SEG_EDITAR_PACIENTES");
+    }
+
+    public boolean podeRemoverPacientes() {
+        return temEscopoEscrita() && isAutenticado() && hasAuthority("SEG_REMOVER_PACIENTES");
+    }
+
 }
