@@ -32,7 +32,7 @@ public class PacienteSpecs {
             }
 
             if (filtro.getProfissionalId() != null) {
-                predicates.add(builder.equal(root.get("profissional.id"), filtro.getProfissionalId()));
+                predicates.add(builder.equal(root.get("profissional"), filtro.getProfissionalId()));
             }
 
             return builder.and(predicates.toArray(new Predicate[0]));

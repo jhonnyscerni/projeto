@@ -74,9 +74,6 @@ public class PacienteController implements PacienteControllerOpenApi {
     @Autowired
     ApplicationEventPublisher eventPublisher;
 
-    @Autowired
-    private ProjetoSecurity projetoSecurity;
-
     @CheckSecurity.Pacientes.PodeConsultarPaciente
     @Override
     @GetMapping
@@ -111,9 +108,6 @@ public class PacienteController implements PacienteControllerOpenApi {
         pacienteInputComSenhaModel.setGrupos(grupos);
 
         Paciente paciente = disassembler.toDomainObjectComSenha(pacienteInputComSenhaModel);
-        paciente.setProfissional(new Profissional());
-        paciente.getProfissional().setId(projetoSecurity.getUsuarioId());
-
 //        eventPublisher.publishEvent(new RegistroCompletoEvent
 //            (paciente));
 

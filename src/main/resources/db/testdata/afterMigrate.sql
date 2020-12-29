@@ -48,7 +48,7 @@ insert into permissao (cod_permissao, nm_permissao, desc_permissao) values (25, 
 insert into permissao (cod_permissao, nm_permissao, desc_permissao) values (26, 'SEG_EDITAR_PROFISSIONAIS', 'Permite editar profissionais');
 insert into permissao (cod_permissao, nm_permissao, desc_permissao) values (27, 'SEG_REMOVER_PROFISSIONAIS', 'Permite remover profissionais');
 
-insert into grupo (cod_grupo, nm_grupo) values (1, 'Admin'), (2, 'User');
+insert into grupo (cod_grupo, nm_grupo) values (1, 'Admin'), (2, 'Profissional'), (3, 'Paciente') ;
 
 # Adiciona todas as permissoes no grupo do gerentegrupo_permissao
 insert into grupo_permissao (cod_grupo, cod_permissao)

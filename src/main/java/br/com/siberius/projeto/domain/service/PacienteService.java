@@ -1,5 +1,6 @@
 package br.com.siberius.projeto.domain.service;
 
+import br.com.siberius.projeto.core.security.resourceserver.ProjetoSecurity;
 import br.com.siberius.projeto.domain.exception.EntidadeEmUsoException;
 import br.com.siberius.projeto.domain.exception.NegocioException;
 import br.com.siberius.projeto.domain.exception.model.UsuarioNaoEncontradoException;
@@ -31,6 +32,9 @@ public class PacienteService {
     @Autowired
     private ProfissionalService profissionalService;
 
+    @Autowired
+    private ProjetoSecurity projetoSecurity;
+
     private static final String MSG_USUARIO_EM_USO
         = "Usuário de código %d não pode ser removida, pois está em uso";
 
@@ -41,7 +45,8 @@ public class PacienteService {
 
     public Paciente salvar(Paciente paciente) {
         Optional<Paciente> optionalPaciente = pacienteRepository.findByEmail(paciente.getEmail());
-        Profissional profissional = profissionalService.buscarOuFalhar(paciente.getProfissional().getId());
+        paciente.setProfissional(new Profissional());
+        paciente.getProfissional().setId(projetoSecurity.getUsuarioId());
 
         if (optionalPaciente.isPresent() && !optionalPaciente.get().equals(paciente)) {
             throw new NegocioException(
@@ -51,8 +56,6 @@ public class PacienteService {
         if (paciente.isNovo()) {
             paciente.setSenha(passwordEncoder.encode(paciente.getSenha()));
         }
-
-        paciente.setProfissional(profissional);
 
         if (paciente.isNovo()) {
             List<Grupo> grupos = new ArrayList<>();
