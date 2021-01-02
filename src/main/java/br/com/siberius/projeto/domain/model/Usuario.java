@@ -2,22 +2,10 @@ package br.com.siberius.projeto.domain.model;
 
 import java.time.OffsetDateTime;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
-import javax.persistence.Column;
-import javax.persistence.DiscriminatorColumn;
-import javax.persistence.DiscriminatorType;
-import javax.persistence.DiscriminatorValue;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.Inheritance;
-import javax.persistence.InheritanceType;
-import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
-import javax.persistence.ManyToMany;
-import javax.persistence.Table;
-import javax.persistence.Transient;
+import javax.persistence.*;
+
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import org.hibernate.annotations.CreationTimestamp;
@@ -48,6 +36,18 @@ public class Usuario {
     @Column(name = "EMAIL")
     private String email;
 
+    @Column(name = "SEXO")
+    private String sexo;
+
+    @Column(name = "TELEFONE")
+    private String telefone;
+
+    @Column(name = "CELULAR")
+    private String celular;
+
+    @Column(name = "DT_NASCIMENTO")
+    private Date dtNascimento;
+
     @Column(name = "SENHA")
     private String senha;
 
@@ -62,6 +62,25 @@ public class Usuario {
     @JoinTable(name = "USUARIO_GRUPO", joinColumns = @JoinColumn(name = "COD_USUARIO"),
         inverseJoinColumns = @JoinColumn(name = "COD_GRUPO"))
     private List<Grupo> grupos = new ArrayList<>();
+
+    @Column(name = "ENDERECO_CEP")
+    private String cep;
+
+    @Column(name = "ENDERECO_LOGRADOURO")
+    private String logradouro;
+
+    @Column(name = "ENDERECO_NUMERO")
+    private String numero;
+
+    @Column(name = "ENDERECO_COMPLEMENTO")
+    private String complemento;
+
+    @Column(name = "ENDERECO_BAIRRO")
+    private String bairro;
+
+    @ManyToOne
+    @JoinColumn(name = "ENDERECO_CIDADE_ID")
+    private Cidade cidade;
 
     public Usuario() {
         super();

@@ -18,24 +18,6 @@ import lombok.EqualsAndHashCode;
 public class Paciente extends Usuario {
 
 
-    @Column(name = "CPF")
-    private String cpf;
-
-    @Column(name = "SEXO")
-    private String sexo;
-
-    @Column(name = "TELEFONE")
-    private String telefone;
-
-    @Column(name = "CELULAR")
-    private String celular;
-
-    @Column(name = "DT_NASCIMENTO")
-    private Date dtNascimento;
-
-    @Embedded
-    private Endereco endereco;
-
     @Column(name = "NOME_MAE")
     private String nomeMae;
 

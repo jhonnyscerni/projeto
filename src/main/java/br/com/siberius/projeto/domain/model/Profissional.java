@@ -14,11 +14,6 @@ import lombok.EqualsAndHashCode;
 @Data
 public class Profissional extends Usuario {
 
-    @Column(name = "CPF")
-    private String cpf;
-
-    @Column(name = "SEXO")
-    private String sexo;
 
     @Column(name = "FORMACAO_ACADEMICA")
     private String formacaoAcademica;
@@ -28,18 +23,6 @@ public class Profissional extends Usuario {
 
     @Column(name = "REGISTRO_CONSELHO")
     private String registroConselho;
-
-    @Column(name = "TELEFONE")
-    private String telefone;
-
-    @Column(name = "CELULAR")
-    private String celular;
-
-    @Column(name = "DT_NASCIMENTO")
-    private Date dtNascimento;
-
-    @Embedded
-    private Endereco endereco;
 
     public Profissional() {
     }
