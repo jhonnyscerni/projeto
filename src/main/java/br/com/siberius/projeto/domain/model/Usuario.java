@@ -36,6 +36,9 @@ public class Usuario {
     @Column(name = "EMAIL")
     private String email;
 
+    @Column(name = "CPF")
+    private String cpf;
+
     @Column(name = "SEXO")
     private String sexo;
 
