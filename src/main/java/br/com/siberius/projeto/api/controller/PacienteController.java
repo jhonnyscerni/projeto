@@ -106,6 +106,7 @@ public class PacienteController implements PacienteControllerOpenApi {
         Grupo grupo = grupoService.buscarOuFalhar(3L);
         grupos.add(assemblerGrupo.toModel(grupo));
         pacienteInputComSenhaModel.setGrupos(grupos);
+        pacienteInputComSenhaModel.setAtivado(true);
 
         Paciente paciente = disassembler.toDomainObjectComSenha(pacienteInputComSenhaModel);
 //        eventPublisher.publishEvent(new RegistroCompletoEvent
