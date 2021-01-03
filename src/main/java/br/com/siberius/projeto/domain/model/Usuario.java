@@ -1,26 +1,25 @@
 package br.com.siberius.projeto.domain.model;
 
-import java.time.OffsetDateTime;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
-import javax.persistence.*;
-
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import org.hibernate.annotations.CreationTimestamp;
+
+import javax.persistence.*;
+import java.time.OffsetDateTime;
+import java.util.ArrayList;
+import java.util.List;
 
 @Data
 @Entity
 @Table(name = "USUARIO")
 @EqualsAndHashCode(onlyExplicitlyIncluded = true)
 @Inheritance(
-    strategy = InheritanceType.SINGLE_TABLE
+        strategy = InheritanceType.SINGLE_TABLE
 )
 @DiscriminatorValue("Admin")
 @DiscriminatorColumn(
-    name = "TP",
-    discriminatorType = DiscriminatorType.STRING
+        name = "TP",
+        discriminatorType = DiscriminatorType.STRING
 )
 public class Usuario {
 
@@ -49,7 +48,7 @@ public class Usuario {
     private String celular;
 
     @Column(name = "DT_NASCIMENTO")
-    private Date dtNascimento;
+    private OffsetDateTime dtNascimento;
 
     @Column(name = "SENHA")
     private String senha;
@@ -63,7 +62,7 @@ public class Usuario {
 
     @ManyToMany()
     @JoinTable(name = "USUARIO_GRUPO", joinColumns = @JoinColumn(name = "COD_USUARIO"),
-        inverseJoinColumns = @JoinColumn(name = "COD_GRUPO"))
+            inverseJoinColumns = @JoinColumn(name = "COD_GRUPO"))
     private List<Grupo> grupos = new ArrayList<>();
 
     @Column(name = "ENDERECO_CEP")
@@ -127,8 +126,8 @@ public class Usuario {
     }
 
     @Transient
-    public String getDiscriminatorValue(){
-        DiscriminatorValue val = this.getClass().getAnnotation( DiscriminatorValue.class );
+    public String getDiscriminatorValue() {
+        DiscriminatorValue val = this.getClass().getAnnotation(DiscriminatorValue.class);
 
         return val == null ? null : val.value();
     }

@@ -4,13 +4,14 @@ import br.com.siberius.projeto.api.model.CidadeModel;
 import br.com.siberius.projeto.api.model.GrupoModel;
 import br.com.siberius.projeto.api.model.ProfissionalModel;
 import io.swagger.annotations.ApiModelProperty;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
-import javax.validation.constraints.Email;
-import javax.validation.constraints.NotBlank;
 import lombok.Getter;
 import lombok.Setter;
+
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotBlank;
+import java.time.OffsetDateTime;
+import java.util.ArrayList;
+import java.util.List;
 
 @Getter
 @Setter
@@ -46,7 +47,7 @@ public class PacienteInputModel {
     private String celular;
 
     @ApiModelProperty(example = "31/05/1988")
-    private Date dtNascimento;
+    private OffsetDateTime dtNascimento;
 
     @ApiModelProperty(example = "04010200")
     private String cep;

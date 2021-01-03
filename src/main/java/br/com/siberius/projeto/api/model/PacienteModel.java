@@ -1,11 +1,11 @@
 package br.com.siberius.projeto.api.model;
 
 import io.swagger.annotations.ApiModelProperty;
-import java.time.OffsetDateTime;
-import java.util.Date;
-import java.util.List;
 import lombok.Getter;
 import lombok.Setter;
+
+import java.time.OffsetDateTime;
+import java.util.List;
 
 @Getter
 @Setter
@@ -44,7 +44,7 @@ public class PacienteModel {
     private String celular;
 
     @ApiModelProperty(example = "31/05/1988")
-    private Date dtNascimento;
+    private OffsetDateTime dtNascimento;
 
     @ApiModelProperty(example = "04010200")
     private String cep;
