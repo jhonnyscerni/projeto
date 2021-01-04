@@ -13,7 +13,7 @@ public @interface CheckSecurity {
     public @interface Pacientes {
 
         @PreAuthorize("@projetoSecurity.podeEditarPacientes() or "
-            + "@projetoSecurity.usuarioAutenticadoIgual(#usuarioId)")
+            + "@projetoSecurity.usuarioAutenticadoIgual(#profissionalId)")
         @Retention(RUNTIME)
         @Target(METHOD)
         public @interface PodeEditarPaciente {
@@ -21,7 +21,7 @@ public @interface CheckSecurity {
         }
 
         @PreAuthorize("@projetoSecurity.podeRemoverPacientes() or "
-            + "@projetoSecurity.usuarioAutenticadoIgual(#usuarioId)")
+            + "@projetoSecurity.usuarioAutenticadoIgual(#profissionalId)")
         @Retention(RUNTIME)
         @Target(METHOD)
         public @interface PodeRemoverPaciente {
@@ -44,8 +44,8 @@ public @interface CheckSecurity {
         }
 
         @PreAuthorize("hasAuthority('SCOPE_READ') and isAuthenticated()")
-        @PostAuthorize("hasAuthority('SEG_CONSULTAR_PACIENTES') or "
-            + "@projetoSecurity.usuarioAutenticadoIgual(returnObject.usuarioId)")
+        @PostAuthorize("hasAuthority('SEG_BUSCAR_PACIENTES') or "
+            + "@projetoSecurity.usuarioAutenticadoIgual(returnObject.profissionalId)")
         @Retention(RUNTIME)
         @Target(METHOD)
         public @interface PodeBuscar { }

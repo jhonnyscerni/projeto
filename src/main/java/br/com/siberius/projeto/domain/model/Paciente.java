@@ -28,6 +28,6 @@ public class Paciente extends Usuario {
     private String cpfResponsavel;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "COD_PROFISSIONAL",nullable = false)
+    @JoinColumn(name = "COD_PROFISSIONAL")
     private Profissional profissional;
 }

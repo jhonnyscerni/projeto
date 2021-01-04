@@ -89,14 +89,6 @@ public class Usuario {
         this.ativado = false;
     }
 
-    public Usuario(Long id, String nome, String email, String senha, boolean ativado) {
-        this.id = id;
-        this.nome = nome;
-        this.email = email;
-        this.senha = senha;
-        this.ativado = ativado;
-    }
-
     public boolean adicionarGrupo(Grupo grupo) {
         return getGrupos().add(grupo);
     }

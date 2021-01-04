@@ -21,7 +21,7 @@ public class Estado {
     private Long id;
 
     @NotBlank
-    @Column(name = "SILGA", nullable = false)
+    @Column(name = "SIGLA", nullable = false)
     private String sigla;
 
     @NotBlank

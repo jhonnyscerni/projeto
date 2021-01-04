@@ -42,11 +42,12 @@ insert into permissao (cod_permissao, nm_permissao, desc_permissao) values (20, 
 insert into permissao (cod_permissao, nm_permissao, desc_permissao) values (21, 'SEG_CADASTRAR_PACIENTES', 'Permite cadastrar paciente');
 insert into permissao (cod_permissao, nm_permissao, desc_permissao) values (22, 'SEG_EDITAR_PACIENTES', 'Permite editar paciente');
 insert into permissao (cod_permissao, nm_permissao, desc_permissao) values (23, 'SEG_REMOVER_PACIENTES', 'Permite remover pacientes');
+insert into permissao (cod_permissao, nm_permissao, desc_permissao) values (24, 'SEG_BUSCAR_PACIENTES', 'Permite buscar pacientes pelo id');
 
-insert into permissao (cod_permissao, nm_permissao, desc_permissao) values (24, 'SEG_CONSULTAR_PROFISSIONAIS', 'Permite consultar profissionais');
-insert into permissao (cod_permissao, nm_permissao, desc_permissao) values (25, 'SEG_CADASTRAR_PROFISSIONAIS', 'Permite cadastrar profissionais');
-insert into permissao (cod_permissao, nm_permissao, desc_permissao) values (26, 'SEG_EDITAR_PROFISSIONAIS', 'Permite editar profissionais');
-insert into permissao (cod_permissao, nm_permissao, desc_permissao) values (27, 'SEG_REMOVER_PROFISSIONAIS', 'Permite remover profissionais');
+insert into permissao (cod_permissao, nm_permissao, desc_permissao) values (25, 'SEG_CONSULTAR_PROFISSIONAIS', 'Permite consultar profissionais');
+insert into permissao (cod_permissao, nm_permissao, desc_permissao) values (26, 'SEG_CADASTRAR_PROFISSIONAIS', 'Permite cadastrar profissionais');
+insert into permissao (cod_permissao, nm_permissao, desc_permissao) values (27, 'SEG_EDITAR_PROFISSIONAIS', 'Permite editar profissionais');
+insert into permissao (cod_permissao, nm_permissao, desc_permissao) values (28, 'SEG_REMOVER_PROFISSIONAIS', 'Permite remover profissionais');
 
 insert into grupo (cod_grupo, nm_grupo) values (1, 'Admin'), (2, 'Profissional'), (3, 'Paciente') ;
 
