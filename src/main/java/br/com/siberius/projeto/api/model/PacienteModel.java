@@ -72,5 +72,6 @@ public class PacienteModel {
     @ApiModelProperty(example = "99999999987")
     private String cpfResponsavel;
 
+    @ApiModelProperty(example = "02")
     private Long profissionalId;
 }

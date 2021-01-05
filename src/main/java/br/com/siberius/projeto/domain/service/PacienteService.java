@@ -45,8 +45,9 @@ public class PacienteService {
 
     public Paciente salvar(Paciente paciente) {
         Optional<Paciente> optionalPaciente = pacienteRepository.findByEmail(paciente.getEmail());
-        paciente.setProfissional(new Profissional());
-        paciente.getProfissional().setId(projetoSecurity.getUsuarioId());
+//        paciente.setProfissional(new Profissional());
+//        paciente.getProfissional().setId(projetoSecurity.getUsuarioId());
+        paciente.setProfissionalId(projetoSecurity.getUsuarioId());
 
         if (optionalPaciente.isPresent() && !optionalPaciente.get().equals(paciente)) {
             throw new NegocioException(
