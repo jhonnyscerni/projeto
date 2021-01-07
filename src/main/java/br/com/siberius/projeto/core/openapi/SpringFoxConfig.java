@@ -11,6 +11,7 @@ import java.net.URI;
 import java.net.URL;
 import java.net.URLStreamHandler;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -84,8 +85,8 @@ public class SpringFoxConfig implements WebMvcConfigurer {
                 URL.class, URI.class, URLStreamHandler.class, Resource.class,
                 File.class, InputStream.class)
 
-            .securitySchemes(Arrays.asList(securityScheme()))
-            .securityContexts(Arrays.asList(securityContext()))
+            .securitySchemes(Collections.singletonList(securityScheme()))
+            .securityContexts(Collections.singletonList(securityContext()))
             .apiInfo(apiInfo())
             .tags(
                     new Tag("Usuários", "Gerencia os usuários"),
@@ -96,7 +97,8 @@ public class SpringFoxConfig implements WebMvcConfigurer {
                     new Tag("Cidades", "Gerencia os cidades"),
                     new Tag("Estados", "Gerencia os estados"),
                     new Tag("Profissionais", "Gerencia os Profissionais"),
-                    new Tag("Pacientes", "Gerencia os Pacientes")
+                    new Tag("Pacientes", "Gerencia os Pacientes"),
+                    new Tag("Consultas", "Gerencia as Consultas")
                 );
     }
 

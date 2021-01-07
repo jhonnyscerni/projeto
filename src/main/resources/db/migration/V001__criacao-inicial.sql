@@ -7,7 +7,7 @@ create table permissao (cod_permissao bigint not null auto_increment, desc_permi
 create table usuario (tp varchar(31) not null, cod_usuario bigint not null auto_increment, ativado bit, endereco_bairro varchar(255), celular varchar(255), endereco_cep varchar(255), endereco_complemento varchar(255), cpf varchar(255), dt_cad_usuario datetime not null, dt_nascimento datetime, email varchar(255), endereco_logradouro varchar(255), nm_usuario varchar(255), endereco_numero varchar(255), senha varchar(255), sexo varchar(255), telefone varchar(255), cpf_responsavel varchar(255), nome_mae varchar(255), nome_pai varchar(255), conselho varchar(255), formacao_academica varchar(255), registro_conselho varchar(255), endereco_cidade_id bigint, profissional_id bigint default 0, primary key (cod_usuario)) engine=InnoDB default charset=utf8;
 create table usuario_grupo (cod_usuario bigint not null, cod_grupo bigint not null) engine=InnoDB default charset=utf8;
 create table verificar_token (id bigint not null, expiry_date datetime, token varchar(255), cod_usuario bigint not null, primary key (id)) engine=InnoDB default charset=utf8;
-
+create table consulta (cod_consulta bigint not null auto_increment, convenio_enum varchar(255), data_hora datetime, local_atendimento varchar(255), observacao varchar(255), procedimento_enum varchar(255), status_consulta_enum varchar(255), paciente bigint, profissional bigint, primary key (cod_consulta)) engine=InnoDB default charset=utf8;
 -- create table hibernate_sequence (next_val bigint) engine=InnoDB default charset=utf8;
 insert into hibernate_sequence values ( 1 );
 alter table cidade add constraint FKqef7ghgr8yifkq3uf2coild6e foreign key (cod_estado) references estado (cod_estado);
@@ -18,3 +18,5 @@ alter table usuario add constraint FK13u918h81mp7wgffsnh96a8jh foreign key (ende
 alter table usuario_grupo add constraint FK6tge3vbl2fu51964nmqwwiiqk foreign key (cod_grupo) references grupo (cod_grupo);
 alter table usuario_grupo add constraint FK8ßnrfpsmtqiv3je6ewqehqs2vy foreign key (cod_usuario) references usuario (cod_usuario);
 alter table verificar_token add constraint FKqt9kid9njxsvbmx091bwjywgb foreign key (cod_usuario) references usuario (cod_usuario);
+alter table consulta add constraint FK5jod6lyptj2oetm5qyb8bqt2a foreign key (paciente) references usuario (cod_usuario);
+alter table consulta add constraint FK9pn6y8dobcy547vtecnet7sqi foreign key (profissional) references usuario (cod_usuario);
