@@ -81,9 +81,11 @@ public class ConsultaController implements ConsultaControllerOpenApi {
     @PutMapping("/{consultaId}")
     public ConsultaModel atualizar(@PathVariable Long consultaId, @RequestBody @Valid ConsultaInputModel consultaInput) {
         Consulta consulta = consultaService.buscarOuFalhar(consultaId);
-        disassembler.copyToDomainObject(consultaInput, consulta);
-        consulta = consultaService.salvar(consulta);
-        return assembler.toModel(consulta);
+        Consulta consultaAlterada =  disassembler.toDomainObjectConsulta(consultaInput);
+        consultaAlterada.getProfissional().setDataCadastro(consulta.getProfissional().getDataCadastro());
+        consultaAlterada.getPaciente().setDataCadastro(consulta.getPaciente().getDataCadastro());
+        consultaAlterada = consultaService.salvar(consultaAlterada);
+        return assembler.toModel(consultaAlterada);
     }
 
     @Override

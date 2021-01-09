@@ -89,6 +89,16 @@ public class PacienteController implements PacienteControllerOpenApi {
             pacienteModelList, pageable, pacienteRepositoryAll.getTotalElements());
     }
 
+    @CheckSecurity.Pacientes.PodeConsultarPaciente
+    @Override
+    @GetMapping("/lista")
+    public List<PacienteModel> pesquisar(PacienteFilter filter) {
+
+        List<Paciente> pacienteRepositoryAll = pacienteRepository.findAll(
+            PacienteSpecs.usandoFiltro(filter));
+        return assembler.toCollectionModel(pacienteRepositoryAll);
+    }
+
     @CheckSecurity.Pacientes.PodeBuscar
     @Override
     @GetMapping("/{pacienteId}")

@@ -16,6 +16,7 @@ import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
 import io.swagger.annotations.ApiResponse;
 import io.swagger.annotations.ApiResponses;
+import java.util.List;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
@@ -28,6 +29,13 @@ public interface PacienteControllerOpenApi {
     })
     @ApiOperation("Pesquisar os pacientes")
     Page<PacienteModel> pesquisar(PacienteFilter filter, Pageable pageable);
+
+    @ApiImplicitParams({
+        @ApiImplicitParam(value = "Nomes das propriedades para filtrar na resposta, separados por vírgula",
+            name = "campos", paramType = "query", type = "string")
+    })
+    @ApiOperation("Pesquisar os pacientes")
+    List<PacienteModel> pesquisar(PacienteFilter filter);
 
     @ApiOperation("Busca um paciente por ID")
     @ApiResponses({
