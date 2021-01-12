@@ -38,4 +38,7 @@ public class ConsultaInputModel {
 
     @ApiModelProperty(example = "Titulo da Consulta")
     private String title;
+
+    @ApiModelProperty(example = "Cor do status da consulta")
+    private String className;
 }
