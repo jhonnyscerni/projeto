@@ -58,4 +58,15 @@ public class Consulta {
 
     @Column(name = "OBSERVACAO")
     private String observacoes;
+
+    // Criando Integração com FullCalendar
+
+    @Column(name = "START")
+    private OffsetDateTime start;
+
+    @Column(name = "TITLE")
+    private String title;
+
+    @Column(name = "CLASS_NAME")
+    private String className;
 }

@@ -39,32 +39,37 @@ public class ConsultaService {
         return consultaRepository.findById(consultaId).orElseThrow(() -> new ConsultaNaoEncontradoException(consultaId));
     }
 
-    public Consulta salvar(Consulta consulta){
+    public Consulta salvar(Consulta consulta) {
 
         Usuario usuario = usuarioService.buscarOuFalhar(projetoSecurity.getUsuarioId());
         Profissional profissional = new Profissional();
         Paciente paciente = new Paciente();
 
-        if (usuario.getDiscriminatorValue().equals("User")){
+        if (usuario.getDiscriminatorValue().equals("User")) {
             profissional = profissionalService.buscarOuFalhar(usuario.getId());
             paciente = pacienteService.buscarOuFalhar(consulta.getPaciente().getId());
-        }else if (usuario.getDiscriminatorValue().equals("Patient")){
+            consulta.setTitle( " - Paciente: "+paciente.getNome());
+        } else if (usuario.getDiscriminatorValue().equals("Patient")) {
             profissional = profissionalService.buscarOuFalhar(consulta.getProfissional().getId());
             paciente = pacienteService.buscarOuFalhar(usuario.getId());
-        }else {
+            consulta.setTitle("Profissional: "+profissional.getNome() + " - Paciente: " + paciente.getNome());
+        } else {
             profissional = profissionalService.buscarOuFalhar(consulta.getProfissional().getId());
             paciente = pacienteService.buscarOuFalhar(consulta.getPaciente().getId());
+            consulta.setTitle("Profissional: "+profissional.getNome() + " - Paciente: " + paciente.getNome());
         }
+
+        consulta.setStart(consulta.getDataHora());
 
         consulta.setProfissional(profissional);
         consulta.setPaciente(paciente);
         return consultaRepository.save(consulta);
     }
 
-    public void excluir(Long consultaId){
+    public void excluir(Long consultaId) {
         try {
-           consultaRepository.deleteById(consultaId);
-           consultaRepository.flush();
+            consultaRepository.deleteById(consultaId);
+            consultaRepository.flush();
         } catch (EmptyResultDataAccessException e) {
             throw new ConsultaNaoEncontradoException(consultaId);
         } catch (DataIntegrityViolationException e) {

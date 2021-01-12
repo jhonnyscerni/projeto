@@ -27,6 +27,9 @@ public interface ConsultaControllerOpenApi {
     @ApiOperation("Pesquisar os consultas")
     Page<ConsultaModel> pesquisar(ConsultaFilter filter, Pageable pageable);
 
+    @ApiOperation("Pesquisar os pacientes")
+    List<ConsultaModel> pesquisar(ConsultaFilter filter);
+
     @ApiOperation("Busca uma consulta por ID")
     @ApiResponses({
         @ApiResponse(code = 400, message = "ID da consulta inválida", response = Problem.class),

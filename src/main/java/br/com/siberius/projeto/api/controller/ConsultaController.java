@@ -6,6 +6,7 @@ import br.com.siberius.projeto.api.model.ConsultaModel;
 import br.com.siberius.projeto.api.model.PacienteModel;
 import br.com.siberius.projeto.api.model.input.ConsultaInputModel;
 import br.com.siberius.projeto.api.openapi.controller.ConsultaControllerOpenApi;
+import br.com.siberius.projeto.core.security.resourceserver.CheckSecurity;
 import br.com.siberius.projeto.domain.model.Consulta;
 import br.com.siberius.projeto.domain.model.Paciente;
 import br.com.siberius.projeto.domain.repository.ConsultaRepository;
@@ -63,6 +64,17 @@ public class ConsultaController implements ConsultaControllerOpenApi {
             consultaModelList, pageable, consultaRepositoryAll.getTotalElements());
     }
 
+//    @CheckSecurity.Pacientes.PodeConsultarPaciente
+    @Override
+    @GetMapping("/lista")
+    public List<ConsultaModel> pesquisar(ConsultaFilter filter) {
+
+        List<Consulta> consultaRepositoryAll = consultaRepository.findAll(
+            ConsultaSpecs.usandoFiltro(filter));
+
+        return assembler.toCollectionModel(consultaRepositoryAll);
+    }
+
     @GetMapping("/{consultaId}")
     @Override
     public ConsultaModel buscar(@PathVariable Long consultaId) {
@@ -89,9 +101,9 @@ public class ConsultaController implements ConsultaControllerOpenApi {
     }
 
     @Override
-    @DeleteMapping
+    @DeleteMapping("/{consultaId}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
-    public void remover(Long consultaId) {
+    public void remover(@PathVariable Long consultaId) {
         consultaService.excluir(consultaId);
     }
 }
