@@ -8,7 +8,7 @@ create table usuario (tp varchar(31) not null, cod_usuario bigint not null auto_
 create table usuario_grupo (cod_usuario bigint not null, cod_grupo bigint not null) engine=InnoDB default charset=utf8;
 create table verificar_token (id bigint not null, expiry_date datetime, token varchar(255), cod_usuario bigint not null, primary key (id)) engine=InnoDB default charset=utf8;
 create table consulta (cod_consulta bigint not null auto_increment, convenio_enum varchar(255), data_hora datetime, local_atendimento varchar(255), observacao varchar(255), procedimento_enum varchar(255), status_consulta_enum varchar(255), start datetime, title varchar(255), class_name varchar(255), paciente bigint, profissional bigint, primary key (cod_consulta)) engine=InnoDB default charset=utf8;
-create table atendimento (cod_atendimento bigint not null auto_increment, descrever_sessao varchar(255), objetivo_sessao varchar(255), cod_consulta bigint not null, primary key (cod_atendimento)) engine=InnoDB default charset=utf8;
+create table atendimento (cod_atendimento bigint not null auto_increment, descrever_sessao text, objetivo_sessao varchar(255), cod_consulta bigint not null, primary key (cod_atendimento)) engine=InnoDB default charset=utf8;
 -- create table hibernate_sequence (next_val bigint) engine=InnoDB default charset=utf8;
 insert into hibernate_sequence values ( 1 );
 alter table cidade add constraint FKqef7ghgr8yifkq3uf2coild6e foreign key (cod_estado) references estado (cod_estado);

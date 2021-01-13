@@ -7,11 +7,13 @@ import br.com.siberius.projeto.api.model.input.AtendimentoInputModel;
 import br.com.siberius.projeto.api.openapi.controller.ConsultaAtendimentoControllerOpenApi;
 import br.com.siberius.projeto.domain.model.Atendimento;
 import br.com.siberius.projeto.domain.model.Consulta;
+import br.com.siberius.projeto.domain.model.enums.StatusConsultaEnum;
 import br.com.siberius.projeto.domain.service.AtendimentoService;
 import br.com.siberius.projeto.domain.service.ConsultaService;
 import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -40,10 +42,19 @@ public class ConsultaAtendimentoController implements ConsultaAtendimentoControl
         @RequestBody @Valid AtendimentoInputModel atendimentoInputModel) {
         Consulta consulta = consultaService.buscarOuFalhar(consultaId);
 
+        consulta.setStatusConsultaEnum(StatusConsultaEnum.FINALIZADO);
+        consultaService.salvar(consulta);
+
         Atendimento atendimento = disassembler.toDomainObject(atendimentoInputModel);
         atendimento.setConsulta(consulta);
 
         return assembler.toModel(atendimentoService.salvar(atendimento));
+    }
+
+    @GetMapping()
+    public AtendimentoModel buscar(@PathVariable Long consultaId) {
+        Atendimento atendimento = atendimentoService.buscarOuFalharPorConsulta(consultaId);
+        return assembler.toModel(atendimento);
     }
 
 }

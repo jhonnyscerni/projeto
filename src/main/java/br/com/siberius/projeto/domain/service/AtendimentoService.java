@@ -30,6 +30,10 @@ public class AtendimentoService {
         return atendimentoRepository.findById(atendimentoId).orElseThrow(() -> new AtendimentoNaoEncontradoException(atendimentoId));
     }
 
+    public Atendimento buscarOuFalharPorConsulta(Long consultaId) {
+        return atendimentoRepository.findConsultaId(consultaId).orElseThrow(() -> new AtendimentoNaoEncontradoException(consultaId));
+    }
+
     public Atendimento buscarOuFalhar(Long consultaId, Long atendimentoId) {
         return atendimentoRepository.findById(consultaId, atendimentoId)
             .orElseThrow(() -> new AtendimentoNaoEncontradoException(consultaId, atendimentoId));

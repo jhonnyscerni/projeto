@@ -4,13 +4,9 @@ public enum StatusConsultaEnum {
 
     AGENDADO("Agendado"),
     CONFIRMADO("Confirmado"),
-    ESPERANDO("Esperando"),
     CANCELADO("Cancelado"),
-    NAO_COMPARECEU("Não Compareceu"),
     REAGENDADO("ReAgendado"),
-    EM_ATENDIMENTO("Em Atendimento"),
-    FINALIZADO("Finalizado"),
-    BLOQUEADO("Bloquado");
+    FINALIZADO("Finalizado");
 
     private String descricao;
 

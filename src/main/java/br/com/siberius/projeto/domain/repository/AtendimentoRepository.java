@@ -12,4 +12,8 @@ public interface AtendimentoRepository extends JpaRepository<Atendimento, Long>,
     @Query("from Atendimento where consulta.id = :consulta and id =:atendimento")
     Optional<Atendimento> findById(@Param("consulta") Long consultaId,
         @Param("atendimento") Long atendimentoId);
+
+    @Query("from Atendimento where consulta.id = :consulta")
+    Optional<Atendimento> findConsultaId(@Param("consulta") Long consultaId);
+
 }
