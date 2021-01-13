@@ -12,5 +12,7 @@ public class AtendimentoFilter {
 
     private Long id;
 
-    private Consulta consulta;
+    private Long profissionalId;
+
+    private Long pacienteId;
 }
