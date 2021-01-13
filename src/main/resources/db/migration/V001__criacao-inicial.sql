@@ -8,6 +8,7 @@ create table usuario (tp varchar(31) not null, cod_usuario bigint not null auto_
 create table usuario_grupo (cod_usuario bigint not null, cod_grupo bigint not null) engine=InnoDB default charset=utf8;
 create table verificar_token (id bigint not null, expiry_date datetime, token varchar(255), cod_usuario bigint not null, primary key (id)) engine=InnoDB default charset=utf8;
 create table consulta (cod_consulta bigint not null auto_increment, convenio_enum varchar(255), data_hora datetime, local_atendimento varchar(255), observacao varchar(255), procedimento_enum varchar(255), status_consulta_enum varchar(255), start datetime, title varchar(255), class_name varchar(255), paciente bigint, profissional bigint, primary key (cod_consulta)) engine=InnoDB default charset=utf8;
+create table atendimento (cod_atendimento bigint not null auto_increment, descrever_sessao varchar(255), objetivo_sessao varchar(255), cod_consulta bigint not null, primary key (cod_atendimento)) engine=InnoDB default charset=utf8;
 -- create table hibernate_sequence (next_val bigint) engine=InnoDB default charset=utf8;
 insert into hibernate_sequence values ( 1 );
 alter table cidade add constraint FKqef7ghgr8yifkq3uf2coild6e foreign key (cod_estado) references estado (cod_estado);
@@ -20,3 +21,5 @@ alter table usuario_grupo add constraint FK8ßnrfpsmtqiv3je6ewqehqs2vy foreign k
 alter table verificar_token add constraint FKqt9kid9njxsvbmx091bwjywgb foreign key (cod_usuario) references usuario (cod_usuario);
 alter table consulta add constraint FK5jod6lyptj2oetm5qyb8bqt2a foreign key (paciente) references usuario (cod_usuario);
 alter table consulta add constraint FK9pn6y8dobcy547vtecnet7sqi foreign key (profissional) references usuario (cod_usuario);
+
+alter table atendimento add constraint FK1a2q6tq6ext4h4l2or7ra81yj foreign key (cod_consulta) references consulta (cod_consulta);
