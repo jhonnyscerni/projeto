@@ -1,6 +1,7 @@
 package br.com.siberius.projeto.api.model;
 
 import io.swagger.annotations.ApiModelProperty;
+import javax.persistence.Column;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -72,6 +73,9 @@ public class PacienteModel {
     @ApiModelProperty(example = "99999999987")
     private String cpfResponsavel;
 
-    @ApiModelProperty(example = "02")
+    @ApiModelProperty(example = "2")
     private Long profissionalId;
+
+    @ApiModelProperty(example = "3")
+    private Long clinicaId;
 }

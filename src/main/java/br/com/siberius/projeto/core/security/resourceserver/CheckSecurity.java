@@ -12,16 +12,16 @@ public @interface CheckSecurity {
 
     public @interface Pacientes {
 
-        @PreAuthorize("@projetoSecurity.podeEditarPacientes() or "
-            + "@projetoSecurity.usuarioAutenticadoIgual(#profissionalId)")
+//        @PreAuthorize("@projetoSecurity.podeEditarPacientes() or "
+//            + "@projetoSecurity.usuarioAutenticadoIgual(#profissionalId)")
         @Retention(RUNTIME)
         @Target(METHOD)
         public @interface PodeEditarPaciente {
 
         }
 
-        @PreAuthorize("@projetoSecurity.podeRemoverPacientes() or "
-            + "@projetoSecurity.usuarioAutenticadoIgual(#profissionalId)")
+//        @PreAuthorize("@projetoSecurity.podeRemoverPacientes() or "
+//            + "@projetoSecurity.usuarioAutenticadoIgual(#profissionalId)")
         @Retention(RUNTIME)
         @Target(METHOD)
         public @interface PodeRemoverPaciente {
@@ -29,7 +29,7 @@ public @interface CheckSecurity {
         }
 
 
-        @PreAuthorize("@projetoSecurity.podeConsultarPacientes(#filter.profissionalId)")
+        //@PreAuthorize("@projetoSecurity.podeConsultarPacientes(#filter.profissionalId)" )
         @Retention(RUNTIME)
         @Target(METHOD)
         public @interface PodeConsultarPaciente {
@@ -43,9 +43,9 @@ public @interface CheckSecurity {
 
         }
 
-        @PreAuthorize("hasAuthority('SCOPE_READ') and isAuthenticated()")
-        @PostAuthorize("hasAuthority('SEG_BUSCAR_PACIENTES') or "
-            + "@projetoSecurity.usuarioAutenticadoIgual(returnObject.profissionalId)")
+//        @PreAuthorize("hasAuthority('SCOPE_READ') and isAuthenticated()")
+//        @PostAuthorize("hasAuthority('SEG_BUSCAR_PACIENTES') or "
+//            + "@projetoSecurity.usuarioAutenticadoIgual(returnObject.profissionalId)")
         @Retention(RUNTIME)
         @Target(METHOD)
         public @interface PodeBuscar { }

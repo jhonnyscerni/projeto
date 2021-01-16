@@ -34,6 +34,8 @@ public class ConsultaModel {
     @ApiModelProperty(example = "Observacoes")
     private String observacoes;
 
+    private ClinicaModel clinica;
+
     // Integração com FullCalendar
 
     private OffsetDateTime start = dataHora;

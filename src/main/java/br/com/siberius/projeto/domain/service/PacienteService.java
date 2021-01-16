@@ -7,6 +7,7 @@ import br.com.siberius.projeto.domain.exception.model.UsuarioNaoEncontradoExcept
 import br.com.siberius.projeto.domain.model.Grupo;
 import br.com.siberius.projeto.domain.model.Paciente;
 import br.com.siberius.projeto.domain.model.Profissional;
+import br.com.siberius.projeto.domain.model.Usuario;
 import br.com.siberius.projeto.domain.repository.PacienteRepository;
 import java.util.ArrayList;
 import java.util.List;
@@ -35,6 +36,9 @@ public class PacienteService {
     @Autowired
     private ProjetoSecurity projetoSecurity;
 
+    @Autowired
+    private UsuarioService usuarioService;
+
     private static final String MSG_USUARIO_EM_USO
         = "Usuário de código %d não pode ser removida, pois está em uso";
 
@@ -47,7 +51,13 @@ public class PacienteService {
         Optional<Paciente> optionalPaciente = pacienteRepository.findByEmail(paciente.getEmail());
 //        paciente.setProfissional(new Profissional());
 //        paciente.getProfissional().setId(projetoSecurity.getUsuarioId());
-        paciente.setProfissionalId(projetoSecurity.getUsuarioId());
+        Usuario usuario = usuarioService.buscarOuFalhar(projetoSecurity.getUsuarioId());
+        if (usuario.getDiscriminatorValue().equals("User")) {
+            paciente.setProfissionalId(projetoSecurity.getUsuarioId());
+        }
+        else if(usuario.getDiscriminatorValue().equals("Clinic")){
+            paciente.setClinicaId(projetoSecurity.getUsuarioId());
+        }
 
         if (optionalPaciente.isPresent() && !optionalPaciente.get().equals(paciente)) {
             throw new NegocioException(

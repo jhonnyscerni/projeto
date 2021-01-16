@@ -97,7 +97,7 @@ public class ProfissionalController implements ProfissionalControllerOpenApi {
     public ProfissionalModel adicionar(@RequestBody @Valid ProfissionalInputComSenhaModel profissionalInputModel) {
         List<GrupoModel> grupos = new ArrayList<>();
         // ID do Usuario Comum
-        Grupo grupo = grupoService.buscarOuFalhar(2L);
+        Grupo grupo = grupoService.buscarOuFalhar(3L);
         grupos.add(assemblerGrupo.toModel(grupo));
         profissionalInputModel.setGrupos(grupos);
 
@@ -115,7 +115,7 @@ public class ProfissionalController implements ProfissionalControllerOpenApi {
     public ProfissionalModel adicionarComum(@RequestBody @Valid ProfissionalInputComSenhaModel profissionalInputModel) {
         List<GrupoModel> grupos = new ArrayList<>();
         // ID do Usuario Comum
-        Grupo grupo = grupoService.buscarOuFalhar(2L);
+        Grupo grupo = grupoService.buscarOuFalhar(3L);
         grupos.add(assemblerGrupo.toModel(grupo));
         profissionalInputModel.setGrupos(grupos);
 

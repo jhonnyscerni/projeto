@@ -24,4 +24,7 @@ public class Paciente extends Usuario {
 
     @Column(name = "PROFISSIONAL_ID")
     private Long profissionalId;
+
+    @Column(name = "CLINICA_ID")
+    private Long clinicaId;
 }

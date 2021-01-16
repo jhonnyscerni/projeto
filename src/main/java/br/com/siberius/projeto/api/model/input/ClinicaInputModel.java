@@ -1,16 +1,17 @@
-package br.com.siberius.projeto.api.model;
+package br.com.siberius.projeto.api.model.input;
 
+import br.com.siberius.projeto.api.model.CidadeModel;
+import br.com.siberius.projeto.api.model.GrupoModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.time.OffsetDateTime;
 import java.util.Date;
 import java.util.List;
-import javax.persistence.Column;
 import lombok.Getter;
 import lombok.Setter;
 
 @Getter
 @Setter
-public class ProfissionalModel {
+public class ClinicaInputModel {
 
     @ApiModelProperty(example = "1")
     private Long id;
@@ -20,9 +21,6 @@ public class ProfissionalModel {
 
     @ApiModelProperty(example = "jhonnyscerni@gmail.com")
     private String email;
-
-    @ApiModelProperty(example = "jhonnyscerni@gmail.com")
-    private String senha;
 
     @ApiModelProperty(example = "2020-10-23T18:16:59.517Z")
     private OffsetDateTime dataCadastro;
@@ -37,15 +35,6 @@ public class ProfissionalModel {
 
     @ApiModelProperty(example = "M")
     private String sexo;
-
-    @ApiModelProperty(example = "Terapeuta Ocupacional")
-    private String formacaoAcademica;
-
-    @ApiModelProperty(example = "Crefito")
-    private String conselho;
-
-    @ApiModelProperty(example = "192731982371927")
-    private String registroConselho;
 
     @ApiModelProperty(example = "91981551703")
     private String telefone;

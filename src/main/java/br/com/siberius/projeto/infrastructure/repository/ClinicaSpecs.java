@@ -1,15 +1,15 @@
 package br.com.siberius.projeto.infrastructure.repository;
 
-import br.com.siberius.projeto.domain.model.Paciente;
-import br.com.siberius.projeto.domain.repository.filter.PacienteFilter;
+import br.com.siberius.projeto.domain.model.Clinica;
+import br.com.siberius.projeto.domain.repository.filter.ClinicaFilter;
 import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.criteria.Predicate;
 import org.springframework.data.jpa.domain.Specification;
 
-public class PacienteSpecs {
+public class ClinicaSpecs {
 
-    public static Specification<Paciente> usandoFiltro(PacienteFilter filtro) {
+    public static Specification<Clinica> usandoFiltro(ClinicaFilter filtro) {
         return (root, query, builder) -> {
             List<Predicate> predicates = new ArrayList<Predicate>();
 
@@ -29,14 +29,6 @@ public class PacienteSpecs {
             if (filtro.getDataCriacaoFim() != null) {
                 predicates.add(builder.lessThanOrEqualTo(root.get("dataCriacao"),
                     filtro.getDataCriacaoFim()));
-            }
-
-            if (filtro.getProfissionalId() != null) {
-                predicates.add(builder.equal(root.get("profissionalId"), filtro.getProfissionalId()));
-            }
-
-            if (filtro.getClinicaId() != null) {
-                predicates.add(builder.equal(root.get("clinicaId"), filtro.getClinicaId()));
             }
 
             return builder.and(predicates.toArray(new Predicate[0]));

@@ -33,6 +33,10 @@ public class ProfissionalSpecs {
                     filtro.getDataCriacaoFim()));
             }
 
+            if (filtro.getClinicaId() != null) {
+                predicates.add(builder.equal(root.get("clinicaId"), filtro.getClinicaId()));
+            }
+
             return builder.and(predicates.toArray(new Predicate[0]));
         };
     }

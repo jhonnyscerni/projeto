@@ -1,5 +1,6 @@
 package br.com.siberius.projeto.domain.repository.filter;
 
+import io.swagger.annotations.ApiModelProperty;
 import java.time.OffsetDateTime;
 import lombok.Getter;
 import lombok.Setter;
@@ -19,5 +20,8 @@ public class ProfissionalFilter {
 
     @DateTimeFormat(iso = ISO.DATE_TIME)
     private OffsetDateTime dataCriacaoFim;
+
+    @ApiModelProperty(example = "1", value = "ID da clinica para filtro da pesquisa")
+    private Long clinicaId;
 
 }

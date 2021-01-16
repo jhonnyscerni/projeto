@@ -37,6 +37,10 @@ public class Consulta {
     @JoinColumn(name = "PROFISSIONAL")
     private Profissional profissional;
 
+    @ManyToOne
+    @JoinColumn(name = "CLINICA")
+    private Clinica clinica;
+
     @Column(name = "DATA_HORA")
     private OffsetDateTime dataHora;
 

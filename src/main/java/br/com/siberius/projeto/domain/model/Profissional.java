@@ -23,4 +23,7 @@ public class Profissional extends Usuario {
     @Column(name = "REGISTRO_CONSELHO")
     private String registroConselho;
 
+    @Column(name = "CLINICA_ID")
+    private Long clinicaId;
+
 }

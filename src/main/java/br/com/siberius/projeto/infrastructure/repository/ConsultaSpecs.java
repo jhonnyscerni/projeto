@@ -19,6 +19,9 @@ public class ConsultaSpecs {
             if (filtro.getProfissional() != null) {
                 predicates.add(builder.equal(root.get("profissional"), filtro.getProfissional()));
             }
+            if (filtro.getClinica() != null) {
+                predicates.add(builder.equal(root.get("clinica"), filtro.getClinica()));
+            }
             if (filtro.getId() != null) {
                 predicates.add(builder.equal(root.get("id"), filtro.getId()));
             }

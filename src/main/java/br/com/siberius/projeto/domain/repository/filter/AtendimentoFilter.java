@@ -15,4 +15,6 @@ public class AtendimentoFilter {
     private Long profissionalId;
 
     private Long pacienteId;
+
+    private Long clinicaId;
 }

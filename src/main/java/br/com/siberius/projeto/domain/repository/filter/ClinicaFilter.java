@@ -1,8 +1,5 @@
 package br.com.siberius.projeto.domain.repository.filter;
 
-import br.com.siberius.projeto.api.model.ProfissionalModel;
-import br.com.siberius.projeto.domain.model.Profissional;
-import io.swagger.annotations.ApiModelProperty;
 import java.time.OffsetDateTime;
 import lombok.Getter;
 import lombok.Setter;
@@ -11,7 +8,7 @@ import org.springframework.format.annotation.DateTimeFormat.ISO;
 
 @Setter
 @Getter
-public class PacienteFilter {
+public class ClinicaFilter {
 
     private String nome;
 
@@ -22,11 +19,5 @@ public class PacienteFilter {
 
     @DateTimeFormat(iso = ISO.DATE_TIME)
     private OffsetDateTime dataCriacaoFim;
-
-    @ApiModelProperty(example = "1", value = "ID do profissional para filtro da pesquisa")
-    private Long profissionalId;
-
-    @ApiModelProperty(example = "1", value = "ID da clinica para filtro da pesquisa")
-    private Long clinicaId;
 
 }

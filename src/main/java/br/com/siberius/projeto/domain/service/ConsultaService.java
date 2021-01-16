@@ -3,6 +3,7 @@ package br.com.siberius.projeto.domain.service;
 import br.com.siberius.projeto.core.security.resourceserver.ProjetoSecurity;
 import br.com.siberius.projeto.domain.exception.EntidadeEmUsoException;
 import br.com.siberius.projeto.domain.exception.model.ConsultaNaoEncontradoException;
+import br.com.siberius.projeto.domain.model.Clinica;
 import br.com.siberius.projeto.domain.model.Consulta;
 import br.com.siberius.projeto.domain.model.Paciente;
 import br.com.siberius.projeto.domain.model.Profissional;
@@ -29,6 +30,9 @@ public class ConsultaService {
     private ProfissionalService profissionalService;
 
     @Autowired
+    private ClinicaService clinicaService;
+
+    @Autowired
     private UsuarioService usuarioService;
 
     @Autowired
@@ -44,18 +48,30 @@ public class ConsultaService {
         Usuario usuario = usuarioService.buscarOuFalhar(projetoSecurity.getUsuarioId());
         Profissional profissional = new Profissional();
         Paciente paciente = new Paciente();
+        Clinica clinica = new Clinica();
 
         if (usuario.getDiscriminatorValue().equals("User")) {
             profissional = profissionalService.buscarOuFalhar(usuario.getId());
+            if (profissional.getClinicaId() != null){
+                clinica = clinicaService.buscarOuFalhar(profissional.getClinicaId());
+            }
             paciente = pacienteService.buscarOuFalhar(consulta.getPaciente().getId());
             consulta.setTitle( " - Paciente: "+paciente.getNome());
         } else if (usuario.getDiscriminatorValue().equals("Patient")) {
             profissional = profissionalService.buscarOuFalhar(consulta.getProfissional().getId());
             paciente = pacienteService.buscarOuFalhar(usuario.getId());
+            if (paciente.getClinicaId() != null){
+                clinica = clinicaService.buscarOuFalhar(paciente.getClinicaId());
+            }
             consulta.setTitle("Profissional: "+profissional.getNome() + " - Paciente: " + paciente.getNome());
-        } else {
+        }else if (usuario.getDiscriminatorValue().equals("Clinic")) {
+            clinica = clinicaService.buscarOuFalhar(usuario.getId());
             profissional = profissionalService.buscarOuFalhar(consulta.getProfissional().getId());
             paciente = pacienteService.buscarOuFalhar(consulta.getPaciente().getId());
+        }else {
+            profissional = profissionalService.buscarOuFalhar(consulta.getProfissional().getId());
+            paciente = pacienteService.buscarOuFalhar(consulta.getPaciente().getId());
+            clinica = clinicaService.buscarOuFalhar(consulta.getClinica().getId());
             consulta.setTitle("Profissional: "+profissional.getNome() + " - Paciente: " + paciente.getNome());
         }
 
@@ -63,6 +79,7 @@ public class ConsultaService {
 
         consulta.setProfissional(profissional);
         consulta.setPaciente(paciente);
+        consulta.setClinica(clinica);
         return consultaRepository.save(consulta);
     }
 

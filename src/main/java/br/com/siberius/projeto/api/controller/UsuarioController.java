@@ -132,22 +132,4 @@ public class UsuarioController implements UsuarioControllerOpenApi {
     public void alterarSenha(@PathVariable Long usuarioId, @RequestBody @Valid SenhaInputModel senha) {
         usuarioService.alterarSenha(usuarioId, senha.getSenhaAtual(), senha.getNovaSenha());
     }
-
-    @PostMapping("/add-usuario-comum")
-    @ResponseStatus(HttpStatus.CREATED)
-    public UsuarioModel adicionarUsuarioComum(@RequestBody @Valid UsuarioInputComSenhaModel usuarioInput) {
-        List<GrupoModel> grupos = new ArrayList<>();
-        // ID do Usuario Comum
-        Grupo grupo = grupoService.buscarOuFalhar(2L);
-        grupos.add(assemblerGrupo.toModel(grupo));
-        usuarioInput.setGrupos(grupos);
-
-        Usuario usuario = usuarioService.salvar(disassembler.toDomainObject(usuarioInput));
-
-        eventPublisher.publishEvent(new RegistroCompletoEvent
-            (usuario));
-
-        return assembler.toModel(usuario);
-    }
-
 }

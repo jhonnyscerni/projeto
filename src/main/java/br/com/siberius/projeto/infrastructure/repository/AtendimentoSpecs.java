@@ -32,6 +32,10 @@ public class AtendimentoSpecs {
                 predicates.add(builder.equal(consulta.get("profissional"), filtro.getProfissionalId()));
             }
 
+            if (filtro.getClinicaId() != null) {
+                predicates.add(builder.equal(consulta.get("clinica"), filtro.getClinicaId()));
+            }
+
             if (filtro.getId() != null) {
                 predicates.add(builder.equal(root.get("id"), filtro.getId()));
             }

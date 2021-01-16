@@ -113,7 +113,7 @@ public class PacienteController implements PacienteControllerOpenApi {
     public PacienteModel adicionar(@RequestBody @Valid PacienteInputComSenhaModel pacienteInputComSenhaModel) {
         List<GrupoModel> grupos = new ArrayList<>();
         // ID do Usuario Comum
-        Grupo grupo = grupoService.buscarOuFalhar(3L);
+        Grupo grupo = grupoService.buscarOuFalhar(4L);
         grupos.add(assemblerGrupo.toModel(grupo));
         pacienteInputComSenhaModel.setGrupos(grupos);
         pacienteInputComSenhaModel.setAtivado(true);

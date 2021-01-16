@@ -4,13 +4,12 @@ import io.swagger.annotations.ApiModelProperty;
 import java.time.OffsetDateTime;
 import java.util.Date;
 import java.util.List;
-import javax.persistence.Column;
 import lombok.Getter;
 import lombok.Setter;
 
 @Getter
 @Setter
-public class ProfissionalModel {
+public class ClinicaModel {
 
     @ApiModelProperty(example = "1")
     private Long id;
@@ -37,15 +36,6 @@ public class ProfissionalModel {
 
     @ApiModelProperty(example = "M")
     private String sexo;
-
-    @ApiModelProperty(example = "Terapeuta Ocupacional")
-    private String formacaoAcademica;
-
-    @ApiModelProperty(example = "Crefito")
-    private String conselho;
-
-    @ApiModelProperty(example = "192731982371927")
-    private String registroConselho;
 
     @ApiModelProperty(example = "91981551703")
     private String telefone;
