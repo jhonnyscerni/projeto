@@ -62,6 +62,7 @@ select 1, cod_permissao from permissao;
 # Adiciona permissoes no grupo do pacientes
 insert into grupo_permissao (cod_grupo, cod_permissao)
 select 2, cod_permissao from permissao where nm_permissao like '%PACIENTES%';
+insert into grupo_permissao (cod_grupo, cod_permissao)
 select 2, cod_permissao from permissao where nm_permissao like '%PROFISSIONAIS%';
 
 # Adiciona permissoes no grupo do vendedor

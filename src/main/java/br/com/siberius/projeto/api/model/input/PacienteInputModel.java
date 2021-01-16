@@ -76,4 +76,6 @@ public class PacienteInputModel {
     private String cpfResponsavel;
 
     private ProfissionalModel profissional;
+
+    private Long clinicaId;
 }

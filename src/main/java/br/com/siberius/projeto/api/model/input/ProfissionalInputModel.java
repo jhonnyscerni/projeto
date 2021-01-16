@@ -72,4 +72,7 @@ public class ProfissionalInputModel {
     private String bairro;
 
     private CidadeModel cidade;
+
+    @ApiModelProperty(example = "2")
+    private Long clinicaId;
 }

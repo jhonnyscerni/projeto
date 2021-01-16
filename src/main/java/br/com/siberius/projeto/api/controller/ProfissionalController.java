@@ -65,7 +65,7 @@ public class ProfissionalController implements ProfissionalControllerOpenApi {
     @Autowired
     ApplicationEventPublisher eventPublisher;
 
-    @CheckSecurity.UsuariosGruposPermissoes.PodeConsultarUsuario
+//    @CheckSecurity.UsuariosGruposPermissoes.PodeConsultarUsuario
     @Override
     @GetMapping
 //    public List<UsuarioModel> listar() {
@@ -83,7 +83,7 @@ public class ProfissionalController implements ProfissionalControllerOpenApi {
             profissionalModelList, pageable, profissionalPage.getTotalElements());
     }
 
-    @CheckSecurity.UsuariosGruposPermissoes.PodeConsultarUsuario
+//    @CheckSecurity.UsuariosGruposPermissoes.PodeConsultarUsuario
     @Override
     @GetMapping("/{profissionalId}")
     public ProfissionalModel buscar(@PathVariable Long profissionalId) {
@@ -127,7 +127,7 @@ public class ProfissionalController implements ProfissionalControllerOpenApi {
         return assembler.toModel(profissional);
     }
 
-    @CheckSecurity.UsuariosGruposPermissoes.PodeAlterarUsuario
+//    @CheckSecurity.UsuariosGruposPermissoes.PodeAlterarUsuario
     @Override
     @PutMapping("/{profissionalId}")
     public ProfissionalModel atualizar(@PathVariable Long profissionalId,
@@ -146,7 +146,7 @@ public class ProfissionalController implements ProfissionalControllerOpenApi {
         return assembler.toModel(profissionalAlterado);
     }
 
-    @CheckSecurity.UsuariosGruposPermissoes.PodeRemoverUsuario
+//    @CheckSecurity.UsuariosGruposPermissoes.PodeRemoverUsuario
     @Override
     @DeleteMapping("/{profissionalId}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
@@ -154,7 +154,7 @@ public class ProfissionalController implements ProfissionalControllerOpenApi {
         profissionalService.excluir(profissionalId);
     }
 
-    @CheckSecurity.UsuariosGruposPermissoes.PodeAlterarPropriaSenha
+//    @CheckSecurity.UsuariosGruposPermissoes.PodeAlterarPropriaSenha
     @Override
     @PutMapping("/{profissionalId}/senha")
     public void alterarSenha(@PathVariable Long profissionalId, @RequestBody @Valid SenhaInputModel senha) {
