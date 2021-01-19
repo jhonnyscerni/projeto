@@ -2,11 +2,13 @@ package br.com.siberius.projeto.api.openapi.controller;
 
 
 import br.com.siberius.projeto.api.exceptionhandler.Problem;
+import br.com.siberius.projeto.api.model.PacienteModel;
 import br.com.siberius.projeto.api.model.ProfissionalModel;
 import br.com.siberius.projeto.api.model.UsuarioModel;
 import br.com.siberius.projeto.api.model.input.ProfissionalInputComSenhaModel;
 import br.com.siberius.projeto.api.model.input.SenhaInputModel;
 import br.com.siberius.projeto.api.model.input.UsuarioInputComSenhaModel;
+import br.com.siberius.projeto.domain.repository.filter.PacienteFilter;
 import br.com.siberius.projeto.domain.repository.filter.ProfissionalFilter;
 import br.com.siberius.projeto.domain.repository.filter.UsuarioFilter;
 import io.swagger.annotations.Api;
@@ -19,6 +21,8 @@ import io.swagger.annotations.ApiResponses;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
+import java.util.List;
+
 @Api(tags = "Profissionais")
 public interface ProfissionalControllerOpenApi {
 
@@ -28,6 +32,13 @@ public interface ProfissionalControllerOpenApi {
     })
     @ApiOperation("Pesquisar os profissionais")
     Page<ProfissionalModel> pesquisar(ProfissionalFilter filter, Pageable pageable);
+
+    @ApiImplicitParams({
+            @ApiImplicitParam(value = "Nomes das propriedades para filtrar na resposta, separados por vírgula",
+                    name = "campos", paramType = "query", type = "string")
+    })
+    @ApiOperation("Pesquisar os profissionais")
+    List<ProfissionalModel> pesquisar(ProfissionalFilter filter);
 
     @ApiOperation("Busca um profissional por ID")
     @ApiResponses({

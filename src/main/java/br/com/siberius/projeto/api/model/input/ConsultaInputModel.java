@@ -1,5 +1,6 @@
 package br.com.siberius.projeto.api.model.input;
 
+import br.com.siberius.projeto.api.model.ClinicaModel;
 import br.com.siberius.projeto.api.model.PacienteModel;
 import br.com.siberius.projeto.api.model.ProfissionalModel;
 import br.com.siberius.projeto.domain.model.enums.ConvenioEnum;
@@ -41,4 +42,6 @@ public class ConsultaInputModel {
 
     @ApiModelProperty(example = "Cor do status da consulta")
     private String className;
+
+    private ClinicaInputModel clinica;
 }

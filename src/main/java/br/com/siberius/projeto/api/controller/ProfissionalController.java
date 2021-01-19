@@ -5,18 +5,22 @@ import br.com.siberius.projeto.api.assembler.ProfissionalModelAssembler;
 import br.com.siberius.projeto.api.assembler.disassembler.ProfissionalInputModelDisassembler;
 import br.com.siberius.projeto.api.event.RegistroCompletoEvent;
 import br.com.siberius.projeto.api.model.GrupoModel;
+import br.com.siberius.projeto.api.model.PacienteModel;
 import br.com.siberius.projeto.api.model.ProfissionalModel;
 import br.com.siberius.projeto.api.model.input.ProfissionalInputComSenhaModel;
 import br.com.siberius.projeto.api.model.input.SenhaInputModel;
 import br.com.siberius.projeto.api.openapi.controller.ProfissionalControllerOpenApi;
 import br.com.siberius.projeto.core.security.resourceserver.CheckSecurity;
 import br.com.siberius.projeto.domain.model.Grupo;
+import br.com.siberius.projeto.domain.model.Paciente;
 import br.com.siberius.projeto.domain.model.Profissional;
 import br.com.siberius.projeto.domain.model.Usuario;
 import br.com.siberius.projeto.domain.repository.ProfissionalRepository;
+import br.com.siberius.projeto.domain.repository.filter.PacienteFilter;
 import br.com.siberius.projeto.domain.repository.filter.ProfissionalFilter;
 import br.com.siberius.projeto.domain.service.GrupoService;
 import br.com.siberius.projeto.domain.service.ProfissionalService;
+import br.com.siberius.projeto.infrastructure.repository.PacienteSpecs;
 import br.com.siberius.projeto.infrastructure.repository.ProfissionalSpecs;
 import java.util.ArrayList;
 import java.util.List;
@@ -81,6 +85,16 @@ public class ProfissionalController implements ProfissionalControllerOpenApi {
 
         return new PageImpl<>(
             profissionalModelList, pageable, profissionalPage.getTotalElements());
+    }
+
+    @CheckSecurity.Pacientes.PodeConsultarPaciente
+    @Override
+    @GetMapping("/lista")
+    public List<ProfissionalModel> pesquisar(ProfissionalFilter filter) {
+
+        List<Profissional> profissionalList = profissionalRepository.findAll(
+                ProfissionalSpecs.usandoFiltro(filter));
+        return assembler.toCollectionModel(profissionalList);
     }
 
 //    @CheckSecurity.UsuariosGruposPermissoes.PodeConsultarUsuario
