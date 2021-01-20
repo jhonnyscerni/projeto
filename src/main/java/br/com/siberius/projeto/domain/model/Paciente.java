@@ -1,17 +1,21 @@
 package br.com.siberius.projeto.domain.model;
 
-import javax.persistence.Column;
-import javax.persistence.DiscriminatorValue;
-import javax.persistence.Entity;
+import javax.persistence.*;
+
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
-@EqualsAndHashCode(callSuper = true)
+@EqualsAndHashCode(callSuper = false, onlyExplicitlyIncluded = true)
 @Entity
 @DiscriminatorValue("Patient")
 @Data
 public class Paciente extends Usuario {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @EqualsAndHashCode.Include
+    @Column(name = "COD_PACIENTE")
+    private Long id;
 
     @Column(name = "NOME_MAE")
     private String nomeMae;
