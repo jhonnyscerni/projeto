@@ -88,6 +88,15 @@ public class ClinicaController implements ClinicaControllerOpenApi {
             clinicaModelList, pageable, clinicaPage.getTotalElements());
     }
 
+    @Override
+    @GetMapping("/lista")
+    public List<ClinicaModel> pesquisar(ClinicaFilter filter) {
+
+        List<Clinica> clinicaList = clinicaRepository.findAll(
+                ClinicaSpecs.usandoFiltro(filter));
+        return assembler.toCollectionModel(clinicaList);
+    }
+
 //    @CheckSecurity.UsuariosGruposPermissoes.PodeConsultarUsuario
     @Override
     @GetMapping("/{clinicaId}")

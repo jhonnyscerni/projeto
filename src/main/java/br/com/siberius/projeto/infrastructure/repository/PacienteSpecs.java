@@ -2,10 +2,11 @@ package br.com.siberius.projeto.infrastructure.repository;
 
 import br.com.siberius.projeto.domain.model.Paciente;
 import br.com.siberius.projeto.domain.repository.filter.PacienteFilter;
+import org.springframework.data.jpa.domain.Specification;
+
+import javax.persistence.criteria.Predicate;
 import java.util.ArrayList;
 import java.util.List;
-import javax.persistence.criteria.Predicate;
-import org.springframework.data.jpa.domain.Specification;
 
 public class PacienteSpecs {
 

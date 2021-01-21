@@ -2,22 +2,11 @@ package br.com.siberius.projeto.api.openapi.controller;
 
 
 import br.com.siberius.projeto.api.exceptionhandler.Problem;
-import br.com.siberius.projeto.api.model.PacienteModel;
 import br.com.siberius.projeto.api.model.ProfissionalModel;
-import br.com.siberius.projeto.api.model.UsuarioModel;
 import br.com.siberius.projeto.api.model.input.ProfissionalInputComSenhaModel;
 import br.com.siberius.projeto.api.model.input.SenhaInputModel;
-import br.com.siberius.projeto.api.model.input.UsuarioInputComSenhaModel;
-import br.com.siberius.projeto.domain.repository.filter.PacienteFilter;
 import br.com.siberius.projeto.domain.repository.filter.ProfissionalFilter;
-import br.com.siberius.projeto.domain.repository.filter.UsuarioFilter;
-import io.swagger.annotations.Api;
-import io.swagger.annotations.ApiImplicitParam;
-import io.swagger.annotations.ApiImplicitParams;
-import io.swagger.annotations.ApiOperation;
-import io.swagger.annotations.ApiParam;
-import io.swagger.annotations.ApiResponse;
-import io.swagger.annotations.ApiResponses;
+import io.swagger.annotations.*;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
