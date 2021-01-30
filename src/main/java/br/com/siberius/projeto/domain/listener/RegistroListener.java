@@ -37,6 +37,7 @@ public class RegistroListener implements
             .assunto(usuario.getNome() + " - Ativação de conta")
             .corpo("modelo-confirmar-cadastro.html")
             .variavel("url_confirmation", "http://localhost:8080" + confirmationUrl)
+//.variavel("url_confirmation", "http://ec2-18-215-170-179.compute-1.amazonaws.com" + confirmationUrl)
             .variavel("usuario", usuario)
             .destinatario(usuario.getEmail())
             .build();
