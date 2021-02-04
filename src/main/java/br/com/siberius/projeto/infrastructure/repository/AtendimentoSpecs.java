@@ -36,6 +36,14 @@ public class AtendimentoSpecs {
                 predicates.add(builder.equal(consulta.get("clinica"), filtro.getClinicaId()));
             }
 
+            if (filtro.getNomePaciente() != null) {
+                predicates.add(builder.like(consulta.join("paciente").get("nome"), "%" + filtro.getNomePaciente() + "%"));
+            }
+
+            if (filtro.getEmailPaciente() != null) {
+                predicates.add(builder.like(consulta.join("paciente").get("email"), "%" + filtro.getEmailPaciente() + "%"));
+            }
+
             if (filtro.getId() != null) {
                 predicates.add(builder.equal(root.get("id"), filtro.getId()));
             }

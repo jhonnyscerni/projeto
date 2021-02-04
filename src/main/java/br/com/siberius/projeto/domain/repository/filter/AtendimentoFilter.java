@@ -16,5 +16,9 @@ public class AtendimentoFilter {
 
     private Long pacienteId;
 
+    private String nomePaciente;
+
+    private String emailPaciente;
+
     private Long clinicaId;
 }
