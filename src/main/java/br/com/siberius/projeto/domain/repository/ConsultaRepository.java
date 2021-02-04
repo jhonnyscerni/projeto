@@ -23,4 +23,13 @@ public interface ConsultaRepository extends JpaRepository<Consulta, Long>, JpaSp
     @Query("SELECT count(c.id) FROM Consulta c where c.statusConsultaEnum = 'CANCELADO' and c.profissional.id = :profissionalId")
     long countConsultaByStatusConsultaEnumCancelado(@Param("profissionalId") Long profissionalId);
 
+    // Clinica
+
+    @Query("SELECT count(c.id) FROM Consulta c where c.statusConsultaEnum = 'FINALIZADO' and c.clinica.id = :clinicaId")
+    long countConsultaByStatusConsultaEnumFinalizadoClinica(@Param("clinicaId") Long clinicaId);
+
+    @Query("SELECT count(c.id) FROM Consulta c where c.clinica.id = :clinicaId")
+    long countConsultaTotaisClinica(@Param("clinicaId") Long clinicaId);
+
+
 }

@@ -44,6 +44,10 @@ public class StatusConsultaQueryServiceImpl implements StatusConsultaQueryServic
             predicates.add(builder.equal(root.get("profissional"), filter.getProfissionalId()));
         }
 
+        if (filter.getClinicaId() != null) {
+            predicates.add(builder.equal(root.get("clinica"), filter.getClinicaId()));
+        }
+
         System.out.println(OffsetDateTime.now());
 
 //        predicates.add(builder.greaterThanOrEqualTo(root.get("start"),

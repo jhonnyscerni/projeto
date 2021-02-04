@@ -102,7 +102,8 @@ public class SpringFoxConfig implements WebMvcConfigurer {
                     new Tag("Atendimentos", "Gerencia os Atendimentos"),
                     new Tag("Atender uma Consulta", "Cadastro de atendimento por consulta"),
                     new Tag("Clinicas", "Gerencia os Clinicas"),
-                    new Tag("Dashboard do Profissional", "Mostra dados do dashboard do Profissional")
+                    new Tag("Dashboard do Profissional", "Mostra dados do dashboard do Profissional"),
+                    new Tag("Dashboard da Clinica", "Mostra dados do dashboard da Clinica")
                 );
     }
 

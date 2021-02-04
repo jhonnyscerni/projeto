@@ -9,6 +9,8 @@ public class EstatisticaSexoFilter {
 
     private Long profissionalId;
 
+    private Long clinicaId;
+
 //    @DateTimeFormat(iso = ISO.DATE_TIME)
 //    private OffsetDateTime data;
 

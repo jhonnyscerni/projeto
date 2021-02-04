@@ -14,4 +14,7 @@ public interface PacienteRepository extends JpaRepository<Paciente, Long>, JpaSp
 
     @Query("SELECT count(p.id) FROM Paciente p where p.ativado = true and p.profissionalId = :profissionalId")
     long countPacienteByAtivado( @Param("profissionalId") Long profissionalId);
+
+    @Query("SELECT count(p.id) FROM Paciente p where p.ativado = true and p.clinicaId = :clinicaId")
+    long countPacienteByAtivadoClinica( @Param("clinicaId") Long clinicaId);
 }

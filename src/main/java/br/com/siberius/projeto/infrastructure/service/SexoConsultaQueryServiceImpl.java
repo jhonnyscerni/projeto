@@ -35,6 +35,10 @@ public class SexoConsultaQueryServiceImpl implements SexoConsultaQueryService {
             predicates.add(builder.equal(root.get("profissionalId"), filter.getProfissionalId()));
         }
 
+        if (filter.getClinicaId() != null) {
+            predicates.add(builder.equal(root.get("clinicaId"), filter.getClinicaId()));
+        }
+
         System.out.println(OffsetDateTime.now());
 
 //        predicates.add(builder.greaterThanOrEqualTo(root.get("start"),
