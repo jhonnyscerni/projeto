@@ -123,11 +123,100 @@ public class ProjetoSecurity {
         return temEscopoLeitura() && hasAuthority("SEG_DESASSOCIAR_GRUPOS_PERMISSOES");
     }
 
-    // Permissoes de Permissao
+    // Atendimentos
 
-    public boolean podeConsultarPacientes(Long usuarioId) {
-        return temEscopoLeitura() && (hasAuthority("SEG_CONSULTAR_PACIENTES")
-            || usuarioAutenticadoIgual(usuarioId));
+    public boolean podeConsultarAtendimentos() {
+        return temEscopoLeitura() && (hasAuthority("SEG_CONSULTAR_ATENDIMENTOS"));
+    }
+
+    public boolean podeCadastrarAtendimentos() {
+        return temEscopoLeitura() && isAutenticado() && hasAuthority("SEG_CADASTRAR_ATENDIMENTOS");
+    }
+
+    public boolean podeEditarAtendimentos() {
+        return temEscopoEscrita() && isAutenticado() && hasAuthority("SEG_EDITAR_ATENDIMENTOS");
+    }
+
+    public boolean podeRemoverAtendimentos() {
+        return temEscopoEscrita() && isAutenticado() && hasAuthority("SEG_REMOVER_ATENDIMENTOS");
+    }
+
+    // Cidades
+
+    public boolean podeConsultarCidades() {
+        return temEscopoLeitura() && (hasAuthority("SEG_CONSULTAR_CIDADES"));
+    }
+
+    public boolean podeCadastrarCidades() {
+        return temEscopoLeitura() && isAutenticado() && hasAuthority("SEG_CADASTRAR_CIDADES");
+    }
+
+    public boolean podeEditarCidades() {
+        return temEscopoEscrita() && isAutenticado() && hasAuthority("SEG_EDITAR_CIDADES");
+    }
+
+    public boolean podeRemoverCidades() {
+        return temEscopoEscrita() && isAutenticado() && hasAuthority("SEG_REMOVER_CIDADES");
+    }
+
+    // Clinicas
+
+    public boolean podeConsultarClinicas() {
+        return temEscopoLeitura() && (hasAuthority("SEG_CONSULTAR_CLINICAS"));
+    }
+
+    public boolean podeCadastrarClinicas() {
+        return temEscopoLeitura() && isAutenticado() && hasAuthority("SEG_CADASTRAR_CLINICAS");
+    }
+
+    public boolean podeEditarClinicas() {
+        return temEscopoEscrita() && isAutenticado() && hasAuthority("SEG_EDITAR_CLINICAS");
+    }
+
+    public boolean podeRemoverClinicas() {
+        return temEscopoEscrita() && isAutenticado() && hasAuthority("SEG_REMOVER_CLINICAS");
+    }
+
+    // Consultas
+
+    public boolean podeConsultarConsultas() {
+        return temEscopoLeitura() && (hasAuthority("SEG_CONSULTAR_CONSULTAS"));
+    }
+
+    public boolean podeCadastrarConsultas() {
+        return temEscopoLeitura() && isAutenticado() && hasAuthority("SEG_CADASTRAR_CONSULTAS");
+    }
+
+    public boolean podeEditarConsultas() {
+        return temEscopoEscrita() && isAutenticado() && hasAuthority("SEG_EDITAR_CONSULTAS");
+    }
+
+    public boolean podeRemoverConsultas() {
+        return temEscopoEscrita() && isAutenticado() && hasAuthority("SEG_REMOVER_CONSULTAS");
+    }
+
+    // Dashboard Clinicas
+
+    public boolean podeConsultarDashboardClinicas() {
+        return temEscopoLeitura() && (hasAuthority("SEG_CONSULTAR_DASHBOARD_CLINICAS"));
+    }
+
+    // Dashboard Profissionais
+
+    public boolean podeConsultarDashboardProfissionais() {
+        return temEscopoLeitura() && (hasAuthority("SEG_CONSULTAR_DASHBOARD_PROFISSIONAIS"));
+    }
+
+    // Estados
+
+    public boolean podeConsultarEstados() {
+        return temEscopoLeitura() && (hasAuthority("SEG_CONSULTAR_ESTADOS"));
+    }
+
+    // Pacientes
+
+    public boolean podeConsultarPacientes() {
+        return temEscopoLeitura() && (hasAuthority("SEG_CONSULTAR_PACIENTES"));
     }
 
     public boolean podeCadastrarPacientes() {
@@ -140,6 +229,24 @@ public class ProjetoSecurity {
 
     public boolean podeRemoverPacientes() {
         return temEscopoEscrita() && isAutenticado() && hasAuthority("SEG_REMOVER_PACIENTES");
+    }
+
+    // Profissionais
+
+    public boolean podeConsultarProfissionais() {
+        return temEscopoLeitura() && (hasAuthority("SEG_CONSULTAR_PROFISSIONAIS"));
+    }
+
+    public boolean podeCadastrarProfissionais() {
+        return temEscopoLeitura() && isAutenticado() && hasAuthority("SEG_CADASTRAR_PROFISSIONAIS");
+    }
+
+    public boolean podeEditarProfissionais() {
+        return temEscopoEscrita() && isAutenticado() && hasAuthority("SEG_EDITAR_PROFISSIONAIS");
+    }
+
+    public boolean podeRemoverProfissionais() {
+        return temEscopoEscrita() && isAutenticado() && hasAuthority("SEG_REMOVER_PROFISSIONAIS");
     }
 
 }

@@ -74,7 +74,7 @@ public class PacienteController implements PacienteControllerOpenApi {
     @Autowired
     ApplicationEventPublisher eventPublisher;
 
-//    @CheckSecurity.Pacientes.PodeConsultarPaciente
+    @CheckSecurity.Pacientes.PodeConsultarPaciente
     @Override
     @GetMapping
     public Page<PacienteModel> pesquisar(PacienteFilter filter, @PageableDefault(size = 10) Pageable pageable) {
@@ -89,7 +89,7 @@ public class PacienteController implements PacienteControllerOpenApi {
             pacienteModelList, pageable, pacienteRepositoryAll.getTotalElements());
     }
 
-//    @CheckSecurity.Pacientes.PodeConsultarPaciente
+    @CheckSecurity.Pacientes.PodeConsultarPaciente
     @Override
     @GetMapping("/lista")
     public List<PacienteModel> pesquisar(PacienteFilter filter) {
@@ -99,7 +99,7 @@ public class PacienteController implements PacienteControllerOpenApi {
         return assembler.toCollectionModel(pacienteRepositoryAll);
     }
 
-//    @CheckSecurity.Pacientes.PodeBuscar
+    @CheckSecurity.Pacientes.PodeBuscar
     @Override
     @GetMapping("/{pacienteId}")
     public PacienteModel buscar(@PathVariable Long pacienteId) {
@@ -107,7 +107,7 @@ public class PacienteController implements PacienteControllerOpenApi {
         return assembler.toModel(paciente);
     }
 
-//    @CheckSecurity.Pacientes.PodeCadastrarPaciente
+    @CheckSecurity.Pacientes.PodeCadastrarPaciente
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
     public PacienteModel adicionar(@RequestBody @Valid PacienteInputComSenhaModel pacienteInputComSenhaModel) {
@@ -125,7 +125,7 @@ public class PacienteController implements PacienteControllerOpenApi {
         return assembler.toModel(pacienteService.salvar(paciente));
     }
 
-//    @CheckSecurity.Pacientes.PodeEditarPaciente
+    @CheckSecurity.Pacientes.PodeEditarPaciente
     @Override
     @PutMapping("/{pacienteId}")
     public PacienteModel atualizar(@PathVariable Long pacienteId,
@@ -144,7 +144,7 @@ public class PacienteController implements PacienteControllerOpenApi {
         return assembler.toModel(pacienteAlterado);
     }
 
-//    @CheckSecurity.Pacientes.PodeRemoverPaciente
+    @CheckSecurity.Pacientes.PodeRemoverPaciente
     @Override
     @DeleteMapping("/{pacienteId}")
     @ResponseStatus(HttpStatus.NO_CONTENT)

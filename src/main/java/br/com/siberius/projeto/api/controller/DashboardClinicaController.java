@@ -1,6 +1,7 @@
 package br.com.siberius.projeto.api.controller;
 
 import br.com.siberius.projeto.api.openapi.controller.DashboardClinicaControllerOpenApi;
+import br.com.siberius.projeto.core.security.resourceserver.CheckSecurity;
 import br.com.siberius.projeto.domain.model.dto.EstatisticaSexo;
 import br.com.siberius.projeto.domain.model.dto.EstatisticaStatus;
 import br.com.siberius.projeto.domain.repository.*;
@@ -34,30 +35,35 @@ public class DashboardClinicaController implements DashboardClinicaControllerOpe
     @Autowired
     private SexoConsultaQueryService sexoConsultaQueryService;
 
+    @CheckSecurity.DashboardClinicas.PodeConsultarDashboardClinica
     @Override
     @GetMapping("/countPacientesAtivo")
     public Long countPacientesAtivo(Long clinicaId){
         return pacienteRepository.countPacienteByAtivadoClinica(clinicaId);
     }
 
+    @CheckSecurity.DashboardClinicas.PodeConsultarDashboardClinica
     @Override
     @GetMapping("/countProfissionaisAtivo")
     public Long countProfissionaisAtivo(Long clinicaId){
         return profissionalRepository.countProfissionaisByAtivadoClinica(clinicaId);
     }
 
+    @CheckSecurity.DashboardClinicas.PodeConsultarDashboardClinica
     @Override
     @GetMapping("/countConsultasTotais")
     public Long countConsultasTotais(Long clinicaId){
         return consultaRepository.countConsultaTotaisClinica(clinicaId);
     }
 
+    @CheckSecurity.DashboardClinicas.PodeConsultarDashboardClinica
     @Override
     @GetMapping("/countConsultasFinalizadas")
     public Long countConsultaByStatusConsultaEnumFinalizado(Long clinicaId){
         return consultaRepository.countConsultaByStatusConsultaEnumFinalizadoClinica(clinicaId);
     }
 
+    @CheckSecurity.DashboardClinicas.PodeConsultarDashboardClinica
     @Override
     @GetMapping("/estatisticaStatus")
     public List<EstatisticaStatus> estatisticaStatus(EstatisticaStatusFilter filter,
@@ -65,6 +71,7 @@ public class DashboardClinicaController implements DashboardClinicaControllerOpe
         return statusConsultaQueryService.estatisticaStatus(filter, timeOffset);
     }
 
+    @CheckSecurity.DashboardClinicas.PodeConsultarDashboardClinica
     @Override
     @GetMapping("/estatisticaSexo")
     public List<EstatisticaSexo> estatisticaSexo(EstatisticaSexoFilter filter, @RequestParam(required = false, defaultValue = "+00:00")  String timeOffset) {

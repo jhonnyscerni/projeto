@@ -5,6 +5,7 @@ import br.com.siberius.projeto.api.assembler.disassembler.ConsultaInputModelDisa
 import br.com.siberius.projeto.api.model.ConsultaModel;
 import br.com.siberius.projeto.api.model.input.ConsultaInputModel;
 import br.com.siberius.projeto.api.openapi.controller.ConsultaControllerOpenApi;
+import br.com.siberius.projeto.core.security.resourceserver.CheckSecurity;
 import br.com.siberius.projeto.domain.model.Consulta;
 import br.com.siberius.projeto.domain.model.Paciente;
 import br.com.siberius.projeto.domain.repository.ConsultaRepository;
@@ -39,6 +40,7 @@ public class ConsultaController implements ConsultaControllerOpenApi {
     @Autowired
     private ConsultaService consultaService;
 
+    @CheckSecurity.Consultas.PodeConsultarConsulta
     @Override
     @GetMapping
     public Page<ConsultaModel> pesquisar(ConsultaFilter filter, @PageableDefault(size = 10) Pageable pageable) {
@@ -52,7 +54,7 @@ public class ConsultaController implements ConsultaControllerOpenApi {
             consultaModelList, pageable, consultaRepositoryAll.getTotalElements());
     }
 
-//    @CheckSecurity.Pacientes.PodeConsultarPaciente
+    @CheckSecurity.Consultas.PodeConsultarConsulta
     @Override
     @GetMapping("/lista")
     public List<ConsultaModel> pesquisar(ConsultaFilter filter) {
@@ -62,13 +64,14 @@ public class ConsultaController implements ConsultaControllerOpenApi {
 
         return assembler.toCollectionModel(consultaRepositoryAll);
     }
-
+    //@CheckSecurity.Consultas.PodeConsultarConsulta
     @GetMapping("/{consultaId}")
     @Override
     public ConsultaModel buscar(@PathVariable Long consultaId) {
         return assembler.toModel(consultaService.buscarOuFalhar(consultaId));
     }
 
+    @CheckSecurity.Consultas.PodeCadastrarConsulta
     @Override
     @PostMapping()
     @ResponseStatus(HttpStatus.CREATED)
@@ -77,6 +80,7 @@ public class ConsultaController implements ConsultaControllerOpenApi {
         return assembler.toModel(consultaService.salvar(consulta));
     }
 
+    @CheckSecurity.Consultas.PodeEditarConsulta
     @Override
     @PutMapping("/{consultaId}")
     public ConsultaModel atualizar(@PathVariable Long consultaId, @RequestBody @Valid ConsultaInputModel consultaInput) {
@@ -92,6 +96,7 @@ public class ConsultaController implements ConsultaControllerOpenApi {
         return assembler.toModel(consultaAlterada);
     }
 
+    @CheckSecurity.Consultas.PodeRemoverConsulta
     @Override
     @DeleteMapping("/{consultaId}")
     @ResponseStatus(HttpStatus.NO_CONTENT)

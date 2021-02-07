@@ -5,6 +5,7 @@ import br.com.siberius.projeto.api.assembler.disassembler.AtendimentoInputModelD
 import br.com.siberius.projeto.api.model.AtendimentoModel;
 import br.com.siberius.projeto.api.model.input.AtendimentoInputModel;
 import br.com.siberius.projeto.api.openapi.controller.ConsultaAtendimentoControllerOpenApi;
+import br.com.siberius.projeto.core.security.resourceserver.CheckSecurity;
 import br.com.siberius.projeto.domain.model.Atendimento;
 import br.com.siberius.projeto.domain.model.Consulta;
 import br.com.siberius.projeto.domain.model.enums.StatusConsultaEnum;
@@ -36,6 +37,7 @@ public class ConsultaAtendimentoController implements ConsultaAtendimentoControl
     @Autowired
     private AtendimentoInputModelDisassembler disassembler;
 
+    @CheckSecurity.Atendimentos.PodeCadastrarAtendimento
     @Override
     @PostMapping
     public AtendimentoModel adicionar(@PathVariable Long consultaId,
@@ -51,6 +53,7 @@ public class ConsultaAtendimentoController implements ConsultaAtendimentoControl
         return assembler.toModel(atendimentoService.salvar(atendimento));
     }
 
+    //@CheckSecurity.Atendimentos.PodeConsultarAtendimento
     @GetMapping()
     public AtendimentoModel buscar(@PathVariable Long consultaId) {
         Atendimento atendimento = atendimentoService.buscarOuFalharPorConsulta(consultaId);

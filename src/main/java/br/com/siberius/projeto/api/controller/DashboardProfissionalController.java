@@ -1,6 +1,7 @@
 package br.com.siberius.projeto.api.controller;
 
 import br.com.siberius.projeto.api.openapi.controller.DashboardProfissionalControllerOpenApi;
+import br.com.siberius.projeto.core.security.resourceserver.CheckSecurity;
 import br.com.siberius.projeto.domain.model.dto.EstatisticaSexo;
 import br.com.siberius.projeto.domain.model.dto.EstatisticaStatus;
 import br.com.siberius.projeto.domain.repository.ConsultaRepository;
@@ -34,36 +35,42 @@ public class DashboardProfissionalController implements DashboardProfissionalCon
     @Autowired
     private SexoConsultaQueryService sexoConsultaQueryService;
 
+    @CheckSecurity.DashboardProfissionais.PodeConsultarDashboardProfissional
     @Override
     @GetMapping("/countConsultasFinalizadas")
     public Long countConsultaByStatusConsultaEnumFinalizado(Long profissionalId){
         return consultaRepository.countConsultaByStatusConsultaEnumFinalizado(profissionalId);
     }
 
+    @CheckSecurity.DashboardProfissionais.PodeConsultarDashboardProfissional
     @Override
     @GetMapping("/countConsultasConfirmadas")
     public Long countConsultaByStatusConsultaEnumConfirmada(Long profissionalId){
         return consultaRepository.countConsultaByStatusConsultaEnumConfirmado(profissionalId);
     }
 
+    @CheckSecurity.DashboardProfissionais.PodeConsultarDashboardProfissional
     @Override
     @GetMapping("/countConsultasAgendadas")
     public Long countConsultaByStatusConsultaEnumAgendada(Long profissionalId){
         return consultaRepository.countConsultaByStatusConsultaEnumAgendado(profissionalId);
     }
 
+    @CheckSecurity.DashboardProfissionais.PodeConsultarDashboardProfissional
     @Override
     @GetMapping("/countConsultasCanceladas")
     public Long countConsultaByStatusConsultaEnumCanceladas(Long profissionalId){
         return consultaRepository.countConsultaByStatusConsultaEnumCancelado(profissionalId);
     }
 
+    @CheckSecurity.DashboardProfissionais.PodeConsultarDashboardProfissional
     @Override
     @GetMapping("/countPacientesCadastradosAtivado")
     public Long countPacienteCadastradoAtivado(Long profissionalId){
         return pacienteRepository.countPacienteByAtivado(profissionalId);
     }
 
+    @CheckSecurity.DashboardProfissionais.PodeConsultarDashboardProfissional
     @Override
     @GetMapping("/estatisticaStatus")
     public List<EstatisticaStatus> estatisticaStatus(EstatisticaStatusFilter filter,
@@ -71,6 +78,7 @@ public class DashboardProfissionalController implements DashboardProfissionalCon
         return statusConsultaQueryService.estatisticaStatus(filter, timeOffset);
     }
 
+    @CheckSecurity.DashboardProfissionais.PodeConsultarDashboardProfissional
     @Override
     @GetMapping("/estatisticaSexo")
     public List<EstatisticaSexo> estatisticaSexo(EstatisticaSexoFilter filter, @RequestParam(required = false, defaultValue = "+00:00")  String timeOffset) {

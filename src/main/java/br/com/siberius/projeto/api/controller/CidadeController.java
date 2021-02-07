@@ -3,6 +3,7 @@ package br.com.siberius.projeto.api.controller;
 import br.com.siberius.projeto.api.assembler.CidadeModelAssembler;
 import br.com.siberius.projeto.api.model.CidadeModel;
 import br.com.siberius.projeto.api.openapi.controller.CidadeControllerOpenApi;
+import br.com.siberius.projeto.core.security.resourceserver.CheckSecurity;
 import br.com.siberius.projeto.domain.model.Estado;
 import br.com.siberius.projeto.domain.repository.CidadeRepository;
 import br.com.siberius.projeto.domain.service.CidadeService;
@@ -30,12 +31,14 @@ public class CidadeController implements CidadeControllerOpenApi {
     @Autowired
     private CidadeService cidadeService;
 
+    @CheckSecurity.Cidades.PodeConsultarCidade
     @Override
     @GetMapping
     public List<CidadeModel> listar() {
         return assembler.toCollectionModel(cidadeRepository.findAll());
     }
 
+    @CheckSecurity.Cidades.PodeConsultarCidade
     @Override
     @GetMapping("/estado/{estadoId}")
     public List<CidadeModel> buscarPorEstadoId(@PathVariable Long estadoId) {
@@ -44,12 +47,14 @@ public class CidadeController implements CidadeControllerOpenApi {
         ));
     }
 
+    @CheckSecurity.Cidades.PodeConsultarCidade
     @Override
     @GetMapping("/{cidadeId}")
     public CidadeModel buscar(@PathVariable Long cidadeId) {
         return assembler.toModel(cidadeService.buscarOuFalhar(cidadeId));
     }
 
+    @CheckSecurity.Cidades.PodeConsultarCidade
     @Override
     @GetMapping("/nome/{nomeCidade}/sigla/{sigla}")
     public CidadeModel buscarPorNomeESiglaEstado(@PathVariable String nomeCidade, @PathVariable String sigla) {

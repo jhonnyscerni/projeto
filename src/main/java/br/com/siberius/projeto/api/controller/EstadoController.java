@@ -4,6 +4,7 @@ import br.com.siberius.projeto.api.assembler.EstadoModelAssembler;
 import br.com.siberius.projeto.api.model.CidadeModel;
 import br.com.siberius.projeto.api.model.EstadoModel;
 import br.com.siberius.projeto.api.openapi.controller.EstadoControllerOpenApi;
+import br.com.siberius.projeto.core.security.resourceserver.CheckSecurity;
 import br.com.siberius.projeto.domain.repository.EstadoRepository;
 import br.com.siberius.projeto.domain.service.EstadoService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,18 +29,21 @@ public class EstadoController implements EstadoControllerOpenApi {
     @Autowired
     private EstadoService estadoService;
 
+    @CheckSecurity.Estados.PodeConsultarEstado
     @Override
     @GetMapping
     public List<EstadoModel> listar() {
         return assembler.toCollectionModel(estadoRepository.findAll());
     }
 
+    //@CheckSecurity.Estados.PodeConsultarEstado
     @Override
     @GetMapping("/{estadoId}")
     public EstadoModel buscar(@PathVariable Long estadoId) {
         return assembler.toModel(estadoService.buscarOuFalhar(estadoId));
     }
 
+    //@CheckSecurity.Estados.PodeConsultarEstado
     @Override
     @GetMapping("/sigla/{siglaEstado}")
     public EstadoModel buscarPorSigla(@PathVariable String siglaEstado) {

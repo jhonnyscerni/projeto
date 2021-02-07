@@ -70,7 +70,7 @@ public class ClinicaController implements ClinicaControllerOpenApi {
     ApplicationEventPublisher eventPublisher;
 
 
-//    @CheckSecurity.UsuariosGruposPermissoes.PodeConsultarUsuario
+    @CheckSecurity.Clinicas.PodeConsultarClinica
     @Override
     @GetMapping
 //    public List<UsuarioModel> listar() {
@@ -88,6 +88,7 @@ public class ClinicaController implements ClinicaControllerOpenApi {
             clinicaModelList, pageable, clinicaPage.getTotalElements());
     }
 
+    @CheckSecurity.Clinicas.PodeConsultarClinica
     @Override
     @GetMapping("/lista")
     public List<ClinicaModel> pesquisar(ClinicaFilter filter) {
@@ -105,6 +106,7 @@ public class ClinicaController implements ClinicaControllerOpenApi {
         return assembler.toModel(clinica);
     }
 
+    @CheckSecurity.Clinicas.PodeConsultarClinica
     @PostMapping
     @Override
     @ResponseStatus(HttpStatus.CREATED)
@@ -141,7 +143,7 @@ public class ClinicaController implements ClinicaControllerOpenApi {
         return assembler.toModel(cLinica);
     }
 
-//    @CheckSecurity.UsuariosGruposPermissoes.PodeAlterarUsuario
+    @CheckSecurity.Clinicas.PodeCadastrarClinica
     @Override
     @PutMapping("/{clinicaId}")
     public ClinicaModel atualizar(@PathVariable Long clinicaId,
@@ -160,7 +162,7 @@ public class ClinicaController implements ClinicaControllerOpenApi {
         return assembler.toModel(clinicaAlterado);
     }
 
-//    @CheckSecurity.UsuariosGruposPermissoes.PodeRemoverUsuario
+    @CheckSecurity.Clinicas.PodeRemoverClinica
     @Override
     @DeleteMapping("/{clinicaId}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
@@ -168,7 +170,7 @@ public class ClinicaController implements ClinicaControllerOpenApi {
         clinicaService.excluir(clinicaId);
     }
 
-//    @CheckSecurity.UsuariosGruposPermissoes.PodeAlterarPropriaSenha
+    //@CheckSecurity.UsuariosGruposPermissoes.PodeAlterarPropriaSenha
     @Override
     @PutMapping("/{profissionalId}/senha")
     public void alterarSenha(@PathVariable Long clinicaId, @RequestBody @Valid SenhaInputModel senha) {
