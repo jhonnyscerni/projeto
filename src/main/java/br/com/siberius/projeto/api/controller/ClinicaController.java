@@ -143,7 +143,7 @@ public class ClinicaController implements ClinicaControllerOpenApi {
         return assembler.toModel(cLinica);
     }
 
-    @CheckSecurity.Clinicas.PodeCadastrarClinica
+    @CheckSecurity.Clinicas.PodeEditarClinica
     @Override
     @PutMapping("/{clinicaId}")
     public ClinicaModel atualizar(@PathVariable Long clinicaId,
