@@ -57,7 +57,7 @@ public class ProfissionalController implements ProfissionalControllerOpenApi {
     @Autowired
     ApplicationEventPublisher eventPublisher;
 
-//    @CheckSecurity.UsuariosGruposPermissoes.PodeConsultarUsuario
+    @CheckSecurity.Profissionais.PodeConsultarProfissional
     @Override
     @GetMapping
 //    public List<UsuarioModel> listar() {
@@ -75,7 +75,7 @@ public class ProfissionalController implements ProfissionalControllerOpenApi {
             profissionalModelList, pageable, profissionalPage.getTotalElements());
     }
 
-    @CheckSecurity.Pacientes.PodeConsultarPaciente
+    @CheckSecurity.Profissionais.PodeConsultarProfissional
     @Override
     @GetMapping("/lista")
     public List<ProfissionalModel> pesquisar(ProfissionalFilter filter) {
@@ -93,6 +93,7 @@ public class ProfissionalController implements ProfissionalControllerOpenApi {
         return assembler.toModel(profissional);
     }
 
+    @CheckSecurity.Profissionais.PodeCadastrarProfissional
     @PostMapping
     @Override
     @ResponseStatus(HttpStatus.CREATED)
@@ -129,7 +130,7 @@ public class ProfissionalController implements ProfissionalControllerOpenApi {
         return assembler.toModel(profissional);
     }
 
-//    @CheckSecurity.UsuariosGruposPermissoes.PodeAlterarUsuario
+    @CheckSecurity.Profissionais.PodeEditarProfissional
     @Override
     @PutMapping("/{profissionalId}")
     public ProfissionalModel atualizar(@PathVariable Long profissionalId,
@@ -148,7 +149,7 @@ public class ProfissionalController implements ProfissionalControllerOpenApi {
         return assembler.toModel(profissionalAlterado);
     }
 
-//    @CheckSecurity.UsuariosGruposPermissoes.PodeRemoverUsuario
+    @CheckSecurity.Profissionais.PodeRemoverProfissional
     @Override
     @DeleteMapping("/{profissionalId}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
