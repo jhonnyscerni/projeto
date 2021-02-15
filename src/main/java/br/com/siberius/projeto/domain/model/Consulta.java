@@ -21,11 +21,11 @@ public class Consulta {
     @Column(name = "COD_CONSULTA")
     private Long id;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "PACIENTE")
     private Paciente paciente;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "PROFISSIONAL")
     private Profissional profissional;
 

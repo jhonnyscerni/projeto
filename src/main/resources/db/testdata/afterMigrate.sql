@@ -93,18 +93,18 @@ insert into usuario (cod_usuario, nm_usuario, email, cpf, sexo, telefone, celula
 (8, 'Sandra Laura Sarah Assis', 'paciente03@projeto.com.br', '984.738.912-87', 'Feminino', '(79) 2910-0954', '(79) 98652-2920', utc_timestamp, '$2y$12$NSsM4gEOR7MKogflKR7GMeYugkttjNhAJMvFdHrBLaLp2HzlggP5W', utc_timestamp, true, 'Patient', '49200972', 'Avenida João Lima da Silveira 3254', '526', '', 'Alagoas', 1, 3, 2),
 (9, 'Paciente do profissional exclusivo - particular', 'paciente04@projeto.com.br', '984.738.912-87', 'Feminino', '(79) 2910-0954', '(79) 98652-2920', utc_timestamp, '$2y$12$NSsM4gEOR7MKogflKR7GMeYugkttjNhAJMvFdHrBLaLp2HzlggP5W', utc_timestamp, true, 'Patient', '49200972', 'Avenida João Lima da Silveira 3254', '526', '', 'Alagoas', 1, 3, null);
 
-insert into usuario_grupo (cod_usuario, cod_grupo) values (1, 1), (2, 2), (3, 3), (4, 3), (5, 3);
+insert into usuario_grupo (cod_usuario, cod_grupo) values (1, 1), (2, 2), (3, 3), (4, 3), (5, 3), (6,4), (7,4), (8,4), (9,4);
 
 insert into consulta(cod_consulta, convenio_enum, data_hora, local_atendimento, observacao, procedimento_enum, status_consulta_enum, start, title, class_name, paciente,profissional, clinica ) values
-(1, 'PARTICULAR', '2021-01-13 15:31:35', 'Informação do Local do atendimento', 'Observação', 'CONSULTA', 'AGENDADO', '2021-01-13 15:31:35', ' - Nome do Paciente', 'fc-event-primary', 6, 3, 2),
+(1, 'PARTICULAR', '2021-01-13 15:31:35', 'Informação do Local do atendimento', 'Observação', 'CONSULTA', 'FINALIZADO', '2021-01-13 15:31:35', ' - Nome do Paciente', 'fc-event-primary', 6, 3, 2),
 (2, 'PARTICULAR', '2021-01-14 15:31:35', 'Informação do Local do atendimento', 'Observação', 'CONSULTA', 'AGENDADO', '2021-01-14 15:31:35', ' - Nome do Paciente', 'fc-event-warning', 6, 3, 2),
 (3, 'PARTICULAR', '2021-01-15 15:31:35', 'Informação do Local do atendimento', 'Observação', 'CONSULTA', 'CONFIRMADO', '2021-01-15 15:31:35', ' - Nome do Paciente', 'fc-event-warning', 7, 3, 2),
 (4, 'PARTICULAR', '2021-01-13 17:31:35', 'Informação do Local do atendimento', 'Observação', 'CONSULTA', 'AGENDADO', '2021-01-13 17:31:35', ' - Nome do Paciente', 'fc-event-warning', 7, 3, 2),
-(5, 'PARTICULAR', '2021-01-14 17:31:35', 'Informação do Local do atendimento', 'Observação', 'CONSULTA', 'FINALIZADO', '2021-01-14 17:31:35', ' - Nome do Paciente', 'fc-event-success', 8, 3, 2),
+(5, 'PARTICULAR', '2021-01-14 17:31:35', 'Informação do Local do atendimento', 'Observação', 'CONSULTA', 'AGENDADO', '2021-01-14 17:31:35', ' - Nome do Paciente', 'fc-event-success', 8, 3, 2),
 (6, 'PARTICULAR', '2021-01-15 17:31:35', 'Informação do Local do atendimento', 'Observação', 'CONSULTA', 'CANCELADO', '2021-01-15 17:31:35', ' - Nome do Paciente', 'fc-event-danger', 8, 3, 2 );
 
 insert into atendimento (cod_atendimento, descrever_sessao, objetivo_sessao, cod_consulta) value
-    (1, 'Descrição da sessão', 'Objetivo a ser descrito', 5);
+    (1, 'Descrição da sessão', 'Objetivo a ser descrito', 1);
 
 -- insert into oauth_client_details (
 --   client_id, resource_ids, client_secret,

@@ -20,5 +20,9 @@ public class AtendimentoFilter {
 
     private String emailPaciente;
 
+    private String nomeProfissional;
+
+    private String emailProfissional;
+
     private Long clinicaId;
 }

@@ -16,6 +16,7 @@ public class ConsultaSpecs {
             List<Predicate> predicates = new ArrayList<Predicate>();
 
             From<?, ?> paciente = root.join("paciente", JoinType.INNER);
+            From<?, ?> profissional = root.join("profissional", JoinType.INNER);
 
             if (filtro.getPaciente() != null) {
                 predicates.add(builder.equal(root.get("paciente"), filtro.getPaciente()));
@@ -32,6 +33,10 @@ public class ConsultaSpecs {
 
             if (filtro.getNomePaciente() != null) {
                 predicates.add(builder.like(paciente.get("nome"), "%" + filtro.getNomePaciente() + "%"));
+            }
+
+            if (filtro.getNomeProfissional() != null) {
+                predicates.add(builder.like(profissional.get("nome"), "%" + filtro.getNomeProfissional() + "%"));
             }
 
             if (filtro.getStatusConsultaEnum() != null) {

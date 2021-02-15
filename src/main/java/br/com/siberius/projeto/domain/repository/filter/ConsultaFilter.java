@@ -22,6 +22,8 @@ public class ConsultaFilter {
 
     private String nomePaciente;
 
+    private String nomeProfissional;
+
     private Profissional profissional;
 
     private Clinica clinica;

@@ -36,3 +36,9 @@ select 3, cod_permissao from permissao where nm_permissao like '%ATENDIMENTOS%';
 # Adiciona permissoes no grupo do PACIENTE
 insert into grupo_permissao (cod_grupo, cod_permissao)
 select 4, cod_permissao from permissao where nm_permissao like 'CONSULTAR_%';
+insert into grupo_permissao (cod_grupo, cod_permissao)
+select 4, cod_permissao from permissao where nm_permissao like '%SEG_CONSULTAR_CONSULTAS%';
+insert into grupo_permissao (cod_grupo, cod_permissao)
+select 4, cod_permissao from permissao where nm_permissao like '%SEG_CONSULTAR_PROFISSIONAIS%';
+insert into grupo_permissao (cod_grupo, cod_permissao)
+select 4, cod_permissao from permissao where nm_permissao like '%SEG_CONSULTAR_ATENDIMENTOS%';
