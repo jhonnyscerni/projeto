@@ -25,7 +25,6 @@ public class PacienteInputModel {
     private String nome;
 
     @ApiModelProperty(example = "jhonnyscerni@gmail.com", required = true)
-    @NotBlank
     @Email
     private String email;
 

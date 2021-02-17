@@ -17,7 +17,7 @@ public class Cidade {
     @Column(name = "COD_CIDADE")
     private Long id;
 
-    @NotBlank
+    //@NotBlank
     @Column(name = "NM_CIDADE",nullable = false)
     private String nome;
 

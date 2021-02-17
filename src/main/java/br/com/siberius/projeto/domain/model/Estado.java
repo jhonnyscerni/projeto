@@ -20,11 +20,11 @@ public class Estado {
     @Column(name = "COD_ESTADO")
     private Long id;
 
-    @NotBlank
+    //@NotBlank
     @Column(name = "SIGLA", nullable = false)
     private String sigla;
 
-    @NotBlank
+    //@NotBlank
     @Column(name = "NM_ESTADO", nullable = false)
     private String nome;
 }
