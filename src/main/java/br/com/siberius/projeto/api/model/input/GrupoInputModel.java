@@ -9,10 +9,10 @@ import lombok.Setter;
 @Setter
 public class GrupoInputModel {
 
-    @ApiModelProperty(example = "1")
+    @ApiModelProperty(example = "3")
     private Long id;
 
-    @ApiModelProperty(example = "Administrador", required = true)
+    @ApiModelProperty(example = "Profissional", required = true)
     @NotBlank
     private String nome;
 

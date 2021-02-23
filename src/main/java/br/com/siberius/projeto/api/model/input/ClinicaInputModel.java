@@ -6,6 +6,8 @@ import io.swagger.annotations.ApiModelProperty;
 import java.time.OffsetDateTime;
 import java.util.Date;
 import java.util.List;
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotBlank;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -16,9 +18,12 @@ public class ClinicaInputModel {
     @ApiModelProperty(example = "1")
     private Long id;
 
+    @NotBlank
     @ApiModelProperty(example = "Jhonny Scerni")
     private String nome;
 
+    @NotBlank
+    @Email
     @ApiModelProperty(example = "jhonnyscerni@gmail.com")
     private String email;
 
