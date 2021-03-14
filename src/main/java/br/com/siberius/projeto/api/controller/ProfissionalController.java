@@ -10,6 +10,7 @@ import br.com.siberius.projeto.api.model.input.ProfissionalInputComSenhaModel;
 import br.com.siberius.projeto.api.model.input.SenhaInputModel;
 import br.com.siberius.projeto.api.openapi.controller.ProfissionalControllerOpenApi;
 import br.com.siberius.projeto.core.security.resourceserver.CheckSecurity;
+import br.com.siberius.projeto.domain.model.FotoPerfil;
 import br.com.siberius.projeto.domain.model.Grupo;
 import br.com.siberius.projeto.domain.model.Profissional;
 import br.com.siberius.projeto.domain.repository.ProfissionalRepository;
@@ -17,6 +18,7 @@ import br.com.siberius.projeto.domain.repository.filter.ProfissionalFilter;
 import br.com.siberius.projeto.domain.service.GrupoService;
 import br.com.siberius.projeto.domain.service.ProfissionalService;
 import br.com.siberius.projeto.infrastructure.repository.ProfissionalSpecs;
+import java.io.IOException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.data.domain.Page;
@@ -31,6 +33,7 @@ import org.springframework.web.bind.annotation.*;
 import javax.validation.Valid;
 import java.util.ArrayList;
 import java.util.List;
+import org.springframework.web.multipart.MultipartFile;
 
 @RestController
 @RequestMapping(path = "/profissionais", produces = MediaType.APPLICATION_JSON_VALUE)
@@ -81,11 +84,11 @@ public class ProfissionalController implements ProfissionalControllerOpenApi {
     public List<ProfissionalModel> pesquisar(ProfissionalFilter filter) {
 
         List<Profissional> profissionalList = profissionalRepository.findAll(
-                ProfissionalSpecs.usandoFiltro(filter));
+            ProfissionalSpecs.usandoFiltro(filter));
         return assembler.toCollectionModel(profissionalList);
     }
 
-//    @CheckSecurity.UsuariosGruposPermissoes.PodeConsultarUsuario
+    //    @CheckSecurity.UsuariosGruposPermissoes.PodeConsultarUsuario
     @Override
     @GetMapping("/{profissionalId}")
     public ProfissionalModel buscar(@PathVariable Long profissionalId) {
@@ -94,17 +97,29 @@ public class ProfissionalController implements ProfissionalControllerOpenApi {
     }
 
     @CheckSecurity.Profissionais.PodeCadastrarProfissional
-    @PostMapping
+    @PostMapping(consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
     @Override
     @ResponseStatus(HttpStatus.CREATED)
-    public ProfissionalModel adicionar(@RequestBody @Valid ProfissionalInputComSenhaModel profissionalInputModel) {
+    public ProfissionalModel adicionar(@RequestPart(value = "arquivo", required = false) MultipartFile arquivo,
+        @RequestPart("profissional") ProfissionalInputComSenhaModel profissionalInputModel) throws IOException {
         List<GrupoModel> grupos = new ArrayList<>();
         // ID do Usuario Comum
         Grupo grupo = grupoService.buscarOuFalhar(3L);
         grupos.add(assemblerGrupo.toModel(grupo));
         profissionalInputModel.setGrupos(grupos);
 
-        Profissional profissional = profissionalService.salvar(disassembler.toDomainObjectComSenha(profissionalInputModel));
+        // Foto
+        Profissional profissional;
+        if (arquivo != null) {
+            FotoPerfil foto = getFotoPerfil(arquivo);
+            profissional = profissionalService.salvar(
+                disassembler.toDomainObjectComSenha(profissionalInputModel), foto, arquivo.getInputStream());
+
+        } else {
+            profissional = profissionalService.salvarComum(
+                disassembler.toDomainObjectComSenha(profissionalInputModel));
+
+        }
 
         eventPublisher.publishEvent(new RegistroCompletoEvent
             (profissional));
@@ -122,7 +137,7 @@ public class ProfissionalController implements ProfissionalControllerOpenApi {
         grupos.add(assemblerGrupo.toModel(grupo));
         profissionalInputModel.setGrupos(grupos);
 
-        Profissional profissional = profissionalService.salvar(disassembler.toDomainObjectComSenha(profissionalInputModel));
+        Profissional profissional = profissionalService.salvarComum(disassembler.toDomainObjectComSenha(profissionalInputModel));
 
         eventPublisher.publishEvent(new RegistroCompletoEvent
             (profissional));
@@ -132,20 +147,35 @@ public class ProfissionalController implements ProfissionalControllerOpenApi {
 
     @CheckSecurity.Profissionais.PodeEditarProfissional
     @Override
-    @PutMapping("/{profissionalId}")
+    @PutMapping(value = "/{profissionalId}", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
     public ProfissionalModel atualizar(@PathVariable Long profissionalId,
-        @RequestBody @Valid ProfissionalInputComSenhaModel profissionalInputComSenhaModel) {
+        @RequestPart(value = "arquivo", required = false) MultipartFile arquivo,
+        @RequestPart("profissional") ProfissionalInputComSenhaModel profissionalInputComSenhaModel) throws IOException {
         Profissional profissional = profissionalService.buscarOuFalhar(profissionalId);
 
-        if (profissionalInputComSenhaModel.getSenha() != null || profissionalInputComSenhaModel.getSenha().isEmpty()) {
-            String senhaCriptografada = new BCryptPasswordEncoder().encode(profissionalInputComSenhaModel.getSenha());
-            profissionalInputComSenhaModel.setSenha(senhaCriptografada);
-        }
         profissionalInputComSenhaModel.setAtivado(profissional.isAtivado());
 
         Profissional profissionalAlterado = disassembler.toDomainObjectComSenha(profissionalInputComSenhaModel);
         profissionalAlterado.setDataCadastro(profissional.getDataCadastro());
-        profissionalAlterado = profissionalService.salvar(profissionalAlterado);
+
+        List<Grupo> grupos = new ArrayList<>();
+        // ID do Usuario Comum
+        Grupo grupo = grupoService.buscarOuFalhar(3L);
+        grupos.add(grupo);
+        profissionalAlterado.setGrupos(grupos);
+        // Foto
+        if (arquivo == null && (profissional.getFotoPerfil() == null || profissional.getFotoPerfil() != null)) {
+            profissionalAlterado.setFotoPerfil(profissional.getFotoPerfil());
+            profissionalAlterado = profissionalService.salvarComum(profissionalAlterado);
+
+        }
+        else {
+
+            FotoPerfil foto = getFotoPerfil(arquivo);
+            profissionalAlterado.setFotoPerfil(foto);
+            profissionalAlterado = profissionalService.salvar(profissionalAlterado, foto, arquivo.getInputStream());
+        }
+
         return assembler.toModel(profissionalAlterado);
     }
 
@@ -157,11 +187,19 @@ public class ProfissionalController implements ProfissionalControllerOpenApi {
         profissionalService.excluir(profissionalId);
     }
 
-//    @CheckSecurity.UsuariosGruposPermissoes.PodeAlterarPropriaSenha
+    //    @CheckSecurity.UsuariosGruposPermissoes.PodeAlterarPropriaSenha
     @Override
     @PutMapping("/{profissionalId}/senha")
     public void alterarSenha(@PathVariable Long profissionalId, @RequestBody @Valid SenhaInputModel senha) {
         profissionalService.alterarSenha(profissionalId, senha.getSenhaAtual(), senha.getNovaSenha());
     }
 
+    private FotoPerfil getFotoPerfil(
+        @RequestPart(value = "arquivo", required = false) MultipartFile arquivo) {
+        FotoPerfil foto = new FotoPerfil();
+        foto.setContentType(arquivo.getContentType());
+        foto.setTamanho(arquivo.getSize());
+        foto.setNomeArquivo(arquivo.getOriginalFilename());
+        return foto;
+    }
 }

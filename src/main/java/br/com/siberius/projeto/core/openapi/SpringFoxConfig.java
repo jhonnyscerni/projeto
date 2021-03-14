@@ -191,9 +191,10 @@ public class SpringFoxConfig implements WebMvcConfigurer {
 
     public ApiInfo apiInfo() {
         return new ApiInfoBuilder()
-            .title("Projeto API - V1.4.4 ")
+            .title("Projeto API - V1.5-beta-upload-perfil")
             .description(" Autor : Jhonny Scerni Gondim Costa - API para Sistema de Clinicas e Profissionais da Saude - "
-                + " Squiggly , ModelMapper , Estrutura de Exceptions e ExceptionHandler, Cors, Swagger, flyway, Conf. com Banco Mysql")
+                + " Squiggly , ModelMapper , Estrutura de Exceptions e ExceptionHandler, Cors, Swagger, flyway, Conf. com Banco Mysql "
+                + "inclusao do javamelody. ")
             .version("1")
             .contact(new Contact("Siberius", "https://www.siberius.com.br", "jhonnyscerni@gmail.com"))
             .build();

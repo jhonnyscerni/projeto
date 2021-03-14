@@ -6,11 +6,19 @@ import br.com.siberius.projeto.api.model.ProfissionalModel;
 import br.com.siberius.projeto.api.model.input.ProfissionalInputComSenhaModel;
 import br.com.siberius.projeto.api.model.input.SenhaInputModel;
 import br.com.siberius.projeto.domain.repository.filter.ProfissionalFilter;
-import io.swagger.annotations.*;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiImplicitParam;
+import io.swagger.annotations.ApiImplicitParams;
+import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.ApiParam;
+import io.swagger.annotations.ApiResponse;
+import io.swagger.annotations.ApiResponses;
+import java.io.IOException;
+import java.util.List;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
-
-import java.util.List;
+import org.springframework.web.bind.annotation.RequestPart;
+import org.springframework.web.multipart.MultipartFile;
 
 @Api(tags = "Profissionais")
 public interface ProfissionalControllerOpenApi {
@@ -23,8 +31,8 @@ public interface ProfissionalControllerOpenApi {
     Page<ProfissionalModel> pesquisar(ProfissionalFilter filter, Pageable pageable);
 
     @ApiImplicitParams({
-            @ApiImplicitParam(value = "Nomes das propriedades para filtrar na resposta, separados por vírgula",
-                    name = "campos", paramType = "query", type = "string")
+        @ApiImplicitParam(value = "Nomes das propriedades para filtrar na resposta, separados por vírgula",
+            name = "campos", paramType = "query", type = "string")
     })
     @ApiOperation("Pesquisar os profissionais")
     List<ProfissionalModel> pesquisar(ProfissionalFilter filter);
@@ -44,14 +52,14 @@ public interface ProfissionalControllerOpenApi {
     })
     ProfissionalModel adicionar(
         @ApiParam(name = "corpo", value = "Representação de um novo profissional", required = true)
-            ProfissionalInputComSenhaModel profissionalInputComSenhaModel);
+        @RequestPart("arquivo") MultipartFile arquivo, @RequestPart("profissional") ProfissionalInputComSenhaModel profissionalInputModel
+    ) throws IOException;
 
     @ApiOperation("Atualiza um profissional por ID")
     @ApiResponses({
         @ApiResponse(code = 200, message = "Profissional atualizado"),
         @ApiResponse(code = 404, message = "Profissional não encontrado", response = Problem.class)
     })
-
     ProfissionalModel adicionarComum(
         @ApiParam(name = "corpo", value = "Representação de um novo profissional", required = true)
             ProfissionalInputComSenhaModel profissionalInputComSenhaModel);
@@ -61,14 +69,14 @@ public interface ProfissionalControllerOpenApi {
         @ApiResponse(code = 200, message = "Profissional atualizado"),
         @ApiResponse(code = 404, message = "Profissional não encontrado", response = Problem.class)
     })
-
     ProfissionalModel atualizar(
         @ApiParam(value = "ID do profissional", example = "1", required = true)
             Long profissionalId,
 
         @ApiParam(name = "corpo", value = "Representação de um profissional com os novos dados",
             required = true)
-            ProfissionalInputComSenhaModel profissionalInputComSenhaModel);
+        @RequestPart("arquivo") MultipartFile arquivo, @RequestPart("profissional") ProfissionalInputComSenhaModel profissionalInputModel
+    ) throws IOException;
 
     @ApiOperation("Atualiza a senha de um profissional")
     @ApiResponses({

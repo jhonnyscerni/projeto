@@ -31,4 +31,7 @@ public class Profissional extends Usuario {
     @Column(name = "CLINICA_ID")
     private Long clinicaId;
 
+    @OneToOne
+    private FotoPerfil fotoPerfil;
+
 }
