@@ -303,7 +303,8 @@ public @interface CheckSecurity {
 
         //        @PreAuthorize("@projetoSecurity.podeEditarPacientes() or "
 //            + "@projetoSecurity.usuarioAutenticadoIgual(#profissionalId)")
-        @PreAuthorize("@projetoSecurity.podeEditarProfissionais()")
+        @PreAuthorize("@projetoSecurity.podeEditarProfissionais() or "
+            + "@projetoSecurity.usuarioAutenticadoIgual(#profissionalId)")
         @Retention(RUNTIME)
         @Target(METHOD)
         public @interface PodeEditarProfissional {
