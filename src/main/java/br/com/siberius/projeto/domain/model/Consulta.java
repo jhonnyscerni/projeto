@@ -3,6 +3,7 @@ package br.com.siberius.projeto.domain.model;
 import br.com.siberius.projeto.domain.model.enums.ConvenioEnum;
 import br.com.siberius.projeto.domain.model.enums.ProcedimentoEnum;
 import br.com.siberius.projeto.domain.model.enums.StatusConsultaEnum;
+import java.math.BigDecimal;
 import java.time.OffsetDateTime;
 import javax.persistence.*;
 
@@ -65,4 +66,10 @@ public class Consulta {
 
     @Column(name = "CLASS_NAME")
     private String className;
+
+    @Column(name = "valorTotal")
+    private BigDecimal valorTotal;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    private FormaPagamento formaPagamento;
 }

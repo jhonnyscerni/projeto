@@ -103,7 +103,9 @@ public class SpringFoxConfig implements WebMvcConfigurer {
                     new Tag("Atender uma Consulta", "Cadastro de atendimento por consulta"),
                     new Tag("Clinicas", "Gerencia os Clinicas"),
                     new Tag("Dashboard do Profissional", "Mostra dados do dashboard do Profissional"),
-                    new Tag("Dashboard da Clinica", "Mostra dados do dashboard da Clinica")
+                    new Tag("Dashboard da Clinica", "Mostra dados do dashboard da Clinica"),
+                    new Tag("Formas de pagamento", "Mostra dados das Formas de Pagamento")
+
                 );
     }
 
@@ -191,9 +193,9 @@ public class SpringFoxConfig implements WebMvcConfigurer {
 
     public ApiInfo apiInfo() {
         return new ApiInfoBuilder()
-            .title("Projeto API - V1.5-beta-upload-perfil")
+            .title("Projeto API - V1.6")
             .description(" Autor : Jhonny Scerni Gondim Costa - API para Sistema de Clinicas e Profissionais da Saude - "
-                + " Squiggly , ModelMapper , Estrutura de Exceptions e ExceptionHandler, Cors, Swagger, flyway, Conf. com Banco Mysql "
+                + " Squiggly , ModelMapper , Estrutura de Exceptions e ExceptionHandler, Cors, Lombok, Swagger, flyway, Conf. com Banco Mysql "
                 + "inclusao do javamelody. ")
             .version("1")
             .contact(new Contact("Siberius", "https://www.siberius.com.br", "jhonnyscerni@gmail.com"))
