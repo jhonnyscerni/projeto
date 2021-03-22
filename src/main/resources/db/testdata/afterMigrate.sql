@@ -8,6 +8,7 @@ delete from usuario_grupo;
 delete from consulta;
 delete from atendimento;
 delete from forma_pagamento;
+delete from categoria_lancamento;
 -- delete from oauth_client_details;
 delete from verificar_token;
 
@@ -18,6 +19,7 @@ alter table consulta auto_increment = 1;
 alter table atendimento auto_increment = 1;
 alter table verificar_token auto_increment = 1;
 alter table forma_pagamento auto_increment = 1;
+alter table categoria_lancamento auto_increment = 1;
 
 -- insert into permissao (cod_permissao, nm_permissao, desc_permissao) values (1, 'CONSULTAR_DASHBOARD', 'Permite consultar dashboard');
 --
@@ -106,13 +108,17 @@ insert into forma_pagamento(id, data_atualizacao, descricao) values
 (6, '2021-01-13 15:31:35', 'Dinheiro'),
 (7, '2021-01-13 15:31:35', 'PIX');
 
-insert into consulta(cod_consulta, convenio_enum, data_hora, local_atendimento, observacao, procedimento_enum, status_consulta_enum, start, title, class_name, paciente,profissional, clinica , valor_total, forma_pagamento_id) values
-(1, 'PARTICULAR', '2021-01-13 15:31:35', 'Informação do Local do atendimento', 'Observação', 'CONSULTA', 'FINALIZADO', '2021-01-13 15:31:35', ' - Nome do Paciente', 'fc-event-primary', 6, 3, 2, 180.00, 1),
-(2, 'PARTICULAR', '2021-01-14 15:31:35', 'Informação do Local do atendimento', 'Observação', 'CONSULTA', 'AGENDADO', '2021-01-14 15:31:35', ' - Nome do Paciente', 'fc-event-warning', 6, 3, 2, 180.00, 2),
-(3, 'PARTICULAR', '2021-01-15 15:31:35', 'Informação do Local do atendimento', 'Observação', 'CONSULTA', 'CONFIRMADO', '2021-01-15 15:31:35', ' - Nome do Paciente', 'fc-event-warning', 7, 3, 2, 180.00, 1),
-(4, 'PARTICULAR', '2021-01-13 17:31:35', 'Informação do Local do atendimento', 'Observação', 'CONSULTA', 'AGENDADO', '2021-01-13 17:31:35', ' - Nome do Paciente', 'fc-event-warning', 7, 3, 2, 180.00, 2),
-(5, 'PARTICULAR', '2021-01-14 17:31:35', 'Informação do Local do atendimento', 'Observação', 'CONSULTA', 'AGENDADO', '2021-01-14 17:31:35', ' - Nome do Paciente', 'fc-event-success', 8, 3, 2, 180.00, 3),
-(6, 'PARTICULAR', '2021-01-15 17:31:35', 'Informação do Local do atendimento', 'Observação', 'CONSULTA', 'CANCELADO', '2021-01-15 17:31:35', ' - Nome do Paciente', 'fc-event-danger', 8, 3, 2 , 180.00, 4);
+insert into categoria_lancamento(cod_lancamento, nm_categoria_lanc) values
+(1, 'DESPESA'),
+(2, 'RECEITA');
+
+insert into consulta(cod_consulta, convenio_enum, data_hora, local_atendimento, observacao, procedimento_enum, status_consulta_enum, start, title, class_name, paciente,profissional, clinica) values
+(1, 'PARTICULAR', '2021-01-13 15:31:35', 'Informação do Local do atendimento', 'Observação', 'CONSULTA', 'FINALIZADO', '2021-01-13 15:31:35', ' - Nome do Paciente', 'fc-event-primary', 6, 3, 2),
+(2, 'PARTICULAR', '2021-01-14 15:31:35', 'Informação do Local do atendimento', 'Observação', 'CONSULTA', 'AGENDADO', '2021-01-14 15:31:35', ' - Nome do Paciente', 'fc-event-warning', 6, 3, 2),
+(3, 'PARTICULAR', '2021-01-15 15:31:35', 'Informação do Local do atendimento', 'Observação', 'CONSULTA', 'CONFIRMADO', '2021-01-15 15:31:35', ' - Nome do Paciente', 'fc-event-warning', 7, 3, 2),
+(4, 'PARTICULAR', '2021-01-13 17:31:35', 'Informação do Local do atendimento', 'Observação', 'CONSULTA', 'AGENDADO', '2021-01-13 17:31:35', ' - Nome do Paciente', 'fc-event-warning', 7, 3, 2),
+(5, 'PARTICULAR', '2021-01-14 17:31:35', 'Informação do Local do atendimento', 'Observação', 'CONSULTA', 'AGENDADO', '2021-01-14 17:31:35', ' - Nome do Paciente', 'fc-event-success', 8, 3, 2),
+(6, 'PARTICULAR', '2021-01-15 17:31:35', 'Informação do Local do atendimento', 'Observação', 'CONSULTA', 'CANCELADO', '2021-01-15 17:31:35', ' - Nome do Paciente', 'fc-event-danger', 8, 3, 2);
 
 insert into atendimento (cod_atendimento, descrever_sessao, objetivo_sessao, cod_consulta) value
     (1, 'Descrição da sessão', 'Objetivo a ser descrito', 1);

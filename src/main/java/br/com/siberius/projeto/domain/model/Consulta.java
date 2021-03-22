@@ -67,9 +67,4 @@ public class Consulta {
     @Column(name = "CLASS_NAME")
     private String className;
 
-    @Column(name = "valorTotal")
-    private BigDecimal valorTotal;
-
-    @ManyToOne(fetch = FetchType.LAZY)
-    private FormaPagamento formaPagamento;
 }
