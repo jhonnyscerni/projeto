@@ -62,3 +62,13 @@ insert into permissao (cod_permissao, nm_permissao, desc_permissao) values (48, 
 insert into permissao (cod_permissao, nm_permissao, desc_permissao) values (49, 'SEG_EDITAR_ESTADOS', 'Permite editar estados');
 insert into permissao (cod_permissao, nm_permissao, desc_permissao) values (50, 'SEG_REMOVER_ESTADOS', 'Permite remover estados');
 
+insert into permissao (cod_permissao, nm_permissao, desc_permissao) values (51, 'SEG_CONSULTAR_LANCAMENTOS', 'Permite consultar lançamentos');
+insert into permissao (cod_permissao, nm_permissao, desc_permissao) values (52, 'SEG_CADASTRAR_LANCAMENTOS', 'Permite cadastrar lançamentos');
+insert into permissao (cod_permissao, nm_permissao, desc_permissao) values (53, 'SEG_EDITAR_LANCAMENTOS', 'Permite editar lançamentos');
+insert into permissao (cod_permissao, nm_permissao, desc_permissao) values (54, 'SEG_REMOVER_LANCAMENTOS', 'Permite remover lançamentos');
+
+insert into permissao (cod_permissao, nm_permissao, desc_permissao) values (55, 'SEG_CONSULTAR_FORMAS_PAGAMENTO', 'Permite consultar formas de pagamento');
+insert into permissao (cod_permissao, nm_permissao, desc_permissao) values (56, 'SEG_CADASTRAR_FORMAS_PAGAMENTO', 'Permite cadastrar formas de pagamento');
+insert into permissao (cod_permissao, nm_permissao, desc_permissao) values (57, 'SEG_EDITAR_FORMAS_PAGAMENTO', 'Permite editar formas de pagamento');
+insert into permissao (cod_permissao, nm_permissao, desc_permissao) values (58, 'SEG_REMOVER_FORMAS_PAGAMENTO', 'Permite remover formas de pagamento');
+

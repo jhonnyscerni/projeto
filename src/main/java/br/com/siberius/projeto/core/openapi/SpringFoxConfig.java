@@ -104,7 +104,9 @@ public class SpringFoxConfig implements WebMvcConfigurer {
                     new Tag("Clinicas", "Gerencia os Clinicas"),
                     new Tag("Dashboard do Profissional", "Mostra dados do dashboard do Profissional"),
                     new Tag("Dashboard da Clinica", "Mostra dados do dashboard da Clinica"),
-                    new Tag("Formas de pagamento", "Mostra dados das Formas de Pagamento")
+                    new Tag("Formas de pagamento", "Mostra dados das Formas de Pagamento"),
+                    new Tag("Categorias de Lançamento","Mosta dados das Categorias de Lançamento"),
+                    new Tag("Lançamentos Financeiros", "Mostra dados dos Lançamentos Financeiros")
 
                 );
     }
@@ -193,7 +195,7 @@ public class SpringFoxConfig implements WebMvcConfigurer {
 
     public ApiInfo apiInfo() {
         return new ApiInfoBuilder()
-            .title("Projeto API - V1.6")
+            .title("Projeto API - V1.7")
             .description(" Autor : Jhonny Scerni Gondim Costa - API para Sistema de Clinicas e Profissionais da Saude - "
                 + " Squiggly , ModelMapper , Estrutura de Exceptions e ExceptionHandler, Cors, Lombok, Swagger, flyway, Conf. com Banco Mysql "
                 + "inclusao do javamelody. ")

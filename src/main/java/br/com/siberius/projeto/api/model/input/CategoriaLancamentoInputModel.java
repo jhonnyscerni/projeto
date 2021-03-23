@@ -4,16 +4,13 @@ import io.swagger.annotations.ApiModelProperty;
 import lombok.Getter;
 import lombok.Setter;
 
-import javax.validation.constraints.NotNull;
-
 @Getter
 @Setter
-public class FormaPagamentoInputModel {
+public class CategoriaLancamentoInputModel {
 
     @ApiModelProperty(example = "1")
     private Long id;
 
-    @ApiModelProperty(example = "Cartão de crédito", required = true)
-    @NotNull
-    private String descricao;
+    @ApiModelProperty(example = "DESPESA")
+    private String nomeCategoriaLanc;
 }

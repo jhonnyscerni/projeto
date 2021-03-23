@@ -17,6 +17,11 @@ insert into grupo_permissao (cod_grupo, cod_permissao)
 select 2, cod_permissao from permissao where nm_permissao like '%CONSULTAS%';
 insert into grupo_permissao (cod_grupo, cod_permissao)
 select 2, cod_permissao from permissao where nm_permissao like '%ATENDIMENTOS%';
+insert into grupo_permissao (cod_grupo, cod_permissao)
+select 2, cod_permissao from permissao where nm_permissao like '%LANCAMENTOS%';
+insert into grupo_permissao (cod_grupo, cod_permissao)
+select 2, cod_permissao from permissao where nm_permissao like '%SEG_CONSULTAR_FORMAS_PAGAMENTO%';
+
 
 
 # Adiciona permissoes no grupo do PROFISSIONAL
@@ -32,6 +37,10 @@ insert into grupo_permissao (cod_grupo, cod_permissao)
 select 3, cod_permissao from permissao where nm_permissao like '%CONSULTAS%';
 insert into grupo_permissao (cod_grupo, cod_permissao)
 select 3, cod_permissao from permissao where nm_permissao like '%ATENDIMENTOS%';
+insert into grupo_permissao (cod_grupo, cod_permissao)
+select 3, cod_permissao from permissao where nm_permissao like '%LANCAMENTOS%';
+insert into grupo_permissao (cod_grupo, cod_permissao)
+select 3, cod_permissao from permissao where nm_permissao like '%SEG_CONSULTAR_FORMAS_PAGAMENTO%';
 
 # Adiciona permissoes no grupo do PACIENTE
 insert into grupo_permissao (cod_grupo, cod_permissao)

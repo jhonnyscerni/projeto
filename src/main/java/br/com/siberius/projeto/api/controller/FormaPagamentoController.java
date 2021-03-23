@@ -5,6 +5,7 @@ import br.com.siberius.projeto.api.assembler.disassembler.FormaPagamentoModelDis
 import br.com.siberius.projeto.api.model.FormaPagamentoModel;
 import br.com.siberius.projeto.api.model.input.FormaPagamentoInputModel;
 import br.com.siberius.projeto.api.openapi.controller.FormaPagamentoControllerOpenApi;
+import br.com.siberius.projeto.core.security.resourceserver.CheckSecurity;
 import br.com.siberius.projeto.domain.model.FormaPagamento;
 import br.com.siberius.projeto.domain.repository.FormaPagamentoRepository;
 import br.com.siberius.projeto.domain.service.FormaPagamentoService;
@@ -39,6 +40,8 @@ public class FormaPagamentoController implements FormaPagamentoControllerOpenApi
     private FormaPagamentoModelDisassembler disassembler;
 
 
+    @CheckSecurity.FormasPagamento.PodeConsultarFormaPagamento
+    @Override
     @GetMapping
     public ResponseEntity<List<FormaPagamentoModel>> listar(ServletWebRequest request) {
         ShallowEtagHeaderFilter.disableContentCaching(request.getRequest());
@@ -67,6 +70,7 @@ public class FormaPagamentoController implements FormaPagamentoControllerOpenApi
             .body(formasPagamentosDTO);
     }
 
+    @CheckSecurity.FormasPagamento.PodeConsultarFormaPagamento
     @GetMapping("/{formaPagamentoId}")
     public ResponseEntity<FormaPagamentoModel> buscar(@PathVariable Long formaPagamentoId, ServletWebRequest request) {
         ShallowEtagHeaderFilter.disableContentCaching(request.getRequest());
@@ -92,6 +96,7 @@ public class FormaPagamentoController implements FormaPagamentoControllerOpenApi
             .body(formaPagamentoDTO);
     }
 
+    @CheckSecurity.FormasPagamento.PodeCadastrarFormaPagamento
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
     public FormaPagamentoModel salvar(@RequestBody @Valid FormaPagamentoInputModel formaPagamentoInputModel) {
@@ -119,6 +124,7 @@ public class FormaPagamentoController implements FormaPagamentoControllerOpenApi
 //        return assembler.getFormaPagamentoDTO(formaPagamento);
 //    }
 
+    @CheckSecurity.FormasPagamento.PodeEditarFormaPagamento
     @PutMapping("/{formaPagamentoId}")
     public FormaPagamentoModel atualizar(@PathVariable Long formaPagamentoId,
         @RequestBody @Valid FormaPagamentoInputModel formaPagamentoInputModel) {
@@ -130,6 +136,7 @@ public class FormaPagamentoController implements FormaPagamentoControllerOpenApi
         return assembler.toModel(formaPagamentoService.salvar(formaPagamento));
     }
 
+    @CheckSecurity.FormasPagamento.PodeRemoverFormaPagamento
     @DeleteMapping("/{formaPagamentoId}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public void excluir(@PathVariable Long formaPagamentoId) {

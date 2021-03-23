@@ -140,6 +140,13 @@ public class PacienteController implements PacienteControllerOpenApi {
 
         Paciente pacienteAlterado = disassembler.toDomainObjectComSenha(pacienteInputComSenhaModel);
         pacienteAlterado.setDataCadastro(paciente.getDataCadastro());
+
+        List<Grupo> grupos = new ArrayList<>();
+        // ID do Usuario Comum
+        Grupo grupo = grupoService.buscarOuFalhar(4L);
+        grupos.add(grupo);
+        pacienteAlterado.setGrupos(grupos);
+
         pacienteAlterado = pacienteService.salvar(pacienteAlterado);
         return assembler.toModel(pacienteAlterado);
     }
