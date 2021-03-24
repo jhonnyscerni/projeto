@@ -44,4 +44,10 @@ public class Lancamento {
     @OneToOne
     private Consulta consulta;
 
+    @Column(name = "PROFISSIONAL_ID")
+    private Long profissionalId;
+
+    @Column(name = "CLINICA_ID")
+    private Long clinicaId;
+
 }

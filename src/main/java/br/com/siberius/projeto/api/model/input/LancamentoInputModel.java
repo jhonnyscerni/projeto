@@ -5,6 +5,7 @@ import br.com.siberius.projeto.api.model.input.id.FormaPagamentoInputIdModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.math.BigDecimal;
 import java.time.OffsetDateTime;
+import javax.persistence.Column;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -29,4 +30,10 @@ public class LancamentoInputModel {
     private OffsetDateTime dtLancamento;
 
     private ConsultaInputModel consulta;
+
+    @ApiModelProperty(example = "1")
+    private Long profissionalId;
+
+    @ApiModelProperty(example = "1")
+    private Long clinicaId;
 }

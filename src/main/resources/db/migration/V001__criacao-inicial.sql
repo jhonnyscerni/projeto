@@ -12,7 +12,7 @@ create table atendimento (cod_atendimento bigint not null auto_increment, descre
 create table foto_perfil (cod_foto_perfil bigint not null auto_increment, content_type varchar(255), descricao varchar(255), nome_arquivo varchar(255), tamanho bigint, primary key (cod_foto_perfil)) engine=InnoDB default charset=utf8;
 create table forma_pagamento (id bigint not null auto_increment, data_atualizacao datetime, descricao varchar(255) not null, primary key (id)) engine=InnoDB  default charset=utf8;
 create table categoria_lancamento (cod_lancamento bigint not null auto_increment, nm_categoria_lanc varchar(255), primary key (cod_lancamento)) engine=InnoDB default charset=utf8;
-create table lancamento (cod_lancamento bigint not null auto_increment, descricao varchar(255), dt_lancamento datetime, valor_total decimal(19,2), categoria_cod_lancamento bigint, consulta_cod_consulta bigint, forma_pagamento_id bigint, primary key (cod_lancamento)) engine=InnoDB default charset=utf8;
+create table lancamento (cod_lancamento bigint not null auto_increment, clinica_id bigint, descricao varchar(255), dt_lancamento datetime, profissional_id bigint, valor_total decimal(19,2), categoria_cod_lancamento bigint, consulta_cod_consulta bigint, forma_pagamento_id bigint, primary key (cod_lancamento)) engine=InnoDB default charset=utf8;
 -- create table hibernate_sequence (next_val bigint) engine=InnoDB default charset=utf8;
 insert into hibernate_sequence values ( 1 );
 alter table cidade add constraint FKqef7ghgr8yifkq3uf2coild6e foreign key (cod_estado) references estado (cod_estado);

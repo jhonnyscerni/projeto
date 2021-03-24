@@ -26,4 +26,10 @@ public class LancamentoModel {
     private OffsetDateTime dtLancamento;
 
     private ConsultaModel consulta;
+
+    @ApiModelProperty(example = "1")
+    private Long profissionalId;
+
+    @ApiModelProperty(example = "1")
+    private Long clinicaId;
 }

@@ -15,6 +15,14 @@ public class LancamentoSpecs {
 
             List<Predicate> predicates = new ArrayList<Predicate>();
 
+            if (filtro.getProfissionalId() != null) {
+                predicates.add(builder.equal(root.get("profissionalId"), filtro.getProfissionalId()));
+            }
+
+            if (filtro.getClinicaId() != null) {
+                predicates.add(builder.equal(root.get("clinicaId"), filtro.getClinicaId()));
+            }
+
             if (filtro.getId() != null) {
                 predicates.add(builder.equal(root.get("id"), filtro.getId()));
             }

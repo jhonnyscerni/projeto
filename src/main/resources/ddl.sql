@@ -1,8 +1,3 @@
-alter table usuario add constraint FK13u918h81mp7wgffsnh96a8jh foreign key (endereco_cidade_id) references cidade (cod_cidade)
-alter table usuario add constraint FKq6dosy52cppd62rjp7mlkfp8v foreign key (foto_perfil_cod_foto_perfil) references foto_perfil (cod_foto_perfil)
-alter table usuario_grupo add constraint FK6tge3vbl2fu51964nmqwwiiqk foreign key (cod_grupo) references grupo (cod_grupo)
-alter table usuario_grupo add constraint FK8nrfpsmtqiv3je6ewqehqs2vy foreign key (cod_usuario) references usuario (cod_usuario)
-alter table verificar_token add constraint FKqt9kid9njxsvbmx091bwjywgb foreign key (cod_usuario) references usuario (cod_usuario)
 create table atendimento (cod_atendimento bigint not null auto_increment, descrever_sessao varchar(255), objetivo_sessao varchar(255), cod_consulta bigint not null, primary key (cod_atendimento)) engine=InnoDB
 create table categoria_lancamento (cod_lancamento bigint not null auto_increment, nm_categoria_lanc varchar(255), primary key (cod_lancamento)) engine=InnoDB
 create table cidade (cod_cidade bigint not null auto_increment, nm_cidade varchar(255) not null, cod_estado bigint not null, primary key (cod_cidade)) engine=InnoDB
@@ -14,7 +9,7 @@ create table grupo (cod_grupo bigint not null auto_increment, nm_grupo varchar(2
 create table grupo_permissao (cod_grupo bigint not null, cod_permissao bigint not null) engine=InnoDB
 create table hibernate_sequence (next_val bigint) engine=InnoDB
 insert into hibernate_sequence values ( 1 )
-create table lancamento (cod_lancamento bigint not null auto_increment, descricao varchar(255), dt_lancamento datetime, valor_total decimal(19,2), categoria_cod_lancamento bigint, consulta_cod_consulta bigint, forma_pagamento_id bigint, primary key (cod_lancamento)) engine=InnoDB
+create table lancamento (cod_lancamento bigint not null auto_increment, clinica_id bigint, descricao varchar(255), dt_lancamento datetime, profissional_id bigint, valor_total decimal(19,2), categoria_cod_lancamento bigint, consulta_cod_consulta bigint, forma_pagamento_id bigint, primary key (cod_lancamento)) engine=InnoDB
 create table permissao (cod_permissao bigint not null auto_increment, desc_permissao varchar(255) not null, nm_permissao varchar(255) not null, primary key (cod_permissao)) engine=InnoDB
 create table usuario (tp varchar(31) not null, cod_usuario bigint not null auto_increment, ativado bit, endereco_bairro varchar(255), celular varchar(255), endereco_cep varchar(255), endereco_complemento varchar(255), cpf varchar(255), dt_cad_usuario datetime not null, dt_nascimento datetime, email varchar(255), endereco_logradouro varchar(255), nm_usuario varchar(255), endereco_numero varchar(255), senha varchar(255), sexo varchar(255), telefone varchar(255), clinica_id bigint, cpf_responsavel varchar(255), nome_mae varchar(255), nome_pai varchar(255), profissional_id bigint, conselho varchar(255), formacao_academica varchar(255), registro_conselho varchar(255), endereco_cidade_id bigint, foto_perfil_cod_foto_perfil bigint, primary key (cod_usuario)) engine=InnoDB
 create table usuario_grupo (cod_usuario bigint not null, cod_grupo bigint not null) engine=InnoDB
