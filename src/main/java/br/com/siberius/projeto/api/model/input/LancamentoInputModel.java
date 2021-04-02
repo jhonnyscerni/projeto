@@ -29,7 +29,7 @@ public class LancamentoInputModel {
     @ApiModelProperty(example = "2019-12-01T18:09:02.70844Z", position = 5)
     private OffsetDateTime dtLancamento;
 
-    private ConsultaInputModel consulta;
+    private ConsultaLancamentoInputModel consulta;
 
     @ApiModelProperty(example = "1")
     private Long profissionalId;

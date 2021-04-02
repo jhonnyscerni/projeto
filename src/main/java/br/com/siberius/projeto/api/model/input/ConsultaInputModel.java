@@ -47,9 +47,4 @@ public class ConsultaInputModel {
 
     private ClinicaInputModel clinica;
 
-    @Valid
-    private FormaPagamentoIdInputModel formaPagamento;
-
-    @ApiModelProperty(example = "308.90")
-    private BigDecimal valorTotal;
 }

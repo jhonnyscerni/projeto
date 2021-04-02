@@ -25,7 +25,7 @@ public interface LancamentoControllerOpenApi {
     @ApiOperation("Pesquisar os lancamentos")
     Page<LancamentoModel> pesquisar(LancamentoFilter filter, Pageable pageable);
 
-    @ApiOperation("Busca um usuário por ID")
+    @ApiOperation("Busca um lancamento por ID")
     @ApiResponses({
         @ApiResponse(code = 400, message = "ID do lançamento inválido", response = Problem.class),
         @ApiResponse(code = 404, message = "Lançamento não encontrado", response = Problem.class)

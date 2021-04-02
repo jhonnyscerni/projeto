@@ -104,8 +104,7 @@ insert into forma_pagamento(id, data_atualizacao, descricao) values
 (2, '2021-01-13 15:31:35', 'Cheque'),
 (3, '2021-01-13 15:31:35', 'Dinheiro'),
 (4, '2021-01-13 15:31:35', 'Crédito em Conta'),
-(5, '2021-01-13 15:31:35', 'boleto'),
-(6, '2021-01-13 15:31:35', 'Dinheiro'),
+(5, '2021-01-13 15:31:35', 'Boleto'),
 (7, '2021-01-13 15:31:35', 'PIX');
 
 insert into categoria_lancamento(cod_lancamento, nm_categoria_lanc) values

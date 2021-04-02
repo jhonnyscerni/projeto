@@ -45,8 +45,4 @@ public class ConsultaModel {
 
     private String className;
 
-    private FormaPagamentoModel formaPagamento;
-
-    @ApiModelProperty(example = "308.90")
-    private BigDecimal valorTotal;
 }

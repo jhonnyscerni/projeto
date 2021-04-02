@@ -4,6 +4,7 @@ import br.com.siberius.projeto.api.model.LancamentoModel;
 import br.com.siberius.projeto.domain.model.Lancamento;
 import java.util.Collection;
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
