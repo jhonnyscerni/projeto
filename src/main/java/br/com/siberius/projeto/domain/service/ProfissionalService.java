@@ -44,7 +44,6 @@ public class ProfissionalService {
 
     @Transactional
     public Profissional salvar(Profissional profissional, FotoPerfil foto, InputStream dadosArquivo) {
-
         Optional<Profissional> profissionalExistente = profissionalRepository.findByEmail(profissional.getEmail());
 
         if (profissionalExistente.isPresent() && !profissionalExistente.get().equals(profissional)) {
