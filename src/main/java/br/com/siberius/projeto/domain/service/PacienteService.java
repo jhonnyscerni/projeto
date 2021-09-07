@@ -62,7 +62,9 @@ public class PacienteService {
                 String.format("Já existe um paciente cadastrado com o e-mail %s", paciente.getEmail()));
         }
 
-        if (!(paciente.getSenha().equals(optionalPaciente.get().getSenha())) || paciente.isNovo()) {
+        if (paciente.isNovo()) {
+            paciente.setSenha(passwordEncoder.encode(paciente.getSenha()));
+        } else if (!(paciente.getSenha().equals(optionalPaciente.get().getSenha()))) {
             paciente.setSenha(passwordEncoder.encode(paciente.getSenha()));
         }
 

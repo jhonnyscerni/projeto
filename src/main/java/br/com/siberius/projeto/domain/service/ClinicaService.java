@@ -46,7 +46,9 @@ public class ClinicaService {
                 String.format("Já existe um usuário cadastrado com o e-mail %s", clinica.getEmail()));
         }
 
-        if (!(clinica.getSenha().equals(clinicaExistente.get().getSenha())) || clinica.isNovo()) {
+        if (clinica.isNovo()) {
+            clinica.setSenha(passwordEncoder.encode(clinica.getSenha()));
+        } else if (!(clinica.getSenha().equals(clinicaExistente.get().getSenha()))) {
             clinica.setSenha(passwordEncoder.encode(clinica.getSenha()));
         }
 
