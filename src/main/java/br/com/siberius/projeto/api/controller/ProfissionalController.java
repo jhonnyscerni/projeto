@@ -154,7 +154,6 @@ public class ProfissionalController implements ProfissionalControllerOpenApi {
         Profissional profissional = profissionalService.buscarOuFalhar(profissionalId);
 
         profissionalInputComSenhaModel.setAtivado(profissional.isAtivado());
-
         Profissional profissionalAlterado = disassembler.toDomainObjectComSenha(profissionalInputComSenhaModel);
         profissionalAlterado.setDataCadastro(profissional.getDataCadastro());
 

@@ -6,7 +6,6 @@ import br.com.siberius.projeto.domain.exception.NegocioException;
 import br.com.siberius.projeto.domain.exception.model.UsuarioNaoEncontradoException;
 import br.com.siberius.projeto.domain.model.Grupo;
 import br.com.siberius.projeto.domain.model.Paciente;
-import br.com.siberius.projeto.domain.model.Profissional;
 import br.com.siberius.projeto.domain.model.Usuario;
 import br.com.siberius.projeto.domain.repository.PacienteRepository;
 import java.util.ArrayList;
@@ -54,8 +53,7 @@ public class PacienteService {
         Usuario usuario = usuarioService.buscarOuFalhar(projetoSecurity.getUsuarioId());
         if (usuario.getDiscriminatorValue().equals("User")) {
             paciente.setProfissionalId(projetoSecurity.getUsuarioId());
-        }
-        else if(usuario.getDiscriminatorValue().equals("Clinic")){
+        } else if (usuario.getDiscriminatorValue().equals("Clinic")) {
             paciente.setClinicaId(projetoSecurity.getUsuarioId());
         }
 
@@ -64,7 +62,7 @@ public class PacienteService {
                 String.format("Já existe um paciente cadastrado com o e-mail %s", paciente.getEmail()));
         }
 
-        if (paciente.isNovo()) {
+        if (!(paciente.getSenha().equals(optionalPaciente.get().getSenha())) || paciente.isNovo()) {
             paciente.setSenha(passwordEncoder.encode(paciente.getSenha()));
         }
 

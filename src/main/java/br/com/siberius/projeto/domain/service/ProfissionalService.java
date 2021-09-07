@@ -51,7 +51,7 @@ public class ProfissionalService {
                 String.format("Já existe um usuário cadastrado com o e-mail %s", profissional.getEmail()));
         }
 
-        if (profissional.isNovo()) {
+        if (!(profissional.getSenha().equals(profissionalExistente.get().getSenha())) || profissional.isNovo()) {
             profissional.setSenha(passwordEncoder.encode(profissional.getSenha()));
         }
 
@@ -98,7 +98,7 @@ public class ProfissionalService {
                 String.format("Já existe um usuário cadastrado com o e-mail %s", profissional.getEmail()));
         }
 
-        if (profissional.isNovo()) {
+        if (!(profissional.getSenha().equals(profissionalExistente.get().getSenha())) || profissional.isNovo()) {
             profissional.setSenha(passwordEncoder.encode(profissional.getSenha()));
         }
 
