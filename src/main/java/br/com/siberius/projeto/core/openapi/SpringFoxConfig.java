@@ -196,7 +196,7 @@ public class SpringFoxConfig implements WebMvcConfigurer {
 
     public ApiInfo apiInfo() {
         return new ApiInfoBuilder()
-            .title("Projeto API - V1.8 - Modulo Financeiro Atualizado")
+            .title("Projeto API - V1.9 - Atualização do Servidor de E-mail")
             .description(" Autor : Jhonny Scerni Gondim Costa - API para Sistema de Clinicas e Profissionais da Saude - "
                 + " Squiggly , ModelMapper , Estrutura de Exceptions e ExceptionHandler, Cors, Lombok, Swagger, flyway, Conf. com Banco Mysql "
                 + "inclusao do javamelody. ")
