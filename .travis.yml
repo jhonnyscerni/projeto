@@ -22,7 +22,7 @@ deploy:
     docker tag siberius:latest jhonnyscerni/siberius:$TRAVIS_JOB_ID;
     docker push jhonnyscerni/siberius:$TRAVIS_JOB_ID;
   on:
-    branch: toprojeto-clinica
+    branch: toprojeto-clinica-upload-imagem
 after_success:
   - sudo apt-get -y install python3-pip python-dev
   - sudo pip3 install -U setuptools

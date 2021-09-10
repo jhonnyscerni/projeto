@@ -48,6 +48,8 @@ public class ClinicaService {
 
         if (clinica.isNovo()) {
             clinica.setSenha(passwordEncoder.encode(clinica.getSenha()));
+        } else if (!(clinica.getSenha().equals(clinicaExistente.get().getSenha()))) {
+            clinica.setSenha(passwordEncoder.encode(clinica.getSenha()));
         }
 
         if (clinica.isNovo()) {

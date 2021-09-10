@@ -7,7 +7,9 @@ import br.com.siberius.projeto.domain.model.enums.ConvenioEnum;
 import br.com.siberius.projeto.domain.model.enums.ProcedimentoEnum;
 import br.com.siberius.projeto.domain.model.enums.StatusConsultaEnum;
 import io.swagger.annotations.ApiModelProperty;
+import java.math.BigDecimal;
 import java.time.OffsetDateTime;
+import javax.validation.Valid;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -44,4 +46,5 @@ public class ConsultaInputModel {
     private String className;
 
     private ClinicaInputModel clinica;
+
 }

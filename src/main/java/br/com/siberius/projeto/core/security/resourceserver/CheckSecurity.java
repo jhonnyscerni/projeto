@@ -303,7 +303,8 @@ public @interface CheckSecurity {
 
         //        @PreAuthorize("@projetoSecurity.podeEditarPacientes() or "
 //            + "@projetoSecurity.usuarioAutenticadoIgual(#profissionalId)")
-        @PreAuthorize("@projetoSecurity.podeEditarProfissionais()")
+        @PreAuthorize("@projetoSecurity.podeEditarProfissionais() or "
+            + "@projetoSecurity.usuarioAutenticadoIgual(#profissionalId)")
         @Retention(RUNTIME)
         @Target(METHOD)
         public @interface PodeEditarProfissional {
@@ -517,6 +518,93 @@ public @interface CheckSecurity {
         @Retention(RUNTIME)
         @Target(METHOD)
         public @interface PodeDesassociarGrupoPermissao {
+
+        }
+
+    }
+
+
+    /*
+     *******************************************************************************************
+     * Lançamentos
+     * *****************************************************************************************
+     */
+    public @interface Lancamentos {
+
+        //        @PreAuthorize("@projetoSecurity.podeEditarPacientes() or "
+//            + "@projetoSecurity.usuarioAutenticadoIgual(#profissionalId)")
+        @PreAuthorize("@projetoSecurity.podeEditarLancamentos()")
+        @Retention(RUNTIME)
+        @Target(METHOD)
+        public @interface PodeEditarLancamento {
+
+        }
+
+        //        @PreAuthorize("@projetoSecurity.podeRemoverPacientes() or "
+//            + "@projetoSecurity.usuarioAutenticadoIgual(#profissionalId)")
+        @PreAuthorize("@projetoSecurity.podeRemoverLancamentos()")
+        @Retention(RUNTIME)
+        @Target(METHOD)
+        public @interface PodeRemoverLancamento {
+
+        }
+
+
+        //@PreAuthorize("@projetoSecurity.podeConsultarPacientes(#filter.profissionalId)" )
+        @PreAuthorize("@projetoSecurity.podeConsultarLancamentos()")
+        @Retention(RUNTIME)
+        @Target(METHOD)
+        public @interface PodeConsultarLancamento {
+
+        }
+
+        @PreAuthorize("@projetoSecurity.podeCadastrarLancamentos()")
+        @Retention(RUNTIME)
+        @Target(METHOD)
+        public @interface PodeCadastrarLancamento {
+
+        }
+
+    }
+
+    /*
+     *******************************************************************************************
+     * FormasPagamento
+     * *****************************************************************************************
+     */
+    public @interface FormasPagamento {
+
+        //        @PreAuthorize("@projetoSecurity.podeEditarPacientes() or "
+//            + "@projetoSecurity.usuarioAutenticadoIgual(#profissionalId)")
+        @PreAuthorize("@projetoSecurity.podeEditarFormasPagamento()")
+        @Retention(RUNTIME)
+        @Target(METHOD)
+        public @interface PodeEditarFormaPagamento {
+
+        }
+
+        //        @PreAuthorize("@projetoSecurity.podeRemoverPacientes() or "
+//            + "@projetoSecurity.usuarioAutenticadoIgual(#profissionalId)")
+        @PreAuthorize("@projetoSecurity.podeRemoverFormasPagamento()")
+        @Retention(RUNTIME)
+        @Target(METHOD)
+        public @interface PodeRemoverFormaPagamento {
+
+        }
+
+
+        //@PreAuthorize("@projetoSecurity.podeConsultarPacientes(#filter.profissionalId)" )
+        @PreAuthorize("@projetoSecurity.podeConsultarFormasPagamento()")
+        @Retention(RUNTIME)
+        @Target(METHOD)
+        public @interface PodeConsultarFormaPagamento {
+
+        }
+
+        @PreAuthorize("@projetoSecurity.podeCadastrarFormasPagamento()")
+        @Retention(RUNTIME)
+        @Target(METHOD)
+        public @interface PodeCadastrarFormaPagamento {
 
         }
 

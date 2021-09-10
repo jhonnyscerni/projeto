@@ -249,4 +249,40 @@ public class ProjetoSecurity {
         return temEscopoEscrita() && isAutenticado() && hasAuthority("SEG_REMOVER_PROFISSIONAIS");
     }
 
+    // Lancamentos
+
+    public boolean podeConsultarLancamentos() {
+        return temEscopoLeitura() && (hasAuthority("SEG_CONSULTAR_LANCAMENTOS"));
+    }
+
+    public boolean podeCadastrarLancamentos() {
+        return temEscopoLeitura() && isAutenticado() && hasAuthority("SEG_CADASTRAR_LANCAMENTOS");
+    }
+
+    public boolean podeEditarLancamentos() {
+        return temEscopoEscrita() && isAutenticado() && hasAuthority("SEG_EDITAR_LANCAMENTOS");
+    }
+
+    public boolean podeRemoverLancamentos() {
+        return temEscopoEscrita() && isAutenticado() && hasAuthority("SEG_REMOVER_LANCAMENTOS");
+    }
+
+    // Formas de Pagamento
+
+    public boolean podeConsultarFormasPagamento() {
+        return temEscopoLeitura() && (hasAuthority("SEG_CONSULTAR_FORMAS_PAGAMENTO"));
+    }
+
+    public boolean podeCadastrarFormasPagamento() {
+        return temEscopoLeitura() && isAutenticado() && hasAuthority("SEG_CADASTRAR_FORMAS_PAGAMENTO");
+    }
+
+    public boolean podeEditarFormasPagamento() {
+        return temEscopoEscrita() && isAutenticado() && hasAuthority("SEG_EDITAR_FORMAS_PAGAMENTO");
+    }
+
+    public boolean podeRemoverFormasPagamento() {
+        return temEscopoEscrita() && isAutenticado() && hasAuthority("SEG_REMOVER_FORMAS_PAGAMENTO");
+    }
+
 }

@@ -75,4 +75,6 @@ public class ProfissionalModel {
 
     @ApiModelProperty(example = "3")
     private Long clinicaId;
+
+    private FotoPerfilModel fotoPerfil;
 }

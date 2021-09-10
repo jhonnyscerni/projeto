@@ -1,9 +1,7 @@
 package br.com.siberius.projeto.infrastructure.repository;
 
 import br.com.siberius.projeto.domain.model.Profissional;
-import br.com.siberius.projeto.domain.model.Usuario;
 import br.com.siberius.projeto.domain.repository.filter.ProfissionalFilter;
-import br.com.siberius.projeto.domain.repository.filter.UsuarioFilter;
 import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.criteria.Predicate;
