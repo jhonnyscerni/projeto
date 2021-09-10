@@ -1,0 +1,1 @@
+INSERT INTO `grupo` (cod_grupo, nm_grupo) values (1, 'Admin'), (2, 'Clinica'), (3, 'Profissional'), (4, 'Paciente');
