@@ -13,6 +13,6 @@ public interface ProfissionalRepository extends JpaRepository<Profissional, Long
 
     Optional<Profissional> findByEmail(String email);
 
-    @Query("SELECT count(p.id) FROM Profissional p where p.ativado = true and p.clinicaId = :clinicaId")
+    @Query(value = "SELECT count(p.id) FROM USUARIO p where p.ativado = '1' and p.clinicaId = :clinicaId", nativeQuery = true)
     long countProfissionaisByAtivadoClinica(@Param("clinicaId") Long clinicaId);
 }
