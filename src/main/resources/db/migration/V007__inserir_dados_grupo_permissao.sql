@@ -1,8 +1,8 @@
-# Adiciona todas as permissoes no grupo do ADMIN
+-- Adiciona todas as permissoes no grupo do ADMIN
 insert into grupo_permissao (cod_grupo, cod_permissao)
 select 1, cod_permissao from permissao;
 
-# Adiciona permissoes no grupo da CLINICA
+-- Adiciona permissoes no grupo da CLINICA
 insert into grupo_permissao (cod_grupo, cod_permissao)
 select 2, cod_permissao from permissao where nm_permissao like '%PACIENTES%';
 insert into grupo_permissao (cod_grupo, cod_permissao)
@@ -24,7 +24,7 @@ select 2, cod_permissao from permissao where nm_permissao like '%SEG_CONSULTAR_F
 
 
 
-# Adiciona permissoes no grupo do PROFISSIONAL
+-- Adiciona permissoes no grupo do PROFISSIONAL
 insert into grupo_permissao (cod_grupo, cod_permissao)
 select 3, cod_permissao from permissao where nm_permissao like '%PACIENTES%';
 insert into grupo_permissao (cod_grupo, cod_permissao)
@@ -42,7 +42,7 @@ select 3, cod_permissao from permissao where nm_permissao like '%LANCAMENTOS%';
 insert into grupo_permissao (cod_grupo, cod_permissao)
 select 3, cod_permissao from permissao where nm_permissao like '%SEG_CONSULTAR_FORMAS_PAGAMENTO%';
 
-# Adiciona permissoes no grupo do PACIENTE
+-- Adiciona permissoes no grupo do PACIENTE
 insert into grupo_permissao (cod_grupo, cod_permissao)
 select 4, cod_permissao from permissao where nm_permissao like 'CONSULTAR_%';
 insert into grupo_permissao (cod_grupo, cod_permissao)

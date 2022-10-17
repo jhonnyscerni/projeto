@@ -12,4 +12,4 @@ create table oauth_client_details (
   autoapprove varchar(256),
 
   primary key (client_id)
-) engine=innodb default charset=utf8;
+);

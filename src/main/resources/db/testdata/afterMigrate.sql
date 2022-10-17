@@ -1,4 +1,4 @@
-set foreign_key_checks = 0;
+--set foreign_key_checks = 0;
 
 -- delete from grupo;
 -- delete from grupo_permissao;
@@ -14,12 +14,12 @@ delete from verificar_token;
 
 -- alter table grupo auto_increment = 1;
 -- alter table permissao auto_increment = 1;
-alter table usuario auto_increment = 1;
-alter table consulta auto_increment = 1;
-alter table atendimento auto_increment = 1;
-alter table verificar_token auto_increment = 1;
-alter table forma_pagamento auto_increment = 1;
-alter table categoria_lancamento auto_increment = 1;
+-- alter table usuario auto_increment = 1;
+-- alter table consulta auto_increment = 1;
+-- alter table atendimento auto_increment = 1;
+-- alter table verificar_token auto_increment = 1;
+-- alter table forma_pagamento auto_increment = 1;
+-- alter table categoria_lancamento auto_increment = 1;
 
 -- insert into permissao (cod_permissao, nm_permissao, desc_permissao) values (1, 'CONSULTAR_DASHBOARD', 'Permite consultar dashboard');
 --
@@ -79,23 +79,23 @@ alter table categoria_lancamento auto_increment = 1;
 
 
 insert into usuario (cod_usuario, nm_usuario, email, cpf, sexo, telefone, celular, dt_nascimento, senha, dt_cad_usuario, ativado, tp, endereco_cep, endereco_logradouro, endereco_numero, endereco_complemento, endereco_bairro, endereco_cidade_id, profissional_id) values
-(1, 'Administrador', 'administrador@projeto.com.br', '984.738.912-87', 'Masculino', '(79) 2910-0954', '(79) 98652-2920', utc_timestamp, '$2y$12$NSsM4gEOR7MKogflKR7GMeYugkttjNhAJMvFdHrBLaLp2HzlggP5W', utc_timestamp, true, 'Admin', '49200972', 'Avenida João Lima da Silveira 3254', '526', '', 'Alagoas', 1, 0);
+(1, 'Administrador', 'administrador@projeto.com.br', '984.738.912-87', 'Masculino', '(79) 2910-0954', '(79) 98652-2920', current_timestamp, '$2y$12$NSsM4gEOR7MKogflKR7GMeYugkttjNhAJMvFdHrBLaLp2HzlggP5W', current_timestamp, '1', 'Admin', '49200972', 'Avenida João Lima da Silveira 3254', '526', '', 'Alagoas', 1, 0);
 
 insert into usuario (cod_usuario, nm_usuario, email, cpf, sexo, telefone, celular, dt_nascimento, senha, dt_cad_usuario, ativado, tp, endereco_cep, endereco_logradouro, endereco_numero, endereco_complemento, endereco_bairro, endereco_cidade_id, profissional_id) values
-(2, 'Clinica', 'clinica@projeto.com.br', '984.738.912-87', 'Masculino', '(79) 2910-0954', '(79) 98652-2920', utc_timestamp, '$2y$12$NSsM4gEOR7MKogflKR7GMeYugkttjNhAJMvFdHrBLaLp2HzlggP5W', utc_timestamp, true, 'Clinic', '49200972', 'Avenida João Lima da Silveira 3254', '526', '', 'Alagoas', 1, 0);
+(2, 'Clinica', 'clinica@projeto.com.br', '984.738.912-87', 'Masculino', '(79) 2910-0954', '(79) 98652-2920', current_timestamp, '$2y$12$NSsM4gEOR7MKogflKR7GMeYugkttjNhAJMvFdHrBLaLp2HzlggP5W', current_timestamp, '1', 'Clinic', '49200972', 'Avenida João Lima da Silveira 3254', '526', '', 'Alagoas', 1, 0);
 
 
 insert into usuario (cod_usuario, nm_usuario, email, cpf, sexo, telefone, celular, dt_nascimento, senha, dt_cad_usuario, ativado, tp, endereco_cep, endereco_logradouro, endereco_numero, endereco_complemento, endereco_bairro, endereco_cidade_id, profissional_id, clinica_id) values
-(3, 'Profissional', 'profissional@projeto.com.br', '984.738.912-87', 'Masculino', '(79) 2910-0954', '(79) 98652-2920', utc_timestamp, '$2y$12$NSsM4gEOR7MKogflKR7GMeYugkttjNhAJMvFdHrBLaLp2HzlggP5W', utc_timestamp, true, 'User', '49200972', 'Avenida João Lima da Silveira 3254', '526', '', 'Alagoas', 1, null, 2),
-(4, 'Profissional02', 'profissional02@projeto.com.br', '984.738.912-87', 'Masculino', '(79) 2910-0954', '(79) 98652-2920', utc_timestamp, '$2y$12$NSsM4gEOR7MKogflKR7GMeYugkttjNhAJMvFdHrBLaLp2HzlggP5W', utc_timestamp, true, 'User', '49200972', 'Avenida João Lima da Silveira 3254', '526', '', 'Alagoas', 1, null, 2),
-(5, 'Profissional03', 'profissional03@projeto.com.br', '984.738.912-87', 'Masculino', '(79) 2910-0954', '(79) 98652-2920', utc_timestamp, '$2y$12$NSsM4gEOR7MKogflKR7GMeYugkttjNhAJMvFdHrBLaLp2HzlggP5W', utc_timestamp, true, 'User', '49200972', 'Avenida João Lima da Silveira 3254', '526', '', 'Alagoas', 1, null, 2);
+(3, 'Profissional', 'profissional@projeto.com.br', '984.738.912-87', 'Masculino', '(79) 2910-0954', '(79) 98652-2920', current_timestamp, '$2y$12$NSsM4gEOR7MKogflKR7GMeYugkttjNhAJMvFdHrBLaLp2HzlggP5W', current_timestamp, '1', 'User', '49200972', 'Avenida João Lima da Silveira 3254', '526', '', 'Alagoas', 1, null, 2),
+(4, 'Profissional02', 'profissional02@projeto.com.br', '984.738.912-87', 'Masculino', '(79) 2910-0954', '(79) 98652-2920', current_timestamp, '$2y$12$NSsM4gEOR7MKogflKR7GMeYugkttjNhAJMvFdHrBLaLp2HzlggP5W', current_timestamp, '1', 'User', '49200972', 'Avenida João Lima da Silveira 3254', '526', '', 'Alagoas', 1, null, 2),
+(5, 'Profissional03', 'profissional03@projeto.com.br', '984.738.912-87', 'Masculino', '(79) 2910-0954', '(79) 98652-2920', current_timestamp, '$2y$12$NSsM4gEOR7MKogflKR7GMeYugkttjNhAJMvFdHrBLaLp2HzlggP5W', current_timestamp, '1', 'User', '49200972', 'Avenida João Lima da Silveira 3254', '526', '', 'Alagoas', 1, null, 2);
 
 
 insert into usuario (cod_usuario, nm_usuario, email, cpf, sexo, telefone, celular, dt_nascimento, senha, dt_cad_usuario, ativado, tp, endereco_cep, endereco_logradouro, endereco_numero, endereco_complemento, endereco_bairro, endereco_cidade_id, profissional_id, clinica_id) values
-(6, 'Raul Leonardo Filipe Galvão', 'paciente@projeto.com.br', '984.738.912-87', 'Masculino', '(79) 2910-0954', '(79) 98652-2920', utc_timestamp, '$2y$12$NSsM4gEOR7MKogflKR7GMeYugkttjNhAJMvFdHrBLaLp2HzlggP5W', utc_timestamp, true, 'Patient', '49200972', 'Avenida João Lima da Silveira 3254', '526', '', 'Alagoas', 1, null, 2),
-(7, 'Nair Márcia Barbosa', 'paciente02@projeto.com.br', '984.738.912-87', 'Feminino', '(79) 2910-0954', '(79) 98652-2920', utc_timestamp, '$2y$12$NSsM4gEOR7MKogflKR7GMeYugkttjNhAJMvFdHrBLaLp2HzlggP5W', utc_timestamp, true, 'Patient', '49200972', 'Avenida João Lima da Silveira 3254', '526', '', 'Alagoas', 1, null, 2),
-(8, 'Sandra Laura Sarah Assis', 'paciente03@projeto.com.br', '984.738.912-87', 'Feminino', '(79) 2910-0954', '(79) 98652-2920', utc_timestamp, '$2y$12$NSsM4gEOR7MKogflKR7GMeYugkttjNhAJMvFdHrBLaLp2HzlggP5W', utc_timestamp, true, 'Patient', '49200972', 'Avenida João Lima da Silveira 3254', '526', '', 'Alagoas', 1, 3, 2),
-(9, 'Paciente do profissional exclusivo - particular', 'paciente04@projeto.com.br', '984.738.912-87', 'Feminino', '(79) 2910-0954', '(79) 98652-2920', utc_timestamp, '$2y$12$NSsM4gEOR7MKogflKR7GMeYugkttjNhAJMvFdHrBLaLp2HzlggP5W', utc_timestamp, true, 'Patient', '49200972', 'Avenida João Lima da Silveira 3254', '526', '', 'Alagoas', 1, 3, null);
+(6, 'Raul Leonardo Filipe Galvão', 'paciente@projeto.com.br', '984.738.912-87', 'Masculino', '(79) 2910-0954', '(79) 98652-2920', current_timestamp, '$2y$12$NSsM4gEOR7MKogflKR7GMeYugkttjNhAJMvFdHrBLaLp2HzlggP5W', current_timestamp, '1', 'Patient', '49200972', 'Avenida João Lima da Silveira 3254', '526', '', 'Alagoas', 1, null, 2),
+(7, 'Nair Márcia Barbosa', 'paciente02@projeto.com.br', '984.738.912-87', 'Feminino', '(79) 2910-0954', '(79) 98652-2920', current_timestamp, '$2y$12$NSsM4gEOR7MKogflKR7GMeYugkttjNhAJMvFdHrBLaLp2HzlggP5W', current_timestamp, '1', 'Patient', '49200972', 'Avenida João Lima da Silveira 3254', '526', '', 'Alagoas', 1, null, 2),
+(8, 'Sandra Laura Sarah Assis', 'paciente03@projeto.com.br', '984.738.912-87', 'Feminino', '(79) 2910-0954', '(79) 98652-2920', current_timestamp, '$2y$12$NSsM4gEOR7MKogflKR7GMeYugkttjNhAJMvFdHrBLaLp2HzlggP5W', current_timestamp, '1', 'Patient', '49200972', 'Avenida João Lima da Silveira 3254', '526', '', 'Alagoas', 1, 3, 2),
+(9, 'Paciente do profissional exclusivo - particular', 'paciente04@projeto.com.br', '984.738.912-87', 'Feminino', '(79) 2910-0954', '(79) 98652-2920', current_timestamp, '$2y$12$NSsM4gEOR7MKogflKR7GMeYugkttjNhAJMvFdHrBLaLp2HzlggP5W', current_timestamp, '1', 'Patient', '49200972', 'Avenida João Lima da Silveira 3254', '526', '', 'Alagoas', 1, 3, null);
 
 insert into usuario_grupo (cod_usuario, cod_grupo) values (1, 1), (2, 2), (3, 3), (4, 3), (5, 3), (6,4), (7,4), (8,4), (9,4);
 
@@ -119,7 +119,7 @@ insert into consulta(cod_consulta, convenio_enum, data_hora, local_atendimento, 
 (5, 'PARTICULAR', '2021-01-14 17:31:35', 'Informação do Local do atendimento', 'Observação', 'CONSULTA', 'AGENDADO', '2021-01-14 17:31:35', ' - Nome do Paciente', 'fc-event-success', 8, 3, 2),
 (6, 'PARTICULAR', '2021-01-15 17:31:35', 'Informação do Local do atendimento', 'Observação', 'CONSULTA', 'CANCELADO', '2021-01-15 17:31:35', ' - Nome do Paciente', 'fc-event-danger', 8, 3, 2);
 
-insert into atendimento (cod_atendimento, descrever_sessao, objetivo_sessao, cod_consulta) value
+insert into atendimento (cod_atendimento, descrever_sessao, objetivo_sessao, cod_consulta) values
     (1, 'Descrição da sessão', 'Objetivo a ser descrito', 1);
 
 -- insert into oauth_client_details (
