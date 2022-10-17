@@ -57,7 +57,7 @@ alter table categoria_lancamento auto_increment = 1;
 -- insert into permissao (cod_permissao, nm_permissao, desc_permissao) values (27, 'SEG_EDITAR_PROFISSIONAIS', 'Permite editar profissionais');
 -- insert into permissao (cod_permissao, nm_permissao, desc_permissao) values (28, 'SEG_REMOVER_PROFISSIONAIS', 'Permite remover profissionais');
 
---insert into grupo (cod_grupo, nm_grupo) values (1, 'Admin'), (2, 'Clinica'), (3, 'Profissional'), (4, 'Paciente');
+-- insert into grupo (cod_grupo, nm_grupo) values (1, 'Admin'), (2, 'Clinica'), (3, 'Profissional'), (4, 'Paciente');
 
 -- # Adiciona todas as permissoes no grupo do gerentegrupo_permissao
 -- insert into grupo_permissao (cod_grupo, cod_permissao)
