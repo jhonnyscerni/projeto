@@ -12,6 +12,7 @@ delete from categoria_lancamento;
 -- delete from oauth_client_details;
 delete from verificar_token;
 
+
 -- alter table grupo auto_increment = 1;
 -- alter table permissao auto_increment = 1;
 -- alter table usuario auto_increment = 1;
