@@ -2,9 +2,11 @@ package br.com.siberius.projeto.core.security.authorizationserver.userdetails;
 
 import br.com.siberius.projeto.api.assembler.GrupoModelAssembler;
 import br.com.siberius.projeto.domain.model.Usuario;
+import br.com.siberius.projeto.domain.model.enums.AtivadoStatus;
 import br.com.siberius.projeto.domain.repository.UsuarioRepository;
 import java.util.Collection;
 import java.util.List;
+import java.util.Objects;
 import java.util.stream.Collectors;
 import javax.persistence.DiscriminatorValue;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -32,7 +34,7 @@ public class JpaUserDetailsService implements UserDetailsService {
         Usuario usuario = usuarioRepository.findByEmail(username)
             .orElseThrow(() -> new UsernameNotFoundException("Usuário não encontrado com e-mail informado"));
 
-        if (!usuario.isAtivado()){
+        if (Objects.equals(usuario.isAtivado(), AtivadoStatus.NAO.name())){
             throw new UsernameNotFoundException("Usuário cadastrado mas ainda não está Ativado");
         }
 

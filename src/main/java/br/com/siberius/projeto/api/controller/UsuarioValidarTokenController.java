@@ -3,6 +3,7 @@ package br.com.siberius.projeto.api.controller;
 import br.com.siberius.projeto.api.openapi.controller.UsuarioValidarTokenControllerOpenApi;
 import br.com.siberius.projeto.domain.model.Usuario;
 import br.com.siberius.projeto.domain.model.VerificarToken;
+import br.com.siberius.projeto.domain.model.enums.AtivadoStatus;
 import br.com.siberius.projeto.domain.service.UsuarioService;
 import java.util.Calendar;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -35,7 +36,7 @@ public class UsuarioValidarTokenController implements UsuarioValidarTokenControl
             return new ModelAndView("pages/bad-user");
         }
 
-        usuario.setAtivado(true);
+        usuario.setAtivado(AtivadoStatus.SIM.name());
 
         usuarioService.salvar(usuario);
         return new ModelAndView("modelo-confimarcao-sucesso");

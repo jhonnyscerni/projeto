@@ -12,11 +12,9 @@ public interface PacienteRepository extends JpaRepository<Paciente, Long>, JpaSp
 
     Optional<Paciente> findByEmail(String email);
 
-    //    @Query("SELECT count(p.id) FROM Paciente p where p.ativado = true and p.profissionalId = :profissionalId")
-    @Query("SELECT count(p.id) FROM Paciente p where p.profissionalId = :profissionalId")
+    @Query("SELECT count(p.id) FROM Paciente p where p.ativado = 'SIM' and p.profissionalId = :profissionalId")
     long countPacienteByAtivado(@Param("profissionalId") Long profissionalId);
 
-    //    @Query("SELECT count(p.id) FROM Paciente p where p.ativado = true and p.clinicaId = :clinicaId")
-    @Query("SELECT count(p.id) FROM Paciente p where p.clinicaId = :clinicaId")
+    @Query("SELECT count(p.id) FROM Paciente p where p.ativado = 'SIM' and p.clinicaId = :clinicaId")
     long countPacienteByAtivadoClinica(@Param("clinicaId") Long clinicaId);
 }

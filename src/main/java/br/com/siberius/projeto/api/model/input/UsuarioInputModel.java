@@ -25,8 +25,8 @@ public class UsuarioInputModel {
     @Email
     private String email;
 
-    @ApiModelProperty(example = "false")
-    private boolean ativado;
+    @ApiModelProperty(example = "NAO")
+    private String ativado;
 
     private List<GrupoModel> grupos = new ArrayList<>();
 }

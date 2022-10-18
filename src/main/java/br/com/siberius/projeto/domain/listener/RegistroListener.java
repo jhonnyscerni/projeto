@@ -37,7 +37,7 @@ public class RegistroListener implements
             .assunto(usuario.getNome() + " - Ativação de conta")
             .corpo("modelo-confirmar-cadastro.html")
 //            .variavel("url_confirmation", "http://localhost:8080" + confirmationUrl)
-.variavel("url_confirmation", "https://api.botiqoption.com.br" + confirmationUrl)
+.variavel("url_confirmation", "https://siberius-app.herokuapp.com" + confirmationUrl)
             .variavel("usuario", usuario)
             .destinatario(usuario.getEmail())
             .build();

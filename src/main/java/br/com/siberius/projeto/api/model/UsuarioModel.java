@@ -29,5 +29,5 @@ public class UsuarioModel {
     private List<GrupoModel> grupos;
 
     @ApiModelProperty(example = "false")
-    private boolean ativado;
+    private String ativado;
 }

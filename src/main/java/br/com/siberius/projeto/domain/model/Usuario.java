@@ -1,5 +1,6 @@
 package br.com.siberius.projeto.domain.model;
 
+import br.com.siberius.projeto.domain.model.enums.AtivadoStatus;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import org.hibernate.annotations.CreationTimestamp;
@@ -58,7 +59,7 @@ public class Usuario {
     private OffsetDateTime dataCadastro;
 
     @Column(name = "ATIVADO")
-    private boolean ativado;
+    private String ativado;
 
     @ManyToMany()
     @JoinTable(name = "USUARIO_GRUPO", joinColumns = @JoinColumn(name = "COD_USUARIO"),
@@ -86,7 +87,7 @@ public class Usuario {
 
     public Usuario() {
         super();
-        this.ativado = false;
+        this.ativado = String.valueOf(AtivadoStatus.NAO);
     }
 
     public boolean adicionarGrupo(Grupo grupo) {
@@ -109,12 +110,19 @@ public class Usuario {
         return getId() == null;
     }
 
-    public boolean isAtivado() {
+    public String getAtivado() {
         return ativado;
     }
 
-    public void setAtivado(final boolean ativado) {
+    public void setAtivado(String ativado) {
         this.ativado = ativado;
+    }
+
+    public String isAtivado(){
+        if (this.ativado.equals(AtivadoStatus.SIM.name())){
+            return String.valueOf(AtivadoStatus.SIM);
+        }
+        return String.valueOf(AtivadoStatus.NAO);
     }
 
     @Transient

@@ -29,8 +29,8 @@ public class PacienteModel {
 
     private List<GrupoModel> grupos;
 
-    @ApiModelProperty(example = "false")
-    private boolean ativado;
+    @ApiModelProperty(example = "NAO")
+    private String ativado;
 
     @ApiModelProperty(example = "99999999987")
     private String cpf;

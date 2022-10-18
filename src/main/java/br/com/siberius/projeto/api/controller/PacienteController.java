@@ -20,6 +20,7 @@ import br.com.siberius.projeto.domain.model.Grupo;
 import br.com.siberius.projeto.domain.model.Paciente;
 import br.com.siberius.projeto.domain.model.Profissional;
 import br.com.siberius.projeto.domain.model.Usuario;
+import br.com.siberius.projeto.domain.model.enums.AtivadoStatus;
 import br.com.siberius.projeto.domain.repository.PacienteRepository;
 import br.com.siberius.projeto.domain.repository.filter.PacienteFilter;
 import br.com.siberius.projeto.domain.repository.filter.ProfissionalFilter;
@@ -116,7 +117,7 @@ public class PacienteController implements PacienteControllerOpenApi {
         Grupo grupo = grupoService.buscarOuFalhar(4L);
         grupos.add(assemblerGrupo.toModel(grupo));
         pacienteInputComSenhaModel.setGrupos(grupos);
-        pacienteInputComSenhaModel.setAtivado(true);
+        pacienteInputComSenhaModel.setAtivado(AtivadoStatus.SIM.name());
 
         Paciente paciente = disassembler.toDomainObjectComSenha(pacienteInputComSenhaModel);
 //        eventPublisher.publishEvent(new RegistroCompletoEvent
