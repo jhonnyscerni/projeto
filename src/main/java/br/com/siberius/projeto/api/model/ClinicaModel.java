@@ -29,7 +29,7 @@ public class ClinicaModel {
     private List<GrupoModel> grupos;
 
     @ApiModelProperty(example = "false")
-    private boolean ativado;
+    private String ativado;
 
     @ApiModelProperty(example = "99999999987")
     private String cpf;
