@@ -153,7 +153,7 @@ public class ProfissionalController implements ProfissionalControllerOpenApi {
         @RequestPart("profissional") ProfissionalInputComSenhaModel profissionalInputComSenhaModel) throws IOException {
         Profissional profissional = profissionalService.buscarOuFalhar(profissionalId);
 
-        profissionalInputComSenhaModel.setAtivado(profissional.isAtivado());
+        profissionalInputComSenhaModel.setAtivado(profissional.getAtivado());
         Profissional profissionalAlterado = disassembler.toDomainObjectComSenha(profissionalInputComSenhaModel);
         profissionalAlterado.setDataCadastro(profissional.getDataCadastro());
 

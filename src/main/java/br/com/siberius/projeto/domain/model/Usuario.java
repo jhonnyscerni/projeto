@@ -119,14 +119,6 @@ public class Usuario {
     }
 
     @Transient
-    public String isAtivado(){
-        if (this.ativado.equals(AtivadoStatus.SIM.name())){
-            return String.valueOf(AtivadoStatus.SIM);
-        }
-        return String.valueOf(AtivadoStatus.NAO);
-    }
-
-    @Transient
     public String getDiscriminatorValue() {
         DiscriminatorValue val = this.getClass().getAnnotation(DiscriminatorValue.class);
 

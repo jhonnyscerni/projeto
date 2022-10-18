@@ -110,7 +110,7 @@ public class UsuarioController implements UsuarioControllerOpenApi {
             String senhaCriptografada = new BCryptPasswordEncoder().encode(usuarioInput.getSenha());
             usuarioInput.setSenha(senhaCriptografada);
         }
-        usuarioInput.setAtivado(usuario.isAtivado());
+        usuarioInput.setAtivado(usuario.getAtivado());
 
         Usuario usuarioAlterado = disassembler.toDomainObjectComSenha(usuarioInput);
         usuarioAlterado.setDataCadastro(usuario.getDataCadastro());

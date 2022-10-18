@@ -34,7 +34,7 @@ public class JpaUserDetailsService implements UserDetailsService {
         Usuario usuario = usuarioRepository.findByEmail(username)
             .orElseThrow(() -> new UsernameNotFoundException("Usuário não encontrado com e-mail informado"));
 
-        if (Objects.equals(usuario.isAtivado(), AtivadoStatus.NAO.name())){
+        if (Objects.equals(usuario.getAtivado(), AtivadoStatus.NAO.name())){
             throw new UsernameNotFoundException("Usuário cadastrado mas ainda não está Ativado");
         }
 

@@ -154,7 +154,7 @@ public class ClinicaController implements ClinicaControllerOpenApi {
             String senhaCriptografada = new BCryptPasswordEncoder().encode(clinicaInputComSenhaModel.getSenha());
             clinicaInputComSenhaModel.setSenha(senhaCriptografada);
         }
-        clinicaInputComSenhaModel.setAtivado(clinica.isAtivado());
+        clinicaInputComSenhaModel.setAtivado(clinica.getAtivado());
 
         Clinica clinicaAlterado = disassembler.toDomainObjectComSenha(clinicaInputComSenhaModel);
         clinicaAlterado.setDataCadastro(clinica.getDataCadastro());

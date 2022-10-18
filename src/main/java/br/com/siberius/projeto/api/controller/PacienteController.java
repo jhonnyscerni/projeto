@@ -137,7 +137,7 @@ public class PacienteController implements PacienteControllerOpenApi {
             String senhaCriptografada = new BCryptPasswordEncoder().encode(pacienteInputComSenhaModel.getSenha());
             pacienteInputComSenhaModel.setSenha(senhaCriptografada);
         }
-        pacienteInputComSenhaModel.setAtivado(paciente.isAtivado());
+        pacienteInputComSenhaModel.setAtivado(paciente.getAtivado());
 
         Paciente pacienteAlterado = disassembler.toDomainObjectComSenha(pacienteInputComSenhaModel);
         pacienteAlterado.setDataCadastro(paciente.getDataCadastro());
