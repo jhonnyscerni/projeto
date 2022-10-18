@@ -118,6 +118,7 @@ public class Usuario {
         this.ativado = ativado;
     }
 
+    @Transient
     public String isAtivado(){
         if (this.ativado.equals(AtivadoStatus.SIM.name())){
             return String.valueOf(AtivadoStatus.SIM);
