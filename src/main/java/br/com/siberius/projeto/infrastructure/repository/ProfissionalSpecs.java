@@ -13,6 +13,7 @@ public class ProfissionalSpecs {
         return (root, query, builder) -> {
             List<Predicate> predicates = new ArrayList<Predicate>();
 
+
             if (filtro.getEmail() != null) {
                 predicates.add(builder.like(root.get("email"), "%" + filtro.getEmail() + "%"));
             }
