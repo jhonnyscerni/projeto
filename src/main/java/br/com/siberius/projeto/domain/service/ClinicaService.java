@@ -11,10 +11,8 @@ import br.com.siberius.projeto.domain.model.Grupo;
 import br.com.siberius.projeto.domain.model.Profissional;
 import br.com.siberius.projeto.domain.repository.ClinicaRepository;
 import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
 import java.util.Optional;
-import java.util.Set;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.dao.EmptyResultDataAccessException;
@@ -55,7 +53,7 @@ public class ClinicaService {
         }
 
         if (clinica.isNovo()) {
-            Set<Grupo> grupos = new HashSet<>();
+            List<Grupo> grupos = new ArrayList<>();
             for (Grupo grupo : clinica.getGrupos()) {
                 grupos.add(grupoService.buscarOuFalhar(grupo.getId()));
             }

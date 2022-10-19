@@ -1,11 +1,9 @@
 package br.com.siberius.projeto.domain.model;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -15,8 +13,6 @@ import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
-import org.hibernate.annotations.Fetch;
-import org.hibernate.annotations.FetchMode;
 
 @Data
 @Entity
@@ -33,8 +29,7 @@ public class Grupo {
     @Column(name = "NM_GRUPO")
     private String nome;
 
-    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
-    @ManyToMany(fetch = FetchType.LAZY)
+    @ManyToMany
     @JoinTable(name = "GRUPO_PERMISSAO", joinColumns = @JoinColumn(name = "COD_GRUPO"),
         inverseJoinColumns = @JoinColumn(name = "COD_PERMISSAO"))
     private List<Permissao> permissoes = new ArrayList<>();

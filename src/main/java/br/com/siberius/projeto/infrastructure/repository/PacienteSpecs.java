@@ -2,8 +2,6 @@ package br.com.siberius.projeto.infrastructure.repository;
 
 import br.com.siberius.projeto.domain.model.Paciente;
 import br.com.siberius.projeto.domain.repository.filter.PacienteFilter;
-import javax.persistence.criteria.From;
-import javax.persistence.criteria.JoinType;
 import org.springframework.data.jpa.domain.Specification;
 
 import javax.persistence.criteria.Predicate;
@@ -15,11 +13,6 @@ public class PacienteSpecs {
     public static Specification<Paciente> usandoFiltro(PacienteFilter filtro) {
         return (root, query, builder) -> {
             List<Predicate> predicates = new ArrayList<Predicate>();
-
-            root.fetch("cidade");
-            root.fetch("cidade").fetch("estado");
-            root.fetch("grupos");
-            root.fetch("grupos").fetch("permissoes");
 
             if (filtro.getEmail() != null) {
                 predicates.add(builder.like(root.get("email"), "%" + filtro.getEmail() + "%"));

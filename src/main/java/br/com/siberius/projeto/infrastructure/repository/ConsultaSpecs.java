@@ -15,19 +15,8 @@ public class ConsultaSpecs {
         return (root, query, builder) -> {
             List<Predicate> predicates = new ArrayList<Predicate>();
 
-            From<?, ?> paciente = root.join("paciente", JoinType.LEFT);
-            From<?, ?> profissional = root.join("profissional", JoinType.LEFT);
-
-            root.fetch("clinica").fetch("grupos");
-            root.fetch("clinica").fetch("cidade");
-
-            root.fetch("paciente").fetch("grupos");
-            root.fetch("paciente").fetch("cidade");
-            root.fetch("paciente").fetch("grupos").fetch("permissoes");
-
-            root.fetch("profissional").fetch("grupos");
-            root.fetch("profissional").fetch("cidade");
-
+            From<?, ?> paciente = root.join("paciente", JoinType.INNER);
+            From<?, ?> profissional = root.join("profissional", JoinType.INNER);
 
             if (filtro.getPaciente() != null) {
                 predicates.add(builder.equal(root.get("paciente"), filtro.getPaciente()));

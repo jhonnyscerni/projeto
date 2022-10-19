@@ -9,10 +9,8 @@ import br.com.siberius.projeto.domain.model.Paciente;
 import br.com.siberius.projeto.domain.model.Usuario;
 import br.com.siberius.projeto.domain.repository.PacienteRepository;
 import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
 import java.util.Optional;
-import java.util.Set;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.dao.EmptyResultDataAccessException;
@@ -71,7 +69,7 @@ public class PacienteService {
         }
 
         if (paciente.isNovo()) {
-            Set<Grupo> grupos = new HashSet<>();
+            List<Grupo> grupos = new ArrayList<>();
             for (Grupo grupo : paciente.getGrupos()) {
                 grupos.add(grupoService.buscarOuFalhar(grupo.getId()));
             }

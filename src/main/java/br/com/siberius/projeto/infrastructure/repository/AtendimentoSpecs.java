@@ -21,19 +21,7 @@ public class AtendimentoSpecs {
     public static Specification<Atendimento> usandoFiltro(AtendimentoFilter filtro) {
         return (root, query, builder) -> {
 
-            From<?, ?> consulta = root.join("consulta", JoinType.LEFT);
-
-            root.fetch("consulta").fetch("clinica").fetch("grupos");
-            root.fetch("consulta").fetch("clinica").fetch("grupos").fetch("permissoes");
-            root.fetch("consulta").fetch("clinica").fetch("cidade");
-            root.fetch("consulta").fetch("clinica").fetch("cidade").fetch("estado");
-
-            root.fetch("consulta").fetch("paciente").fetch("grupos");
-            root.fetch("consulta").fetch("paciente").fetch("cidade");
-
-            root.fetch("consulta").fetch("profissional").fetch("grupos");
-            root.fetch("consulta").fetch("profissional").fetch("cidade");
-
+            From<?, ?> consulta = root.join("consulta", JoinType.INNER);
 
             List<Predicate> predicates = new ArrayList<Predicate>();
 
