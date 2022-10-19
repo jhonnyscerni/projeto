@@ -5,6 +5,8 @@ import lombok.EqualsAndHashCode;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
+import org.hibernate.annotations.Fetch;
+import org.hibernate.annotations.FetchMode;
 
 @Data
 @EqualsAndHashCode(onlyExplicitlyIncluded = true)
@@ -21,7 +23,8 @@ public class Cidade {
     @Column(name = "NM_CIDADE",nullable = false)
     private String nome;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
+    @Fetch(value = FetchMode.JOIN)
     @JoinColumn(name = "COD_ESTADO",nullable = false)
     private Estado estado;
 

@@ -19,6 +19,8 @@ import br.com.siberius.projeto.domain.service.GrupoService;
 import br.com.siberius.projeto.domain.service.ProfissionalService;
 import br.com.siberius.projeto.infrastructure.repository.ProfissionalSpecs;
 import java.io.IOException;
+import java.util.HashSet;
+import java.util.Set;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.data.domain.Page;
@@ -157,7 +159,7 @@ public class ProfissionalController implements ProfissionalControllerOpenApi {
         Profissional profissionalAlterado = disassembler.toDomainObjectComSenha(profissionalInputComSenhaModel);
         profissionalAlterado.setDataCadastro(profissional.getDataCadastro());
 
-        List<Grupo> grupos = new ArrayList<>();
+        Set<Grupo> grupos = new HashSet<>();
         // ID do Usuario Comum
         Grupo grupo = grupoService.buscarOuFalhar(3L);
         grupos.add(grupo);

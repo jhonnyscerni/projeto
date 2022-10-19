@@ -29,7 +29,9 @@ import br.com.siberius.projeto.domain.service.PacienteService;
 import br.com.siberius.projeto.infrastructure.repository.PacienteSpecs;
 import br.com.siberius.projeto.infrastructure.repository.ProfissionalSpecs;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationEventPublisher;
@@ -142,7 +144,7 @@ public class PacienteController implements PacienteControllerOpenApi {
         Paciente pacienteAlterado = disassembler.toDomainObjectComSenha(pacienteInputComSenhaModel);
         pacienteAlterado.setDataCadastro(paciente.getDataCadastro());
 
-        List<Grupo> grupos = new ArrayList<>();
+        Set<Grupo> grupos = new HashSet<>();
         // ID do Usuario Comum
         Grupo grupo = grupoService.buscarOuFalhar(4L);
         grupos.add(grupo);

@@ -10,7 +10,11 @@ import java.util.Optional;
 
 public interface PacienteRepository extends JpaRepository<Paciente, Long>, JpaSpecificationExecutor<Paciente> {
 
-    Optional<Paciente> findByEmail(String email);
+    @Query("select u from Paciente u join fetch u.cidade ci join fetch ci.estado join fetch u.grupos gu join fetch gu.permissoes per where u.email =:email")
+    Optional<Paciente> findByEmail(@Param("email") String email);
+
+    @Query("select u from Paciente u join fetch u.cidade ci join fetch ci.estado join fetch u.grupos gu join fetch gu.permissoes per where u.id =:pacienteId")
+    Optional<Paciente>findById(@Param("pacienteId") Long pacienteId);
 
     @Query("SELECT count(p.id) FROM Paciente p where p.ativado = 'SIM' and p.profissionalId = :profissionalId")
     long countPacienteByAtivado(@Param("profissionalId") Long profissionalId);

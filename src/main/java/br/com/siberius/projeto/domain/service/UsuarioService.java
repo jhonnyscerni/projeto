@@ -9,8 +9,10 @@ import br.com.siberius.projeto.domain.model.VerificarToken;
 import br.com.siberius.projeto.domain.repository.UsuarioRepository;
 import br.com.siberius.projeto.domain.repository.VerificarTokenRepository;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Optional;
+import java.util.Set;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.dao.EmptyResultDataAccessException;
@@ -59,7 +61,7 @@ public class UsuarioService implements IUsuarioService {
         }
 
         if (usuario.isNovo()) {
-            List<Grupo> grupos = new ArrayList<>();
+            Set<Grupo> grupos = new HashSet<>();
             for (Grupo grupo : usuario.getGrupos()) {
                 grupos.add(grupoService.buscarOuFalhar(grupo.getId()));
             }

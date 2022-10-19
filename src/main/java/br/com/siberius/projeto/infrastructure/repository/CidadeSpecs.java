@@ -14,6 +14,8 @@ public class CidadeSpecs {
         return (root, query, builder) -> {
             List<Predicate> predicates = new ArrayList<Predicate>();
 
+            root.fetch("estado");
+
             if (estadoId != null) {
                 predicates.add(builder.equal(root.get("estado"), estadoId));
             }

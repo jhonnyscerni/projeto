@@ -1,6 +1,9 @@
 package br.com.siberius.projeto.domain.model;
 
 import br.com.siberius.projeto.domain.model.enums.AtivadoStatus;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import java.util.HashSet;
+import java.util.Set;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import org.hibernate.annotations.CreationTimestamp;
@@ -9,6 +12,8 @@ import javax.persistence.*;
 import java.time.OffsetDateTime;
 import java.util.ArrayList;
 import java.util.List;
+import org.hibernate.annotations.Fetch;
+import org.hibernate.annotations.FetchMode;
 
 @Data
 @Entity
@@ -61,10 +66,11 @@ public class Usuario {
     @Column(name = "ATIVADO")
     private String ativado;
 
-    @ManyToMany()
+    @ManyToMany( fetch=FetchType.LAZY)
+    @Fetch(value = FetchMode.SUBSELECT)
     @JoinTable(name = "USUARIO_GRUPO", joinColumns = @JoinColumn(name = "COD_USUARIO"),
             inverseJoinColumns = @JoinColumn(name = "COD_GRUPO"))
-    private List<Grupo> grupos = new ArrayList<>();
+    private Set<Grupo> grupos = new HashSet<>();
 
     @Column(name = "ENDERECO_CEP")
     private String cep;
@@ -81,7 +87,7 @@ public class Usuario {
     @Column(name = "ENDERECO_BAIRRO")
     private String bairro;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "ENDERECO_CIDADE_ID")
     private Cidade cidade;
 

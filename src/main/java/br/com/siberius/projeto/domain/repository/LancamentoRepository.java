@@ -11,6 +11,6 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface LancamentoRepository extends JpaRepository<Lancamento, Long>, JpaSpecificationExecutor<Lancamento> {
 
-    @Query("from Lancamento where consulta.id = :consulta ")
+    @Query("from Lancamento lc join fetch lc.consulta c where c.id = :consulta ")
     Lancamento findByConsultaId(@Param("consulta") Long consultaId);
 }

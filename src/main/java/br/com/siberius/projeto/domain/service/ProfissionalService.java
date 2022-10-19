@@ -10,8 +10,10 @@ import br.com.siberius.projeto.domain.repository.ProfissionalRepository;
 import br.com.siberius.projeto.domain.service.FotoStorageService.NovaFoto;
 import java.io.InputStream;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Optional;
+import java.util.Set;
 import javax.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
@@ -58,7 +60,7 @@ public class ProfissionalService {
         }
 
         if (profissional.isNovo()) {
-            List<Grupo> grupos = new ArrayList<>();
+            Set<Grupo> grupos = new HashSet<>();
             for (Grupo grupo : profissional.getGrupos()) {
                 grupos.add(grupoService.buscarOuFalhar(grupo.getId()));
             }
@@ -107,7 +109,7 @@ public class ProfissionalService {
         }
 
         if (profissional.isNovo()) {
-            List<Grupo> grupos = new ArrayList<>();
+            Set<Grupo> grupos = new HashSet<>();
             for (Grupo grupo : profissional.getGrupos()) {
                 grupos.add(grupoService.buscarOuFalhar(grupo.getId()));
             }
