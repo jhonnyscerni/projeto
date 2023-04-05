@@ -57,10 +57,10 @@ public class PacienteService {
             paciente.setClinicaId(projetoSecurity.getUsuarioId());
         }
 
-        if (optionalPaciente.isPresent() && !optionalPaciente.get().equals(paciente)) {
-            throw new NegocioException(
-                String.format("Já existe um paciente cadastrado com o e-mail %s", paciente.getEmail()));
-        }
+ //       if (optionalPaciente.isPresent() && !optionalPaciente.get().equals(paciente)) {
+ //           throw new NegocioException(
+ //               String.format("Já existe um paciente cadastrado com o e-mail %s", paciente.getEmail()));
+ //       }
 
         if (paciente.isNovo()) {
             paciente.setSenha(passwordEncoder.encode(paciente.getSenha()));
