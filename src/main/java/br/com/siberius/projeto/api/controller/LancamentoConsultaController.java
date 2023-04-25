@@ -38,6 +38,9 @@ public class LancamentoConsultaController implements LancamentoConsultaControlle
     @GetMapping("/{consultaId}")
     public LancamentoModel buscarPorConsulta(@PathVariable Long consultaId) {
         Lancamento lancamento = lancamentoRepository.findByConsultaId(consultaId);
-        return assembler.toModel(lancamento);
+        if (lancamento != null) {
+            return assembler.toModel(lancamento);
+        }
+        return null;
     }
 }

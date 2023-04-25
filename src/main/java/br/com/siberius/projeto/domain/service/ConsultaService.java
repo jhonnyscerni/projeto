@@ -14,6 +14,8 @@ import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.stereotype.Service;
 
+import java.time.format.DateTimeFormatter;
+
 @Service
 public class ConsultaService {
 
@@ -52,27 +54,27 @@ public class ConsultaService {
 
         if (usuario.getDiscriminatorValue().equals("User")) {
             profissional = profissionalService.buscarOuFalhar(usuario.getId());
-            if (profissional.getClinicaId() != null){
+            if (profissional.getClinicaId() != null) {
                 clinica = clinicaService.buscarOuFalhar(profissional.getClinicaId());
             }
             paciente = pacienteService.buscarOuFalhar(consulta.getPaciente().getId());
-            consulta.setTitle( " - Paciente: "+paciente.getNome());
+            consulta.setTitle(paciente.getNome() + " - " + DateTimeFormatter.ofPattern("dd/MM/yyyy").format(consulta.getDataHora()));
         } else if (usuario.getDiscriminatorValue().equals("Patient")) {
             profissional = profissionalService.buscarOuFalhar(consulta.getProfissional().getId());
             paciente = pacienteService.buscarOuFalhar(usuario.getId());
-            if (paciente.getClinicaId() != null){
+            if (paciente.getClinicaId() != null) {
                 clinica = clinicaService.buscarOuFalhar(paciente.getClinicaId());
             }
-            consulta.setTitle("Profissional: "+profissional.getNome() + " - Paciente: " + paciente.getNome());
-        }else if (usuario.getDiscriminatorValue().equals("Clinic")) {
+            consulta.setTitle(profissional.getNome() + " - " + paciente.getNome());
+        } else if (usuario.getDiscriminatorValue().equals("Clinic")) {
             clinica = clinicaService.buscarOuFalhar(usuario.getId());
             profissional = profissionalService.buscarOuFalhar(consulta.getProfissional().getId());
             paciente = pacienteService.buscarOuFalhar(consulta.getPaciente().getId());
-        }else {
+        } else {
             profissional = profissionalService.buscarOuFalhar(consulta.getProfissional().getId());
             paciente = pacienteService.buscarOuFalhar(consulta.getPaciente().getId());
             clinica = clinicaService.buscarOuFalhar(consulta.getClinica().getId());
-            consulta.setTitle("Profissional: "+profissional.getNome() + " - Paciente: " + paciente.getNome());
+            consulta.setTitle(profissional.getNome() + " - " + paciente.getNome());
         }
 
         consulta.setStart(consulta.getDataHora());
@@ -91,7 +93,7 @@ public class ConsultaService {
             throw new ConsultaNaoEncontradoException(consultaId);
         } catch (DataIntegrityViolationException e) {
             throw new EntidadeEmUsoException(
-                String.format(MSG_CONSULTA_EM_USO, consultaId));
+                    String.format(MSG_CONSULTA_EM_USO, consultaId));
         }
     }
 
